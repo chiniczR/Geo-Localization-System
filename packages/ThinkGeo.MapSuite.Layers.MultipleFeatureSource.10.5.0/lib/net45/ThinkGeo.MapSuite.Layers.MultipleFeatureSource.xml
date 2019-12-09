@@ -1,0 +1,400 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.MultipleFeatureSource</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.MultipleFeatureLayer">
+            <summary>This class represents a Layer backed by multiple Shape Files.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureLayer.#ctor">
+            <summary>This is the default constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureLayer.#ctor(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Layers.FeatureSource})">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide information about the FeatureSources for the MultipleFeatureLayer.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="featureSources">This parameter represents the FeatureSources in this class that you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MultipleFeatureLayer.FeatureSources">
+            <summary>
+            This property gets the FeatureSources you want to use.
+            </summary>
+            <value>This property gets the FeatureSources you want to use.</value>
+            <remarks>This property gets the FeatureSources you want to use.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MultipleFeatureLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In MultipleFeatureLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.MultipleFeatureSource">
+            <summary>
+            This <strong>MultipleFeatureSource</strong> is a special
+            <strong>FeatureSource</strong> which holds a bunch of
+            <strong>FeatureSource</strong>.
+            </summary>
+            <remarks>
+            Almost all API apply to <strong>MultipleFeatureSource</strong> will apply to each
+            <strong>FeautureSource</strong> individually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.#ctor">
+            <summary>This is the default constructor for the MultipleFeatureSource class.</summary>
+            <remarks>All this constructor, you can add FeautureSources to this MultipleFeatureSource by calling the property FeatureSources.</remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.#ctor(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Layers.FeatureSource})">
+            <summary>
+            This is a constructor for the class by passing a group of FeeatureSources.
+            </summary>
+            <param name="featureSources">The target FeatureSources will be included in this MultipleFeatureSource.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.FeatureSources">
+            <summary>
+            This property specify the FeatureSource collection within the MultipleFeatureSource.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.IsEditable">
+            <summary>This property returns if the FeatureSource allows edits or is read only.</summary>
+            <decimalDegreesValue>
+            This property returns if the FeatureSource allows edits or is read only. The
+            property returns true if the FeatureSource allows edits and false if the FeatureSource
+            is read only.
+            </decimalDegreesValue>
+            <remarks>
+            	<para>This property is useful to check if a specific FeatureSource accepts editing.
+                If you call the BeginTransaction and this property is false then an exception will
+                be raised.<br/>
+            		<br/>
+                For developers who are creating or extending a FeatureSource it is expected that
+                you override this virtual method if the new FeatureSource you are creating allows
+                edits. By default the decimalDegreesValue if false meaning that if you want to allow edits you
+                must override this method and return true.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetColumnsCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the columns available for the FeatureSources within this MultipleFeatureSource.</summary>
+            <returns>This method returns the columns available for the FeatureSources within this MultipleFeatureSource.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.OpenCore">
+            <summary>
+            This method opens the FeatureSource so that it is initialized and ready to
+            use.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This API will open all FeatureSource included in this MultipleFEatureSource.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.CloseCore">
+            <summary>
+            This method closes the FeatureSource and releases any resources it was
+            using.
+            </summary>
+            <remarks>
+            This API will close all FeatureSource included in this MultipleFEatureSource.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetCountCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <summary>
+            This method returns the count of the number of records in this FeatureSource.
+            </summary>
+            <returns>
+            This method returns the count of the number of records in this FeatureSource.
+            </returns>
+            <remarks>
+            This returning features count stands for the total count in all FeatureSource included in this MultipleFeatureSource.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <summary>
+            This method returns the bounding box which encompasses all of the FeatureSources in the
+            MutlpleFeatureSource.
+            </summary>
+            <returns>
+            This method returns the bounding box which encompasses all of the FeatureSources in the
+            MutlpleFeatureSource.
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.CommitTransactionCore(ThinkGeo.MapSuite.Layers.TransactionBuffer)">
+            <summary>
+            This API is not supported in this concrete FeatureSource: MultipleFeatureSource.
+            </summary>
+            <returns>
+            The return decimalDegreesValue of this method is a TransactionResult class which gives you the
+            status of the transaction you just committed. It includes how many of the updates,
+            adds, and deletes were successful and any error that were encountered during the
+            committing of the transaction.
+            </returns>
+            <param name="transactions">
+            This parameter encapsulates all of the adds, edits and deleted that make up the
+            transaction. You will use this data to write the changes to your underlying data
+            source.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetAllFeaturesCore(System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns all of the InternalFeatures in the MutipleFeatureSource.</summary>
+            <returns>
+            The return value is a collection of all of the InternalFeatures in the
+            MutipleFeatureSource.
+            </returns>
+            <remarks>
+            This returning collection of Features will include all the features counting all the FeatureSources in this
+            MultipleFeautureSource.
+            </remarks>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetFeaturesInsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method returns all of the InternalFeatures of this MultipleFeatureSource inside of the
+            specified bounding box.
+            </summary>
+            <remarks>
+            This returning collection of Features will include all the features insides all the FeatureSources in this
+            MultipleFeautureSource.
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box you with to find InternalFeatures inside of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the boundingBox we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetFeaturesByIdsCore(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns a collection of Features by providing a group of Ids.</summary>
+            <returns>This method returns a collection of Features by providing a group of Ids.</returns>
+            <remarks>
+            This returning collection of Features will include all the features with the passed in Ids insides all the FeatureSources in this
+            MultipleFeautureSource.
+            </remarks>
+            <param name="ids">
+            This parameter represents the group of Ids which uniquely identified the Features
+            in the FeatureSource.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the ids we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetFeaturesForDrawingCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Double,System.Double,System.Collections.Generic.IEnumerable{System.String})">
+            <remarks>
+            This method returns all of the InternalFeatures of this FeatureSources with the MultipleFeatureSource in this
+            MultipleFeautureSource. inside of the specified bounding box.
+            </remarks>
+            <summary>This method returns the InternalFeatures that will be used for drawing.</summary>
+            <returns>This method returns the InternalFeatures that will be used for drawing.</returns>
+            <param name="boundingBox">This parameter is the bounding box of the InternalFeatures you want to draw.</param>
+            <param name="screenWidth">
+            This parameter is the width in screen pixels of the canvas you will draw
+            on.
+            </param>
+            <param name="screenHeight">
+            This parameter is the height in screen pixels of the canvas you will draw
+            on.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetFeaturesNearestToCore(ThinkGeo.MapSuite.Shapes.BaseShape,ThinkGeo.MapSuite.GeographyUnit,System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method will get a user defined number of Features that are closest to the
+            TargetShape from all the FeatureSources within the MutlipleFeatureSource.
+            </summary>
+            <returns>
+            This method returns a user defined number of InternalFeatures that are closest to the
+            TargetShape from all the FeatureSources within the MutlipleFeatureSource.
+            </returns>
+            <param name="targetShape">This parameter is the shape you should to find close InternalFeatures to.</param>
+            <param name="unitOfData">
+            This parameter is the unit of what the TargetShape and the FeatureSource is in
+            such as feet, meters etc.
+            </param>
+            <param name="maxItemsToFind">
+            This parameter defines how many close InternalFeatures to find around the
+            TargetShape.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the targetShape we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a maxItemsToFind that is not greater than 0 it will throw a ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If you pass in a targetShape which is invalid we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetFeaturesOutsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <returns>
+            This method returns all of the Features of this FeatureSource outside of the
+            specified bounding box from all the FeatureSources within the MutlipleFeatureSource.
+            </returns>
+            <summary>
+            This method returns all of the InternalFeatures of this FeatureSource outside of the
+            specified bounding box from all the FeatureSources within the MutlipleFeatureSource.
+            </summary>
+            <remarks>
+            This method returns all of the InternalFeatures of this FeatureSource outside of the
+            specified bounding box. If you are in a transaction and that transaction is live then
+            it will also take that into consideration.<br/>
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box you with to find InternalFeatures outside
+            of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the boundingBox we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.GetFeaturesWithinDistanceOfCore(ThinkGeo.MapSuite.Shapes.BaseShape,ThinkGeo.MapSuite.GeographyUnit,ThinkGeo.MapSuite.Shapes.DistanceUnit,System.Double,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method returns a collection of InternalFeatures that are within a certain distance
+            of the TargetShape.This query will apply to all featureSource
+            within this MultipleFeatureSource.
+            </summary>
+            <returns>
+            This method returns a collection of InternalFeatures that are within a certain distance
+            of the TargetShape.
+            </returns>
+            <remarks>
+            This method returns a collection of InternalFeatures that are within a certain distance
+            of the TargetShape. It is important to note that the TargetShape and the FeatureSource
+            use the same unit such as feet or meters. If they do not then the results will not be
+            predictable or correct. If there is a current transaction and it is marked as live then
+            the results will include any transaction Feature that applies.<br/>
+            	<br/>
+            The implementation we provided create a bounding box around the TargetShape using the
+            distance supplied and then queries the features inside of it. This may not the most
+            efficient method for this operation. If you underlying data provider exposes a more
+            efficient way we recommend you override the Core version of this method and implement
+            it.<br/>
+            	<br/>
+            The default implementation of GetFeaturesWithinDistanceOfCore uses the
+            GetFeaturesInsideBoundingBoxCore method for speed. We strongly recommend that you
+            provide your own implementation for this method that will be more efficient. We
+            recommend when you override GetFeaturesInsideBoundingBoxCore method that you use any
+            spatial indexes you have at your disposal to make this method as fast as
+            possible.
+            </remarks>
+            <param name="targetShape">The shape you wish to find InternalFeatures within a distance of.</param>
+            <param name="unitOfData">
+            This parameter is the unit of data that the FeatureSource and TargetShape are
+            in.
+            </param>
+            <param name="distanceUnit">
+            This parameter specifies the unit of the distance parameter such as feet, miles
+            or kilometers etc.
+            </param>
+            <param name="distance">
+            This parameter specifies the distance in which to find InternalFeatures around the
+            TargetShape.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the targetShape we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a unitOfData that is not defined it will throw a ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a distanceUnit that is not defined it will throw a ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If you pass in a targetShape which is invalid we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MultipleFeatureSource.SpatialQueryCore(ThinkGeo.MapSuite.Shapes.BaseShape,ThinkGeo.MapSuite.Layers.QueryType,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <remarks>
+            This method returns all of the InternalFeatures based on the target Feature and the
+            spatial query type specified below. This spatial query will apply to all featureSource
+            within this MultipleFeatureSource.
+            	<br/>
+            	<strong>Spatial Query Types:</strong><br/>
+            	<br/>
+            	<strong>Disjoint</strong> - This method returns InternalFeatures where the specific Feature and
+            the targetShape have no points in common.<br/>
+            	<br/>
+            	<strong>Intersects</strong> - This method returns InternalFeatures where the specific Feature
+            and the targetShape have at least one point in common.<br/>
+            	<br/>
+            	<strong>Touches</strong> - This method returns InternalFeatures where the specific Feature and
+            the targetShape have at least one boundary point in common, but no interior
+            points.<br/>
+            	<br/>
+            	<strong>Crosses</strong> - This method returns InternalFeatures where the specific Feature and
+            the targetShape share some but not all interior points.<br/>
+            	<br/>
+            	<strong>Within</strong> - This method returns InternalFeatures where the specific Feature lies
+            within the interior of the targetShape.<br/>
+            	<br/>
+            	<strong>Contains</strong> - This method returns InternalFeatures where the specific Feature
+            lies within the interior of the current shape.<br/>
+            	<br/>
+            	<strong>Overlaps</strong> - This method returns InternalFeatures where the specific Feature and
+            the targetShape share some but not all points in common.<br/>
+            	<br/>
+            	<strong>TopologicalEqual</strong> - This method returns InternalFeatures where the specific
+            Feature and the target Shape are topologically equal.<br/>
+            	<br/>
+            The default implementation of SpatialQueryCore uses the
+            GetFeaturesInsideBoundingBoxCore method to pre-filter the spatial query. We strongly
+            recommend that you provide your own implementation for this method that will be more
+            efficient. We recommend when you override that method that you use any spatial indexes
+            you have at your disposal to make this method as fast as possible.
+            </remarks>
+            <summary>
+            This method returns all of the InternalFeatures based on the target Feature and the
+            spatial query type specified.
+            </summary>
+            <returns>
+            The return value is a collection of Features that match the spatial query you
+            executed based on the TargetShape.
+            </returns>
+            <param name="targetShape">This parameter specifies the target shape used in the spatial query.</param>
+            <param name="queryType">This parameter specifies what kind of spatial query you wish to perform.</param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the targetShape we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a queryType that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If you pass in a targetShape which is invalid we will throw an ArgumentException.</exception>
+        </member>
+    </members>
+</doc>

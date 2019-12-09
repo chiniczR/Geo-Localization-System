@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.GoogleMaps</name>
+    </assembly>
+    <members>
+        <member name="M:ThinkGeo.MapSuite.Layers.CreatingRequestGoogleMapsLayerEventArgs.#ctor(System.Uri)">
+            <summary>
+            Create an instance of CreatingRequestGoogleMapsLayerEventArgs
+            </summary>
+            <param name="requestUri"></param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CreatingRequestGoogleMapsLayerEventArgs.RequestUri">
+            <summary>
+            The request uri
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GoogleMapsLayer">
+            <summary>
+            <summary>Represents an object that encapsulates a Google Map layer.</summary>
+            </summary>
+            <remarks>This clss uses Google Static Maps API to implement url request.</remarks>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.CreatingRequest">
+            <summary>
+            This event is called before creating the reqeust for google maps.
+            </summary>
+            <remarks>
+            This event is called before creating the reqeust for google maps.<br/>
+            It is typical that user want to get the url of reqeust and modify it according to their requirements.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.#ctor">
+            <summary>This is the constructor the for the class. If you use this constructor, then you need to set
+            the required properties manually.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.#ctor(System.String,System.String,System.String)">
+            <summary>
+            This is the constructor the for the class.
+            </summary>
+            <param name="cacheDirectory">The cache directory for the GoogleMapLayer.</param>
+            <param name="clientId">The clientId for the GoogleMapLayer.</param>
+            <param name="privateKey">The privateKey for the GoogleMapLayer.</param>
+            <remarks>This constructor initializes a new layer and assgin a license key.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.#ctor(System.String,System.String,System.String,System.Net.IWebProxy)">
+             <summary>
+             This is the constructor the for the class.
+             </summary>
+             <remarks>This constructor initializes a new layer and assgin a license key and initilize a cache directory.
+             </remarks>
+            <param name="cacheDirectory">cache directory which stored the cache image.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.PictureFormat">
+            <summary>
+            Gets or sets a value represents the image format of the image.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.MapType">
+            <summary>
+            Gets or sets a value represents the map type of the GoogleMaps.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.TimeoutInSeconds">
+            <summary>
+            Gets or sets a value represents the request timeout from the GoogleMaps server.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.ClientId">
+            <summary>
+            Gets or sets a value to access the special features of Google Maps API Premier, you must provide a client
+            ID when accessing any of the Premier API libraries or services. When registering for
+            Google Maps API Premier, you will receive this client ID from Google Enterprise Support.
+            All client IDs begin with a gme- prefix.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.PrivateKey">
+            <summary>
+            Gets or sets a value that is unique to your client ID, please keep your key secure.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.NoDataTileImage">
+            <summary>
+            Gets or sets a value represents the image with 512*512 when no data can access.
+            </summary>
+            <remarks>If you set the image's size is different from 512*512, it will be compressed or stretched to 512*512.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.WebProxy">
+            <summary>
+            This property gets or sets the proxy used for requesting a Web Response.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a Layer which has already been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method opens the Layer so that it is initialized and ready to use.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Open. The
+            open method plays an important role, as it is responsible for initializing the Layer.
+            Most methods on the Layer will throw an exception if the state of the Layer is not
+            opened. When the map draws each layer, the layer will be opened as one of its first steps;
+            then, after it is finished drawing with that layer, it will close it. In this way, we
+            are sure to release all resources used by the Layer.<br/>
+            <br/>
+            When implementing the abstract method, consider opening the FeatureSource or
+            RasterSource. You will get a chance to close these in the Close method of the
+            Layer.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.CloseCore">
+            <summary>
+            This method closes the Layer and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This abstract method is called from the concrete public method Close. The close
+            method plays an important role in the life cycle of the Layer. It may be called after
+            drawing to release any memory and other resources that were allocated since the Open
+            method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed Layer is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This method is the concrete wrapper for the abstract method DrawCore. This
+                method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties that
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsLayer.GetPictureFormat">
+            <summary>
+            Get picture format string which will use for request url.
+            </summary>
+            <returns>Get picture format string which will use for request url.</returns>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GoogleMapsMapType">
+            <summary>This enumeration specifies the map types available from Google Maps.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsMapType.RoadMap">
+            <summary>Specifies that the Google map displays a normal street map.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsMapType.Mobile">
+            <summary>Specifies that the Google map displays a mobile map.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsMapType.Satellite">
+            <summary>Specifies that the Google map displays satellite images.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsMapType.Terrain">
+            <summary>
+            Specifies that the Google map displays a transparent layer of major
+            streets on satellite images (hybrid mode).
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsMapType.Hybrid">
+            <summary>
+            Specifies that the Google map displays maps with physical features
+            such as terrain and vegetation.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GoogleMapsPictureFormat">
+            <summary>This enumeration specifies the picture formats when getting images back to client from Google Maps.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsPictureFormat.Jpeg">
+            <summary>This format will specify the returing images from GoogleMaps in Jpeg format.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsPictureFormat.Gif">
+            <summary>This format will specify the returing images from GoogleMaps in Gif format.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsPictureFormat.Png8">
+            <summary>This format will specify the returing images from GoogleMaps in Png8 format.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.GoogleMapsPictureFormat.Png32">
+            <summary>This format will specify the returing images from GoogleMaps in Png32 format.</summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GoogleMapsResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GoogleMapsResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GoogleMapsZoomLevelSet">
+            <summary>This class represents the zoom levels used by Google Maps.</summary>
+            <returns>None</returns>
+            <remarks>
+            If you want to create some layers that match up with Google Maps layers, you
+            should use this ZoomSet.
+            </remarks>    
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GoogleMapsZoomLevelSet.#ctor">
+            <summary>This class represents the zoom levels used by Google Maps.</summary>
+            <returns>None</returns>
+            <remarks>
+            If you want to create some layers that match up with Google Maps layers, you
+            should use this ZoomSet.
+            </remarks>
+        </member>
+    </members>
+</doc>

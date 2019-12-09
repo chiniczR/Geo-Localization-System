@@ -1,0 +1,1121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.NauticalCharts</name>
+    </assembly>
+    <members>
+        <member name="M:ThinkGeo.MapSuite.Layers.S52CSPIndex.GetSharingEdgeVertexIndices(ThinkGeo.MapSuite.Layers.S52CPSIndexFeature,ThinkGeo.MapSuite.Layers.S52CPSIndexFeature)">
+            <summary>
+            Get start index and ending index of sharing segment.
+            </summary>
+            <param name="sourceFeature"></param>
+            <param name="targetFeature"></param>
+            <returns>Dictionay that start index as key and end index as value</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.S57LRUCache`2.#ctor(System.Int32)">
+            <summary>
+            Constructs a new LRUCache with max size maxSize
+            </summary>
+            <param name="cacheMaxSize">The max size of the LRU Cache</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.S57LRUCache`2.GetNodeValue(`0)">
+            <summary>
+            Gets the item indexed by the key if it is in the cache.
+            </summary>
+            <returns>The value paired with the key if it is in the cache
+             and null if it is not in the cache</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.S57LRUCache`2.IsInCache(`0)">
+            <summary>
+            Checks if the item is in the cache.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.S57LRUCache`2.Add(`0,`1)">
+            <summary>
+            Adds the key value pair to the cache
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you should set
+            the required methods manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you should set
+            the required methods manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.#ctor(System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide a path and filename to a shape
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="nauticalChartsPathFilename">This parameter is the *.000 File path and filename.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.NauticalChartsPathFilename">
+            <summary>
+            Gets the path and file of the *.000 you want to use.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.RequireIndex">
+            <summary>
+            This property gets and sets the requirement of index when reading data. The default value is true.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.BuildIndexFile(System.String)">
+            <summary>
+            This method builds a spatial index and drawing CSP index for the specified *.000 file.
+            </summary>
+            <param name="nauticalChartsFilePathname">
+            This parameter is the *.000 file name and path that you want to build an index
+            for.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.BuildIndexFile(System.String,ThinkGeo.MapSuite.Layers.BuildIndexMode)">
+            <summary>
+            This method builds a spatial index and drawing CSP index for the specified *.000 file.
+            </summary>
+            <param name="nauticalChartsFilePathname">
+            This parameter is the *.000 file name and path that you want to build an index
+            for.
+            </param>
+            <param name="buildIndexMode">
+            This parameter determines what will happen if there is an existing index
+            file.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureSource.BuildIndexFile(System.String,ThinkGeo.MapSuite.Layers.BuildIndexMode,System.Text.Encoding)">
+            <summary>
+            This method builds a spatial index and drawing CSP index for the specified *.000 file.
+            </summary>
+            <param name="nauticalChartsFilePathname">
+            This parameter is the *.000 file name and path that you want to build an index
+            for.
+            </param>
+            <param name="buildIndexMode">
+            This parameter determines what will happen if there is an existing index
+            file.
+            </param>
+            <param name="encoding">
+            This parameter is a character encoding that you would like to specify for the index file..
+            </param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsBoundaryDisplayMode">
+            <summary>
+            Describles which kind of style used for symbolize the border of an area.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsBoundaryDisplayMode.Plain">
+            <summary>
+            Specifies that a plain area boundaries shall be used. Intended for use at small scale to reduce clutter.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsBoundaryDisplayMode.Symbolized">
+            <summary>
+            Specifies that a symbolized area boundaries shall be used. ntended for use at very large scale to show 
+            immediately on which side of the boundary the area lies and to identify the area.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsDefaultColorSchema">
+            <summary>
+            Describes which color scheme should be used to render the S-57 data.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDefaultColorSchema.DayBright">
+            <summary>Specifies that the DayBright color scheme shall be used</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDefaultColorSchema.DayBlackBack">
+            <summary>Specifies that the DayBlackBack color scheme shall be used</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDefaultColorSchema.DayWhiteBack">
+            <summary>Specifies that the DayWhiteBack color scheme shall be used</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDefaultColorSchema.Dusk">
+            <summary>Specifies that the Dusk color scheme shall be used</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDefaultColorSchema.Night">
+            <summary>Specifies that the Night color scheme shall be used</summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsDepthShades">
+            <summary>
+            Describes which depth shades is used for render.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDepthShades.TwoColor">
+            <summary>
+            Specifies that two shades shall be used for rendering depth area values.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDepthShades.FourColor">
+            <summary>
+            Specifies that four shades shall be used for rendering depth area values.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsDepthUnit">
+            <summary>
+            Describes the units to be used to display depths.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDepthUnit.Meter">
+            <summary>
+            Specifies that meters shall be used when displaying depth values.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDepthUnit.Feet">
+            <summary>
+            Specifies that feet shall be used when displaying depth values.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDepthUnit.Fathom">
+            <summary>
+            Specifies that fathoms shall be used when displaying depth values.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsDisplayCategory">
+            <summary>
+            Describles which the category is used for S-57 geometries display.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDisplayCategory.All">
+            <summary>
+            Specifies that features whose category is "DISPLAYBASE", "STANDARD", and "OTHER" shall be rendered.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDisplayCategory.Standard">
+            <summary>
+            Specifies that features whose category is "STANDARD"shall be rendered.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDisplayCategory.BaseLayer">
+            <summary>
+            Specifies that features whose category is "DISPLAYBASE" shall be rendered.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsDrawingMode">
+            <summary>
+            Describes drawing quality of how to draw features from .000 file.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDrawingMode.Optimized">
+            <summary>
+            Specifies that the drawing quality will be changed based on the feature, it will get a balanced between speed and quality.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDrawingMode.HightSpeed">
+            <summary>
+            Specifies that a low quality (but high speed) shall be token for drawing.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsDrawingMode.HightQuality">
+            <summary>
+            Specifies that a high quality (but low speed) shall be token for drawing.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer">
+            <summary>This class represents a Layer backed by a IHO ENC 000 File.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you should set
+            the required methods manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you should set
+            the required methods manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.#ctor(System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide a path and filename to a shape
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="nauticalChartsPathFilename">This parameter is the *.000 File path and filename.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.#ctor(System.String,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide a path and filename to a shape
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="nauticalChartsPathFilename">This parameter is the *.000 File path and filename.</param>
+            <param name="nauticalChartsStylePathFilename">
+            This parameter is a *.xml file path name created from IHO PresLib_e*.0.0.dai, or copied from ThinkGeo and then you did some changes.
+            </param>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.StreamLoading">
+            <summary>
+            This event allows you to pass in your own stream to represent the
+            files.
+            </summary>
+            <remarks>
+            If you choose you can pass in your own stream to represent the file. The
+            stream can come from a variety of places such as isolated storage, a compressed file,
+            and encrypted stream. When the Image is finished with the stream it will dispose
+            of it so be sure to keep this in mind when passing the stream in. If you do not pass in
+            a alternate stream the class will attempt to load the file from the file system
+            using the PathFilename property.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.BoundaryDisplayMode">
+            <summary>
+            Gets or sets a style that shows how to render the area border.
+            <remarks>
+            The Presentation Library provides look-up tables for plain area boundaries
+            (intended for use at small scale to reduce clutter) and symbolized area boundaries
+            (intended for use at very large scale to show immediately on which side of the
+            boundary the area lies and to identify the area).
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.CustomizedColorSchema">
+            <summary>
+            Gets or sets the name of a ColorSchema used for rendering the S-57 data.
+            </summary>
+            <remarks>
+            This property should be the name of a ColorSchema read from the NauticalCharts.xml file(representation
+            resource file), which is specified in the constructor when creating the instance.
+            If this property is assigned a value, the property "DefaultColorSchema" shall be skipped.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.DeepDepthInMeter">
+            <summary>
+            Gets or sets the depth of the deep contour in meters.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.DefaultColorSchema">
+            <summary>
+            Gets or sets a color schema which should be used to render the S-57 data.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.DepthShades">
+            <summary>
+            Gets or sets how to display depth shades.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.DisplayCategory">
+            <summary>
+            Gets or sets the s-52 display category, such as DISPLAYBASE, STANDARD or OTHER. The display
+            category is very important to safe navigation.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.DrawingMode">
+            <summary>
+            Gets or sets what drawing quality is used to to draw features from .000 file.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsDepthContourTextVisible">
+            <summary>
+            Gets or sets a value that indicates whether to render contour text.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsFullLightLineVisible">
+            <summary>
+            Gets or sets whether to render the light lines for the lights.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsIsolatedDangerInShallowWaterVisible">
+            <summary>
+            Gets or sets whether to render the isolated dangers in shallow waters.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsLightDescriptionVisible">
+            <summary>
+            Gets or sets a value that indicates whether to render the descriptions of light/lighthouse.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsMetaObjectsVisible">
+            <summary>
+            Gets or sets whether to render the meta objects(Chart Information Objects).
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsMinimumScaleEnabled">
+            <summary>
+            Gets or sets whether to disable the SCAMIN filter when rendering
+            the features. SCAMIN specifies the mininum scale at which we display the s-57 features.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsShallowWaterPatternVisible">
+            <summary>
+            Gets or sets whether to render the number of depth area shades.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.IsSoundingTextVisible">
+            <summary>
+            Gets or sets a value that indicates whether to render the soundings.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.SafetyContourDepthInMeter">
+            <summary>
+            Gets or sets the depth of the safety contour in meters.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.SafetyDepthInMeter">
+            <summary>
+            Gets or sets value indicates what depth is safety for navigation.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.ShallowDepthInMeter">
+            <summary>
+            Gets or sets value indicates what depth is shallow for navigation.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.StylingType">
+            <summary>
+            Gets or sets which kind of styles should be used for render.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.SymbolDisplayMode">
+            <summary>
+            Gets or sets how S-57 points should be symbolized.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.SymbolTextDisplayMode">
+            <summary>
+            Gets or sets what description should be used as the description of the symbol.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.GetColorSchemas">
+            <summary>
+            Gets the color schemas listed in the NauticalCharts.xml file.
+            </summary>
+            <returns>collection of color schema names</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.BuildIndexFile(System.String)">
+            <summary>
+            This method builds a spatial index and drawing CSP index for the specified *.000 file.
+            </summary>
+            <param name="nauticalChartsPathFilename">
+            This parameter is the *.000 file name and path that you want to build an index
+            for.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.BuildIndexFile(System.String,ThinkGeo.MapSuite.Layers.BuildIndexMode)">
+            <summary>
+            This method builds a spatial index and drawing CSP index for the specified *.000 file.
+            </summary>
+            <param name="nauticalChartsPathFilename">
+            This parameter is the *.000 file name and path that you want to build an index
+            for.
+            </param>
+            <param name="buildIndexMode">
+            This parameter determines what will happen if there is an existing index
+            file.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.BuildIndexFile(System.String,ThinkGeo.MapSuite.Layers.BuildIndexMode,System.Text.Encoding)">
+            <summary>
+            This method builds a spatial index and drawing CSP index for the specified *.000 file.
+            </summary>
+            <param name="nauticalChartsPathFilename">
+            This parameter is the *.000 file name and path that you want to build an index
+            for.
+            </param>
+            <param name="buildIndexMode">
+            This parameter determines what will happen if there is an existing index
+            file.
+            </param>
+            <param name="encoding">
+            This parameter is a character encoding that you would like to specify for the index file..
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NauticalChartsFeatureLayer.CreateNauticalChartsStyleFileFromIhoDaiFile(System.String,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="ihoDaiPathFilename">The file path name of *.dai file downloaded from http://www.iho.int .</param>
+             <param name="targetNauticalChartsStylePathFilename">The output file path name in *.xml  format.</param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsStylingType">
+            <summary>
+            Describes which kind of styles shall be used for render.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsStylingType.EmbeddedStyling">
+            <summary>
+            Specifies that the styles instructed by "Draft edition 4.0.0 of S-52 
+            Annex A IHO ECDIS Presentation Library" shall be used for render. Please
+            check http://www.iho.int/iho_pubs/draft_pubs/S-52_e6.1.0/S-52_e6.1.0_and_PresLib_e4.0.0.htm for detail.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsStylingType.StandardStyling">
+            <summary>
+            Specifies that the customized style is required via ZoomLevel. 
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolDisplayMode">
+            <summary>
+            Describes how S-57 points should be symbolized.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolDisplayMode.Simplified">
+            <summary>
+            Specifies that the points shall be symbolized using the Simplified symbols.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolDisplayMode.PaperChart">
+            <summary>
+            Specifies that the points shall be symbolized using the Simplified symbols.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolTextDisplayMode">
+            <summary>
+            Describles what description is used to explain feature. 
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolTextDisplayMode.English">
+            <summary>
+            Specifics that the value of name specified in Look-up table is used for display.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolTextDisplayMode.NationalLanguage">
+            <summary>
+            Specifics that the value of "OBJNAM" is used for display.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.NauticalChartsSymbolTextDisplayMode.None">
+            <summary>
+            Specifics no description or text for display.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.CIELab">
+            <summary>
+            Structure to define CIE L*a*b*.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.CIELab.Empty">
+            <summary>
+            Gets an empty CIELab structure.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIELab.L">
+            <summary>
+            Gets or sets L component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIELab.A">
+            <summary>
+            Gets or sets a component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIELab.B">
+            <summary>
+            Gets or sets a component.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.CIEXYZ">
+            <summary>
+            Structure to define CIE XYZ.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.CIEXYZ.Empty">
+            <summary>
+            Gets an empty CIEXYZ structure.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.CIEXYZ.D65">
+            <summary>
+            Gets the CIE D65 (white) structure.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIEXYZ.X">
+            <summary>
+            Gets or sets X component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIEXYZ.Y">
+            <summary>
+            Gets or sets Y component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIEXYZ.Z">
+            <summary>
+            Gets or sets Z component.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.CIEYxy">
+            <summary>
+            Structure to define CIE XYZ.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.CIEYxy.Empty">
+            <summary>
+            Gets an empty CIEYxy structure.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIEYxy.Y">
+            <summary>
+            Gets or sets Y component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIEYxy.x">
+            <summary>
+            Gets or sets x component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.CIEYxy.y">
+            <summary>
+            Gets or sets y component.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.CMYK">
+            <summary>
+            Structure to define CMYK.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.CMYK.Empty">
+            <summary>
+            Gets an empty CMYK structure;
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.CMYK.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a CMYK structure.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.ColorSpaceHelper">
+            <summary>
+            Provides methods to convert from a color space to an other.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetColorDistance(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Gets the "distance" between two colors.
+            RGB colors must be normalized (eg. values in [0.0, 1.0]).
+            </summary>
+            <param name="r1">First color red component.</param>
+            <param name="g1">First color green component.</param>
+            <param name="b1">First color blue component.</param>
+            <param name="r2">Second color red component.</param>
+            <param name="g2">Second color green component.</param>
+            <param name="b2">Second color blue component.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetColorDistance(System.Double[],System.Double[])">
+            <summary>
+            Gets the "distance" between two colors.
+            RGB colors must be normalized (eg. values in [0.0, 1.0]).
+            </summary>
+            <param name="color1">First color [r,g,b]</param>
+            <param name="color2">Second color [r,g,b]</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetColorDistance(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Gets the "distance" between two colors.
+            </summary>
+            <param name="color1">First color.</param>
+            <param name="color2">Second color.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetWheelColors(System.Int32)">
+            <summary>
+            Gets visible colors (color wheel).
+            </summary>
+            <param name="alpha">
+            The alpha value used for each colors.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetSpectrumColors(System.Int32)">
+            <summary>
+            Gets visible spectrum colors.
+            </summary>
+            <param name="alpha">The alpha value used for each colors.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetSpectrumColors">
+            <summary>
+            Gets visible spectrum colors.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.GetIntFromHex(System.String)">
+            <summary>
+            Gets the int equivalent for a hexadecimal value.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HexToColor(System.String)">
+            <summary>
+            Converts a Hex color to a .net Color.
+            </summary>
+            <param name="hexColor">The desired hexadecimal color to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBToHex(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts a RGB color format to an hexadecimal color.
+            </summary>
+            <param name="r">The Red value.</param>
+            <param name="g">The Green value.</param>
+            <param name="b">The Blue value.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBToHex(System.Drawing.Color)">
+            <summary>
+            Converts a RGB color format to an hexadecimal color.
+            </summary>
+            <param name="r">The color to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoRGB(ThinkGeo.MapSuite.Layers.HSB)">
+            <summary>
+            Converts HSB to RGB.
+            </summary>
+            <param name="hsv">The HSB structure to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoRGB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSB to RGB.
+            </summary>
+            <param name="H">Hue value.</param>
+            <param name="S">Saturation value.</param>
+            <param name="V">Brigthness value.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoColor(ThinkGeo.MapSuite.Layers.HSB)">
+            <summary>
+            Converts HSB to Color.
+            </summary>
+            <param name="hsv">the HSB structure to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoColor(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSB to a .net Color.
+            </summary>
+            <param name="h">Hue value (must be between 0 and 360).</param>
+            <param name="s">Saturation value (must be between 0 and 1).</param>
+            <param name="b">Brightness value (must be between 0 and 1).</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoColor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts HSB to Color.
+            </summary>
+            <param name="h">Hue value.</param>
+            <param name="s">Saturation value.</param>
+            <param name="b">Brightness value.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoHSL(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSB to HSL.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoCMYK(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSB to CMYK.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSBtoYUV(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSB to CMYK.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoRGB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSL to RGB.
+            </summary>
+            <param name="h">Hue, must be in [0, 360].</param>
+            <param name="s">Saturation, must be in [0, 1].</param>
+            <param name="l">Luminance, must be in [0, 1].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoRGB(ThinkGeo.MapSuite.Layers.HSL)">
+            <summary>
+            Converts HSL to RGB.
+            </summary>
+            <param name="hsl">The HSL structure to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoColor(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSL to .net Color.
+            </summary>
+            <param name="hsl">The HSL structure to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoColor(ThinkGeo.MapSuite.Layers.HSL)">
+            <summary>
+            Converts HSL to .net Color.
+            </summary>
+            <param name="hsl">The HSL structure to convert.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoHSB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSL to HSB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoCMYK(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSL to CMYK.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.HSLtoYUV(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts HSL to YUV.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoHSL(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts RGB to HSL.
+            </summary>
+            <param name="red">Red value, must be in [0,255].</param>
+            <param name="green">Green value, must be in [0,255].</param>
+            <param name="blue">Blue value, must be in [0,255].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoHSL(ThinkGeo.MapSuite.Layers.RGB)">
+            <summary>
+            Converts RGB to HSL.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoHSL(System.Drawing.Color)">
+            <summary>
+            Converts Color to HSL.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoHSB(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts RGB to HSB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoHSB(ThinkGeo.MapSuite.Layers.RGB)">
+            <summary>
+            Converts RGB to HSB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoHSB(System.Drawing.Color)">
+            <summary>
+            Converts RGB to HSB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoCMYK(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts RGB to CMYK
+            </summary>
+            <param name="red">Red vaue must be in [0, 255].</param>
+            <param name="green">Green vaue must be in [0, 255].</param>
+            <param name="blue">Blue vaue must be in [0, 255].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoCMYK(System.Drawing.Color)">
+            <summary>
+            Converts RGB to CMYK
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoCMYK(ThinkGeo.MapSuite.Layers.RGB)">
+            <summary>
+            Converts RGB to CMYK
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoYUV(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts RGB to YUV.
+            </summary>
+            <param name="red">red must be in [0, 255].</param>
+            <param name="green">green must be in [0, 255].</param>
+            <param name="blue">blue must be in [0, 255].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoYUV(System.Drawing.Color)">
+            <summary>
+            Converts RGB to YUV.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoYUV(ThinkGeo.MapSuite.Layers.RGB)">
+            <summary>
+            Converts RGB to YUV.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoXYZ(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts RGB to CIE XYZ (CIE 1931 color space)
+            </summary>
+            <param name="red">Red must be in [0, 255].</param>
+            <param name="green">Green must be in [0, 255].</param>
+            <param name="blue">Blue must be in [0, 255].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoXYZ(ThinkGeo.MapSuite.Layers.RGB)">
+            <summary>
+            Converts RGB to CIEXYZ.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoXYZ(System.Drawing.Color)">
+            <summary>
+            Converts RGB to CIEXYZ.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoLab(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts RGB to CIELab.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoLab(ThinkGeo.MapSuite.Layers.RGB)">
+            <summary>
+            Converts RGB to CIELab.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.RGBtoLab(System.Drawing.Color)">
+            <summary>
+            Converts RGB to CIELab.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoColor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Converts CMYK to RGB.
+            </summary>
+            <param name="c">Cyan value (must be between 0 and 1).</param>
+            <param name="m">Magenta value (must be between 0 and 1).</param>
+            <param name="y">Yellow value (must be between 0 and 1).</param>
+            <param name="k">Black value (must be between 0 and 1).</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoColor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CMYK to RGB.
+            </summary>
+            <param name="c">Cyan value (must be between 0 and 1).</param>
+            <param name="m">Magenta value (must be between 0 and 1).</param>
+            <param name="y">Yellow value (must be between 0 and 1).</param>
+            <param name="k">Black value (must be between 0 and 1).</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoColor(ThinkGeo.MapSuite.Layers.CMYK)">
+            <summary>
+            Converts CMYK to RGB.
+            </summary>
+            <param name="cmyk"></param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoRGB(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CMYK to RGB.
+            </summary>
+            <param name="c">Cyan value (must be between 0 and 1).</param>
+            <param name="m">Magenta value (must be between 0 and 1).</param>
+            <param name="y">Yellow value (must be between 0 and 1).</param>
+            <param name="k">Black value (must be between 0 and 1).</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoRGB(ThinkGeo.MapSuite.Layers.CMYK)">
+            <summary>
+            Converts CMYK to RGB.
+            </summary>
+            <param name="cmyk"></param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoHSL(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CMYK to HSL.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoHSB(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CMYK to HSB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.CMYKtoYUV(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CMYK to YUV.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoRGB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts YUV to RGB.
+            </summary>
+            <param name="y">Y must be in [0, 1].</param>
+            <param name="u">U must be in [-0.436, +0.436].</param>
+            <param name="v">V must be in [-0.615, +0.615].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoRGB(ThinkGeo.MapSuite.Layers.YUV)">
+            <summary>
+            Converts YUV to RGB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoColor(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts YUV to a .net Color.
+            </summary>
+            <param name="y">Y must be in [0, 1].</param>
+            <param name="u">U must be in [-0.436, +0.436].</param>
+            <param name="v">V must be in [-0.615, +0.615].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoColor(ThinkGeo.MapSuite.Layers.YUV)">
+            <summary>
+            Converts YUV to a .net Color.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoHSL(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts YUV to HSL.
+            </summary>
+            <param name="y">Y must be in [0, 1].</param>
+            <param name="u">U must be in [-0.436, +0.436].</param>
+            <param name="v">V must be in [-0.615, +0.615].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoHSB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts YUV to HSB.
+            </summary>
+            <param name="y">Y must be in [0, 1].</param>
+            <param name="u">U must be in [-0.436, +0.436].</param>
+            <param name="v">V must be in [-0.615, +0.615].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YUVtoCMYK(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts YUV to CMYK.
+            </summary>
+            <param name="y">Y must be in [0, 1].</param>
+            <param name="u">U must be in [-0.436, +0.436].</param>
+            <param name="v">V must be in [-0.615, +0.615].</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.XYZtoRGB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CIEXYZ to RGB structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.XYZtoRGB(ThinkGeo.MapSuite.Layers.CIEXYZ)">
+            <summary>
+            Converts CIEXYZ to RGB structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.Fxyz(System.Double)">
+            <summary>
+            XYZ to L*a*b* transformation function.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.XYZtoLab(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CIEXYZ to CIELab structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.XYZtoLab(ThinkGeo.MapSuite.Layers.CIEXYZ)">
+            <summary>
+            Converts CIEXYZ to CIELab structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.XYZtoYxy(ThinkGeo.MapSuite.Layers.CIEXYZ)">
+            <summary>
+            Converts CIEXYZ to CIEYxy structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YxytoXYZ(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CIEYxy to CIEXYZ structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.YxytoXYZ(ThinkGeo.MapSuite.Layers.CIEYxy)">
+            <summary>
+            Converts CIEYxy to CIEXYZ structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.XYZtoYxy(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CIEXYZ to CIEYxy structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.LabtoXYZ(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CIELab to CIEXYZ.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.LabtoXYZ(ThinkGeo.MapSuite.Layers.CIELab)">
+            <summary>
+            Converts CIELab to CIEXYZ.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.LabtoRGB(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts CIELab to RGB.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ColorSpaceHelper.LabtoRGB(ThinkGeo.MapSuite.Layers.CIELab)">
+            <summary>
+            Converts CIELab to RGB.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.HSB">
+            <summary>
+            Structure to define HSB.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.HSB.Empty">
+            <summary>
+            Gets an empty HSB structure;
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HSB.Hue">
+            <summary>
+            Gets or sets the hue component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HSB.Saturation">
+            <summary>
+            Gets or sets saturation component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HSB.Brightness">
+            <summary>
+            Gets or sets the brightness component.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HSB.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a HSB structure.
+            </summary>
+            <param name="h">Hue value.</param>
+            <param name="s">Saturation value.</param>
+            <param name="b">Brightness value.</param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.HSL">
+            <summary>
+            Structure to define HSL.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.HSL.Empty">
+            <summary>
+            Gets an empty HSL structure;
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HSL.Hue">
+            <summary>
+            Gets or sets the hue component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HSL.Saturation">
+            <summary>
+            Gets or sets saturation component.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HSL.Luminance">
+            <summary>
+            Gets or sets the luminance component.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HSL.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a HSL structure.
+            </summary>
+            <param name="h">Hue value.</param>
+            <param name="s">Saturation value.</param>
+            <param name="l">Lightness value.</param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.RGB">
+            <summary>
+            Structure to define RGB.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.RGB.Empty">
+            <summary>
+            Gets an empty RGB structure;
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.YUV">
+            <summary>
+            Structure to define YUV.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.YUV.Empty">
+            <summary>
+            Gets an empty YUV structure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.YUV.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Creates an instance of a YUV structure.
+            </summary>
+        </member>
+    </members>
+</doc>

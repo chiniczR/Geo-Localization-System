@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Kml</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.KmlExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.KmlExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.KmlExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.KmlExceptionDescription.ConvertFormatException">
+            <summary>
+              Looks up a localized string similar to The specified value can not be converted this type..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.KmlNamespaces">
+            <summary>
+            Represents some common XML namespaces and their respective prefix.
+            </summary>
+            <remarks>
+            These need to be constants for the use in Attributes, hence the
+            XXXNamespace and XXXPrefix fields.
+            </remarks>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.AppNamespace">
+            <summary>Represents the Atom Publishing Protocol namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.AppPrefix">
+            <summary>Represents the default Atom Publishing Protocol prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.AtomNamespace">
+            <summary>Represents the Atom Syndication Format namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.AtomPrefix">
+            <summary>Represents the default Atom Syndication Format prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.BatchNamespace">
+            <summary>Represents the Google Data Batch Processing namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.BatchPrefix">
+            <summary>Represents the default Google Data Batch Processing prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.DocsNamespace">
+            <summary>Represents the Google Documents namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.DocsPrefix">
+            <summary>Represents the default Google Documents prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.ExifNamespace">
+            <summary>Represents the Exchangeable Image File Format namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.ExifPrefix">
+            <summary>Represents the default Exchangeable Image File Format prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GoogleDataNamespace">
+            <summary>Represents the Google Data namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GoogleDataPrefix">
+            <summary>Represents the default Google Data prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GeoRssNamespace">
+            <summary>Represents the GeoRSS Application namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GeoRssPrefix">
+            <summary>Represents the default GeoRSS Application prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GmlNamespace">
+            <summary>Represents the Geography Markup Language namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GmlPrefix">
+            <summary>Represents the default Geography Markup Language prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GpxNamespace">
+            <summary>Represents the GPS Exchange Format namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GpxPrefix">
+            <summary>Represents the default GPS Exchange Format prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GX22Namespace">
+            <summary>Represents the Google Extensions namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.GX22Prefix">
+            <summary>Represents the default Google Extensions prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.Kml22Namespace">
+            <summary>Represents the Kml 2.2 namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.Kml22Prefix">
+            <summary>Represents the default Kml 2.2 prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.MediaNamespace">
+            <summary>Represents the Media RSS namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.MediaPrefix">
+            <summary>Represents the default Media RSS prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.OpenSearchNamespace">
+            <summary>Represents the OpenSearch 1.1 namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.OpenSearchPrefix">
+            <summary>Represents the default OpenSearch 1.1 prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.PhotoNamespace">
+            <summary>Represents the Picasa Web Albums namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.PhotoPrefix">
+            <summary>Represents the default Picasa Web Albums prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.SpreadSheetsNamespace">
+            <summary>Represents the Google Spreadsheets namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.SpreadSheetsPrefix">
+            <summary>Represents the default Google Spreadsheets prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XalNamespace">
+            <summary>Represents the Extensible Address Language namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XalPrefix">
+            <summary>Represents the default Extensible Address Language prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XmlNamespace">
+            <summary>Represents the XML namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XmlPrefix">
+            <summary>Represents the default XML prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XsdNamespace">
+            <summary>Represents the XML Schema Datatypes namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XsdPrefix">
+            <summary>Represents the default XML Schema Datatypes prefix.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XsiNamespace">
+            <summary>Represents the XML Schema namespace.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.KmlNamespaces.XsiPrefix">
+            <summary>Represents the default XML Schema prefix.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.KmlNamespaces.FindNamespace(System.String)">
+            <summary>Searches for the associated XML namespace ThinkGeo.MapSuite.Layers the specified prefix.</summary>
+            <param name="prefix">The standard prefix to search for.</param>
+            <returns>
+            The XML namespace ThinkGeo.MapSuite.Layers with the specified prefix if the prefix is known;
+            otherwise, null.
+            </returns>
+        </member>
+    </members>
+</doc>

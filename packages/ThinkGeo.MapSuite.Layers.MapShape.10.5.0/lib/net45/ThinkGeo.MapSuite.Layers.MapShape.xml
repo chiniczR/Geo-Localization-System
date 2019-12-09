@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.MapShape</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.MapShape">
+            <summary>
+            This class represent a unit can be drawn on map. Each MapShape composes
+            of a feature and a ZoomLevelSet to control its drawing zoomlevels.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MapShape.#ctor">
+            <summary>This is the default constructor for the MapShape.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MapShape.#ctor(ThinkGeo.MapSuite.Shapes.Feature)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide a feature for this MapShape.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="feature">This parameter is the feature for this MapShape.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MapShape.Feature">
+            <summary>
+            This property returns the feature representing the MapShape.
+            </summary>
+            <value>
+            This property set the feature representing the MapShape
+            </value>
+            <remarks>
+            None
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MapShape.ZoomLevels">
+            <summary>
+            This property returns the ZoomLevel to control the drawing of the MapShape.
+            </summary>
+            <value>
+            This property sets the ZoomLevel to control the drawing of the MapShape.
+            </value>
+            <remarks>
+            None
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.MapShapeLayer">
+            <summary>
+            Ideally I would want to make this inherit from the FeatureLayer
+            so you could do spatial queries.  In the interests of time I
+            inherited from the Layer to make things simple and show the point
+            of how easy it is to extend Map Suite.  When we roll this into
+            the main product we may create a FeatureSource and FeatureLayer.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MapShapeLayer.#ctor">
+            <summary>This is the default constructor for the MapShapeLayer.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MapShapeLayer.MapShapes">
+            <summary>
+            Get all the map shapes with the keys.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MapShapeLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the MapShapeLayer.</summary>
+            <remarks>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties that
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+    </members>
+</doc>

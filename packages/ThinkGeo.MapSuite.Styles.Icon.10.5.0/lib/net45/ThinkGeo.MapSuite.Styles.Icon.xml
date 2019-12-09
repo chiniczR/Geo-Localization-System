@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.Icon</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.IconStyle">
+            <summary>This class displays an icon with text from the data of the feature.</summary>
+            <remarks>
+            You can use the IconStyle when you have an icon you want to display on the map
+            with characters inside of that icon. For example, if you have a circular icon and you
+            want to label the number 1-100 inside of the icon, you can use this class. You need to
+            specify the column name where the numbers or letters will come from, as well as a font.
+            Through various properties, you can also control the positioning of the icon, just as you
+            would with the TextStyle.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconStyle.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this, then you should set the
+            properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            If you use this, then you should set the properties manually -- such as the column
+            name, font, solid brush and the image.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconStyle.#ctor(System.String,System.String,ThinkGeo.MapSuite.Drawing.GeoFont,ThinkGeo.MapSuite.Drawing.GeoSolidBrush)">
+            <summary>This is the constructor for the class.</summary>
+            <returns>None</returns>
+            <overloads>
+            This constructor allows you to pass in the path to the icon, along with the column
+            name, font and solid brush to use. This is the most commonly used constructor.
+            </overloads>
+            <remarks>
+            This constructor allows you to pass in the path to the icon, along with the column
+            name, font and solid brush to use. This is the most commonly used constructor. If you
+            need to use an image from a stream, then you should use the constructor that takes a
+            GeoImage.
+            </remarks>
+            <param name="iconPathFilename">This parameter is the path and filename of the icon you want to use.</param>
+            <param name="textColumnName">This parameter is the column name from which to get the data for the text.</param>
+            <param name="textFont">This parameter is the font used to draw the text on the icon.</param>
+            <param name="textSolidBrush">
+            This parameter is the solid brush that is used to draw the text on the
+            icon.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconStyle.#ctor(ThinkGeo.MapSuite.Drawing.GeoImage,System.String,ThinkGeo.MapSuite.Drawing.GeoFont,ThinkGeo.MapSuite.Drawing.GeoSolidBrush)">
+            <summary>This is the constructor for the class.</summary>
+            <returns>None</returns>
+            <overloads>
+            This constructor allows you to use a GeoImage instead of specifying a path and
+            filename of the icon. This is commonly used if the image comes from a stream.
+            </overloads>
+            <remarks>
+            This constructor allows you to use a GeoImage instead of specifying a path and
+            filename of the icon. This is commonly used if the image comes from a stream.
+            </remarks>
+            <param name="iconImage">This parameter is the image to use in this style.</param>
+            <param name="textColumnName">This parameter is the column name from which to get the data for the text.</param>
+            <param name="textFont">This parameter is the font used to draw the text on the icon.</param>
+            <param name="textSolidBrush">
+            This parameter is the solid brush that is used to draw the text on the
+            icon.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconStyle.IconFilePathName">
+            <summary>
+            This property gets and sets the filename and path for the image you want to use
+            in the style.
+            </summary>
+            <value>
+            This property gets the filename and path for the image you want to use in the
+            style.
+            </value>
+            <remarks>
+            You can also optionally use the IconImage property if the image you want to use
+            is derived from a stream.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconStyle.IconImage">
+            <summary>This property gets and sets the GeoImage you want to use for the image.</summary>
+            <value>This property gets the GeoImage you want to use for the image.</value>
+            <remarks>
+            You will typically want to use this property if your image is derived from a
+            stream. Otherwise, you can use the IconFilePathName property to specify where the icon
+            is located and we will handle the rest.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconStyle.IconImageScale">
+            <summary>This property gets and sets the scale of the image you want to draw.</summary>
+            <value>This property gets the scale of the image you want to draw.</value>
+            <remarks>
+            This property allows you to scale the image up and down depending on how large or
+            small you want it. It can be changed dynamically, so you could change it at every scale
+            level to resize the bitmap based on the current scale. A scale of 1 would be the original size,
+            while a scale of 2 would double the size. A scale of .5 would reduce the size of the image by half,
+            and so on.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconStyle.SuppressPartialLabels">
+            <summary>
+            This property gets and sets whether a partial label in the current extent will be drawn or not.
+            </summary>
+            <remarks>This property provides a solution to the "cut off" label issue in Map Suite Web Edition and Desktop Edition, which occurs when multiple
+            tiles exist. When you set this property to true, any labels outside of the current extent will not be drawn.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When overriding this method, consider each feature and its column data values. You can
+            use the full power of the GeoCanvas to do the drawing. If you need column data for a
+            feature, be sure to override the GetRequiredColumnNamesCore and add the columns you need
+            to the collection. In many of the styles, we add properties to allow the user to specify
+            which field they need; then, in the GetRequiredColumnNamesCore, we read that property and
+            add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the features, we will throw an ArgumentNullException.</exception>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconStyle.GetLabelingCandidateCore(ThinkGeo.MapSuite.Shapes.Feature,ThinkGeo.MapSuite.Drawing.GeoCanvas)">
+            <summary>This method determines which labels will be candidates for drawing.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method
+            GetLabelingCandidate. In this method, we determine if the feature passed in will be a
+            candidate for drawing. If you have the grid method enabled, then we determine this by
+            ensuring that only one label will be eligible per grid cell. In this way, we can ensure
+            that labels always draw in the same place at the same scale.
+            </remarks>
+            <returns>This method returns a collection of labeling candidates.</returns>
+            <param name="feature">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+        </member>
+    </members>
+</doc>

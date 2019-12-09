@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.TobinBas</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasDefaultColumns">
+            <summary>
+            here defined part of columns from header. all the columns should be the sum of the default columns and the columns from the uncertain format type.
+            For example: if bas name format type is 0
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType0">
+            <summary>
+            Format 0 is generally used with the Jeffersonian Survey System and sub division of a section..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType1">
+            <summary>
+            Format 1 is generally used with abstract/tract/block data.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType2">
+            <summary>
+            Format 2 is generally used with the Jeffersonian and Carter Survey System.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType3">
+            <summary>
+            Format 3 is generally used with abstract data.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType4">
+            <summary>
+            Format 4 is used for State and County boundaries.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.BasNameFormatType6">
+            <summary>
+            Format 6 is used for Abstract/Block/League data in Texas.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.#ctor">
+            <summary>
+            This is the default constructor of the event args.
+            </summary>
+            <remarks>If you use this constructor, you have to set the properties manually.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.#ctor(System.Int32,System.Int64,ThinkGeo.MapSuite.Shapes.Feature,System.DateTime,System.Boolean)">
+            <summary>
+            This is the constructor of the event args by passing the desired parameters.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.RecordCount">
+            <summary>
+            Gets the total record count to build rTree index.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.CurrentRecordOffset">
+            <summary>
+            Gets the current record index for building rTree index.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.CurrentFeature">
+            <summary>
+            Gets the current feature for building rTree index.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.StartProcessTime">
+            <summary>
+            Gets the starting process time for building the index.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.BuildingIndexBasFileFeatureSourceEventArgs.Cancel">
+            <summary>
+            Gets or sets to see if we need to cancel the building index of current record.
+            </summary>
+        </member>
+    </members>
+</doc>

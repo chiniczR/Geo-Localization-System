@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.ClassBreak</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.BreakValueInclusion">
+            <summary>
+            In a class break style, this enumeration determines whether the break includes
+            or excludes the value entered in the break.
+            </summary>
+            <remarks>
+            In a class break style, this enumeration determines whether the break includes
+            or excludes the value entered in the break. For example, you might have two class breaks,
+            one at 100 and the second at 200. If you specify to include the value, then the first break
+            includes the number 100 and the second break would include the number 200. If you set
+            to exclude, then 100 would belong to the second break and 200 would not be included in
+            the second break at all.
+            </remarks>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Styles.BreakValueInclusion.IncludeValue">
+            <summary>The break value is included in the break.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Styles.BreakValueInclusion.ExcludeValue">
+            <summary>The break value is not included in the break.</summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.ClassBreak">
+            <summary>This class represents a single class break.</summary>
+            <remarks>
+            Class breaks are used in the ClassBreakStyle. They allow you to display data
+            differently depending on ranges of data in the FeatureSource.<br/>
+            	<br/>
+            How class breaks work:<br/>
+            	<br/>
+            You add a number of ClassBreak classes to the ClassBreak collection. The numeric values
+            of the breaks are important and you must place the breaks in numerical order. For
+            example, break 0 must be added before break 100. In each ClassBreak, you specify the
+            style you want to represent that break. Additionally, in the ColumnName property, you specify the
+            name of the column where we will find the data used to compare the breaks. The column
+            name must point to a column that is numeric.<br/>
+            	<br/>
+            When we proceed to draw the style, we look through the ClassBreaks and select the ClassBreak
+            that is where the features column data is greater than and closest to the break
+            value.<br/>
+            	<br/>
+            Example:<br/>
+            	<br/>
+            Feature Value = 42<br/>
+            	<br/>
+            ClassBreak1.Value = 0<br/>
+            ClassBreak2.Value = 20<br/>
+            ClassBreak3.Value = 40<br/>
+            ClassBreak4.Value = 60<br/>
+            	<br/>
+            In this case, the break closest to the feature value without exceeding it is
+            ClassBreak3(40). If the feature value had been less than zero, nothing would have been
+            drawn. If the feature value were 1000, then ClassBreak4 would draw.<br/>
+            	<br/>
+            If you wanted to represent a value that is less then zero, you could do that as shown in the
+            sample below.<br/>
+            	<br/>
+            Feature Value = -1<br/>
+            	<br/>
+            ClassBreak1.Value = Double.Min<br/>
+            ClassBreak2.Value = 0<br/>
+            ClassBreak3.Value = 20<br/>
+            ClassBreak4.Value = 40<br/>
+            	<br/>
+            In this example, the first class break would be used.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreak.#ctor">
+            <summary>This is the class constructor.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <remarks>
+            If you use this default constructor, then you should set the properties
+            manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreak.#ctor(System.Double,ThinkGeo.MapSuite.Styles.AreaStyle)">
+            <summary>This is the class constructor.</summary>
+            <overloads>This overload allows you to pass in a break value and an AreaStyle to use.</overloads>
+            <returns>None</returns>
+            <remarks>This overload allows you to pass in a break value and an AreaStyle to use.</remarks>
+            <param name="value">The parameter represents the break value.</param>
+            <param name="areaStyle">This parameter is the AreaStyle you want to use to represent this break.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreak.#ctor(System.Double,ThinkGeo.MapSuite.Styles.PointStyle)">
+            <summary>This is the class constructor.</summary>
+            <overloads>This overload allows you to pass in a break value and a Point to use.</overloads>
+            <returns>None</returns>
+            <remarks>This overload allows you to pass in a break value and a Point to use.</remarks>
+            <param name="value">The parameter represents the break value.</param>
+            <param name="pointStyle">This parameter is the PointStyle you want to use to represent this break.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreak.#ctor(System.Double,ThinkGeo.MapSuite.Styles.LineStyle)">
+            <summary>This is the class constructor.</summary>
+            <overloads>This overload allows you to pass in a break value and a LineStyle to use.</overloads>
+            <returns>None</returns>
+            <remarks>This overload allows you to pass in a break value and a LineStyle to use.</remarks>
+            <param name="value">The parameter represents the break value.</param>
+            <param name="lineStyle">This parameter is the LineStyle you want to use to represent this break.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreak.#ctor(System.Double,ThinkGeo.MapSuite.Styles.TextStyle)">
+            <summary>This is the class constructor.</summary>
+            <overloads>This overload allows you to pass in a break value and a TextStyle to use.</overloads>
+            <returns>None</returns>
+            <remarks>This overload allows you to pass in a break value and a TextStyle to use.</remarks>
+            <param name="value">The parameter represents the break value.</param>
+            <param name="textStyle">This parameter is the TextStyle you want to use to represent this break.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreak.#ctor(System.Double,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.Style})">
+            <summary>This is the class constructor.</summary>
+            <overloads>This overload allows you to pass in a break value and a collection of TextStyles to use.</overloads>
+            <returns>None</returns>
+            <remarks>This overload allows you to pass in a break value and a collection of TextStyles to use.</remarks>
+            <param name="value">The parameter represents the break value.</param>
+            <param name="customStyles">This parameter is the TextStyles you want to use to represent this break.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreak.Value">
+            <summary>This property get and sets the break value.</summary>
+            <value>This property get the break value.</value>
+            <remarks>
+            This value determines where the break is in the ClassBreakStyle.<br/>
+            	<br/>
+            Please see the ClassBreakStyle class remarks for a full description of how the
+            ClassBreakStyle works.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreak.DefaultAreaStyle">
+            <summary>
+            This property gets and sets the default AreaStyle used to draw the class
+            break.
+            </summary>
+            <value>This property gets the default AreaStyle used to draw the class break.</value>
+            <remarks>
+            If you set this style, then when the data for a feature is within the current
+            break it will use this style to draw.<br/>
+            	<br/>
+            If you use the default styles, then you should only use one. The one you use should
+            match your feature data. For example, if your features are lines, then you should use the
+            DefaultLineStyle.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreak.DefaultLineStyle">
+            <summary>
+            This property gets and sets the default LineStyle used to draw the class
+            break.
+            </summary>
+            <value>This property gets the default LineStyle used to draw the class break.</value>
+            <remarks>
+            If you set this style, then when the data for a feature is within the current
+            break it will use this style to draw.<br/>
+            	<br/>
+            If you use the default styles, then you should only use one. The one you use should
+            match your feature data. For example, if your features are lines, then you should use the
+            DefaultLineStyle.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreak.DefaultPointStyle">
+            <summary>
+            This property gets and sets the default PointStyle used to draw the class
+            break.
+            </summary>
+            <value>This property gets the default PointStyle used to draw the class break.</value>
+            <remarks>
+            If you set this style, then when the data for a feature is within the current
+            break it will use this style to draw.<br/>
+            	<br/>
+            If you use the default styles, then you should only use one. The one you use should
+            match your feature data. For example, if your features are lines, then you should use the
+            DefaultLineStyle.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreak.DefaultTextStyle">
+            <summary>
+            This property gets and sets the default TextStyle used to draw the class
+            break.
+            </summary>
+            <value>This property gets the default TextStyle used to draw the class break.</value>
+            <remarks>
+            If you set this style, then when the data for a feature is within the current
+            break it will use this style to draw.<br/>
+            	<br/>
+            If you use the default styles, then you should only use one. The one you use should
+            match your feature data. For example, if your features are lines then you should use the
+            DefaultLineStyle.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreak.CustomStyles">
+            <summary>
+            This property gets a collection of custom styles used to draw the class
+            break.
+            </summary>
+            <value>
+            This property gets a collection of custom styles used to draw the class
+            break.
+            </value>
+            <remarks>
+            If you set these styles, then when the data for a feature is within the current
+            break it will use this style to draw.<br/>
+            	<br/>
+            If you do not wish to use the default style properties, then you can use this collection
+            to specify any types of styles you want to use.
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.ClassBreakStyle">
+            <summary>This class represents a style based on class break values.</summary>
+            <remarks>
+            	<para>The ClassBreakStyle allows you to change the way features are drawn based on
+                their data values. It is often useful for you to display features differently based
+                on ranges of numeric values. For example, you may have a states ShapeFile that has
+                the populations of each state as part of its data. You may then want to color
+                states differently based on their population. The ClassBreakStyle allows you to do
+                this.<br/>
+            		<br/>
+                How class breaks work:<br/>
+            	<br/>
+                You add a number of ClassBreak classes to the ClassBreak collection. The numeric values
+                of the breaks are important and you must place the breaks in numerical order. For
+                example, break 0 must be added before break 100. In each ClassBreak, you specify the
+                style you want to represent that break. Additionally, in the ColumnName property, you specify the
+                name of the column where we will find the data used to compare the breaks. The column
+                name must point to a column that is numeric.<br/>
+            	<br/>
+                When we proceed to draw the style, we look through the ClassBreaks and select the ClassBreak
+                that is where the features column data is greater than and closest to the break
+                value.<br/>
+            	<br/>
+                Example:<br/>
+            	<br/>
+                Feature Value = 42<br/>
+            	<br/>
+                ClassBreak1.Value = 0<br/>
+                ClassBreak2.Value = 20<br/>
+                ClassBreak3.Value = 40<br/>
+                ClassBreak4.Value = 60<br/>
+            	<br/>
+                In this case, the break closest to the feature value without exceeding it is
+                ClassBreak3(40). If the feature value had been less than zero, nothing would have been
+                drawn. If the feature value were 1000, then ClassBreak4 would draw.<br/>
+            	<br/>
+                If you wanted to represent a value that is less then zero, you could do that as shown in the
+                sample below.<br/>
+            	<br/>
+                Feature Value = -1<br/>
+            	<br/>
+                ClassBreak1.Value = Double.Min<br/>
+                ClassBreak2.Value = 0<br/>
+                ClassBreak3.Value = 20<br/>
+                ClassBreak4.Value = 40<br/>
+            	<br/>
+                In this example, the first class break would be used.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreakStyle.#ctor">
+            <summary>This is the constructor for this class.</summary>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreakStyle.#ctor(System.String)">
+            <summary>This is the constructor for this class.</summary>
+            <overloads>
+            This constructor allows you to specify the column name of the column that will be
+            used for the break values.
+            </overloads>
+            <returns>None</returns>
+            <param name="columnName">
+            This parameter is the column name of the column that will be used for the break
+            values.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreakStyle.#ctor(System.String,ThinkGeo.MapSuite.Styles.BreakValueInclusion)">
+            <summary>This is the constructor for this class.</summary>
+            <overloads>
+            This constructor allows you to specify the column name of the column that will be
+            used for the break values. It also lets you specify whether the break value is included in
+            the class break calculation.
+            </overloads>
+            <returns>None</returns>
+            <param name="columnName">
+            This parameter is the column name of the column that will be used for the break
+            values.
+            </param>
+            <param name="breakValueInclusion">
+            This parameter lets you specify whether the break value is included in the class break
+            calculation.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreakStyle.#ctor(System.String,ThinkGeo.MapSuite.Styles.BreakValueInclusion,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.ClassBreak})">
+            <summary>This is the constructor for this class.</summary>
+            <overloads>
+            This constructor allows you to specify the column name of the column that will be
+            used for the break values. It also lets you specify whether the break value is included in
+            the class break calculation.
+            </overloads>
+            <returns>None</returns>
+            <param name="columnName">
+            This parameter is the column name of the column that will be used for the break
+            values.
+            </param>
+            <param name="breakValueInclusion">
+            This parameter lets you specify whether the break value is included in the class break
+            calculation.
+            </param>
+            <param name="classBreaks">The parameter represents the class break that will determine which style to be used
+            on the break values. Please see the ClassBreakStyle class remarks for a full description of how the
+            ClassBreakStyle works.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreakStyle.ColumnName">
+            <summary>
+            This property gets and sets the column name in the FeatureSource where the data
+            will be found for each feature.
+            </summary>
+            <value>
+            This property gets the column name in the FeatureSource where the data will be found
+            for each feature.<br/>
+            	<br/>
+            Please see the ClassBreakStyle class remarks for a full description of how the
+            ClassBreakStyle works.
+            </value>
+            <remarks>
+            You use this property to set the name of the column where the numeric data is
+            stored for your features.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreakStyle.BreakValueInclusion">
+            <summary>
+            This property gets and sets the value of if the break values are included in the
+            break calculation.
+            </summary>
+            <value>
+            This property gets the value of if the break values are included in the break
+            calculation.
+            </value>
+            <remarks>
+            Example: If you have a class break value set to 100 and the break value is included,
+            then 100 is included for this break. If you set the value to excluded, then 100 would match with
+            the break below 100 instead.<br/>
+            	<br/>
+            Please see the ClassBreakStyle class remarks for a full description of how the
+            ClassBreakStyle works.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreakStyle.ClassBreaks">
+            <summary>This property gets the collection of class breaks.</summary>
+            <value>This property gets the collection of class breaks.</value>
+            <remarks>
+            The class breaks determine which style to use, based on the break values.<br/>
+            	<br/>
+            Please see the ClassBreakStyle class remarks for a full description of how the
+            ClassBreakStyle works.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreakStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When overriding this method, consider each feature and its column data values. You can
+            use the full power of the GeoCanvas to do the drawing. If you need column data for a
+            feature, be sure to override the GetRequiredColumnNamesCore and add the columns you need
+            to the collection. In many of the styles, we add properties to allow the user to specify
+            which field they need; then, in the GetRequiredColumnNamesCore, we read that property and
+            add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the features, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If OutlinePen is null, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If FillSolidBrush is null, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If the ClassBreaks are invalid, we will throw an ArgumentException.</exception>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ClassBreakStyle.GetRequiredColumnNamesCore">
+            <remarks>
+            This abstract method is called from the concrete public method
+            GetRequiredFieldNames. In this method, we return the column names that are required for
+            the style to draw the feature properly. For example, if you have a style that colors
+            areas blue when a certain column value is over 100, then you need to be sure you include
+            that column name. This will ensure that the column data is returned to you in the
+            feature when it is ready to draw.<br/>
+            	<br/>
+            In many of the styles, we add properties to allow the user to specify which field they
+            need; then, in the GetRequiredColumnNamesCore, we read that property and add it to the
+            collection.
+            </remarks>
+            <summary>
+            This method returns the column data for each feature that is required for the
+            style to properly draw.
+            </summary>
+            <returns>This method returns a collection of the column names that it needs.</returns>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.ClassBreakExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreakExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreakExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ClassBreakExceptionDescription.ClassBreaksIsValid">
+            <summary>
+              Looks up a localized string similar to The class breaks you have provided are invalid..
+            </summary>
+        </member>
+    </members>
+</doc>

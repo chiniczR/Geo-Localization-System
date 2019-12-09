@@ -1,0 +1,12 @@
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\DAL.dll.config
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\DAL.dll
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\DAL.pdb
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\EntityFramework.dll
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\EntityFramework.xml
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\obj\Debug\DAL_BEBL.csproj.CoreCompileInputs.cache
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\obj\Debug\DAL_BEBL.csproj.CopyComplete
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\obj\Debug\DAL.dll
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\obj\Debug\DAL.pdb
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\DAL\obj\Debug\DAL_BEBL.csprojAssemblyReference.cache

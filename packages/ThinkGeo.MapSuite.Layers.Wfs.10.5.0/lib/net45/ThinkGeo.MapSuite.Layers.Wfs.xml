@@ -1,0 +1,667 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Wfs</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.RequestedDataWfsFeatureSourceEventArgs">
+            <summary>
+            This class represents the parameters passed in through the RequestedData event in WfsFeatureSource.
+            </summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RequestedDataWfsFeatureSourceEventArgs.#ctor">
+            <summary>This is a default constructor for the class.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RequestedDataWfsFeatureSourceEventArgs.#ctor(System.String,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="serviceUrl">This parameter specified the serviceUrl for the WfsFeatureSource.</param>
+            <param name="xmlResponse">This parameter specified the xmlResponse string get back from the service Url.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RequestedDataWfsFeatureSourceEventArgs.XmlResponse">
+            <summary>
+            This property gets or sets the xml response string back from for the WfsFeatureSource service url.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RequestedDataWfsFeatureSourceEventArgs.ServiceUrl">
+            <summary>
+            This property gets or sets the serviceUrl for the WfsFeatureSource.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs">
+            <summary>
+            This class represents the parameters passed in through the RequestingData event in WfsFeatureSource.
+            </summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs.#ctor">
+            <summary>This is a default constructor for the class.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs.#ctor(System.String,System.Boolean,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="serviceUrl">This parameter specified the serviceUrl for the WfsFeatureSource.</param>
+            <param name="overrideResponse">This parameter specified if we need to override Response if we changed the response string.</param>
+            <param name="xmlResponse">This parameter specified the xmlResponse string get back from the service Url.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs.ServiceUrl">
+            <summary>
+            This property gets or sets the serviceUrl for the WfsFeatureSource.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs.OverrideResponse">
+            <summary>
+            This property gets or sets the override mode. If set it ture, we will replace the response with new
+            XmlResponse String passed in.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs.XmlResponse">
+            <summary>
+            This property gets or sets the xml response string back from for the WfsFeatureSource service url.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.WfsFeatureLayer">
+            <summary>This class represents the wfs(web feature service) FeauteLayer.</summary>
+            <remarks>
+            This class allows you to get features from an wfs server.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.#ctor">
+            <summary>
+            WfsFeatureLayer Constructor.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.#ctor(System.String,System.String)">
+            <summary>
+            WfsFeatureSource Constructor
+            </summary>
+            <remarks>The parameters can not be null.</remarks>
+            <param name="serviceLocationUrl">The url of wfs service.</param>
+            <param name="typeName">The typename in the specify wfs service.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.LastXmlResponse">
+            <summary>
+            The xml text represnets last respone, it will pass out by RequestedData event with parameter.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.ServiceLocationUrl">
+            <summary>
+            The url of wfs service.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.TypeName">
+            <summary>
+            The typename in the specify wfs service.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.TimeoutInSeconds">
+            <summary>
+            This property specifies the timeout of the web request in seconds.  The default timeout value is 20 seconds.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.HasBoundingBox">
+            <summary>
+            This property indicates whether a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs.
+            </summary>
+            <remarks>The default value is false.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.WebProxy">
+            <summary>
+            This property gets or sets the proxy used for requesting a Web Response.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.GetCapabilities(System.String)">
+             <summary>
+             Get capabilities from the specific wfs service url.
+             </summary>
+             <returns>The xml text represents capabilities of this wfs server.</returns>
+             <remarks><para>Every OGC Web Service (OWS), including a Web Feature Service, must have the ability to describe its capabilities by returning service metadata in response to a GetCapabilities request. Specifically, every web feature service must support the KVP encoded form of the GetCapabilities request over HTTP GET so that a client can always know how to obtain a capabilities document.</para>
+             <para>
+             The capabilities response document contains the following sections:
+            1. Service Identification section
+            The service identification section provides information about the WFS service itself.
+            2. Service Provider section
+            The service provider section provides metadata about the organization operating the WFS server.
+            3. Operation Metadata section
+            The operations metadata section provides metadata about the operations defined in this specification and implemented by a particular WFS server. This metadata includes the DCP, parameters and constraints for each operation.
+            4. FeatureType list section
+            This section defines the list of feature types (and operations on each feature type) that are available from a web feature service. Additional information, such as the default SRS, any other supported SRSs, or no SRS whatsoever (for non-spatial feature types), for WFS requests is provided for each feature type.
+            5. ServesGMLObjectType list section
+            This section defines the list of GML Object types, not derived from gml:AbstractFeatureType, that are available from a web feature service that supports the GetGMLObject operation. These types may be defined in a base GML schema, or in an application schema using its own namespace.
+            6. SupportsGMLObjectType list section
+            The Supports GML Object Type section defines the list of GML Object types that a WFS server would be capable of serving if it was deployed to serve data.
+            described by an application schema that either used those GML Object types directly (for non-abstract types), or defined derived types based on those types.
+            7. Filter capabilities section
+            The schema of the Filter Capabilities Section is defined in the Filter Encoding Implementation Specification [3]. This is an optional section. If it exists, then the WFS should support the operations advertised therein. If the Filter Capabilities Section is not defined, then the client should assume that the server only supports the minimum default set of filter operators.
+             </para>
+             </remarks>
+             <param name="serviceLocationUrl">The url of wfs service.</param>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+             <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.GetCapabilities(System.Uri)">
+             <summary>
+             Get capabilities from the specific wfs service url.
+             </summary>
+             <returns>The xml text represents capabilities of this wfs server.</returns>
+             <remarks><para>Every OGC Web Service (OWS), including a Web Feature Service, must have the ability to describe its capabilities by returning service metadata in response to a GetCapabilities request. Specifically, every web feature service must support the KVP encoded form of the GetCapabilities request over HTTP GET so that a client can always know how to obtain a capabilities document.</para>
+             <para>
+             The capabilities response document contains the following sections:
+            1. Service Identification section
+            The service identification section provides information about the WFS service itself.
+            2. Service Provider section
+            The service provider section provides metadata about the organization operating the WFS server.
+            3. Operation Metadata section
+            The operations metadata section provides metadata about the operations defined in this specification and implemented by a particular WFS server. This metadata includes the DCP, parameters and constraints for each operation.
+            4. FeatureType list section
+            This section defines the list of feature types (and operations on each feature type) that are available from a web feature service. Additional information, such as the default SRS, any other supported SRSs, or no SRS whatsoever (for non-spatial feature types), for WFS requests is provided for each feature type.
+            5. ServesGMLObjectType list section
+            This section defines the list of GML Object types, not derived from gml:AbstractFeatureType, that are available from a web feature service that supports the GetGMLObject operation. These types may be defined in a base GML schema, or in an application schema using its own namespace.
+            6. SupportsGMLObjectType list section
+            The Supports GML Object Type section defines the list of GML Object types that a WFS server would be capable of serving if it was deployed to serve data.
+            described by an application schema that either used those GML Object types directly (for non-abstract types), or defined derived types based on those types.
+            7. Filter capabilities section
+            The schema of the Filter Capabilities Section is defined in the Filter Encoding Implementation Specification [3]. This is an optional section. If it exists, then the WFS should support the operations advertised therein. If the Filter Capabilities Section is not defined, then the client should assume that the server only supports the minimum default set of filter operators.
+             </para>
+             </remarks>
+             <param name="serverUri">The url of wfs service.</param>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+             <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.GetCapabilities(System.Uri,System.Net.IWebProxy)">
+             <summary>
+             Get capabilities from the specific wfs service url.
+             </summary>
+             <returns>The xml text represents capabilities of this wfs server.</returns>
+             <remarks><para>Every OGC Web Service (OWS), including a Web Feature Service, must have the ability to describe its capabilities by returning service metadata in response to a GetCapabilities request. Specifically, every web feature service must support the KVP encoded form of the GetCapabilities request over HTTP GET so that a client can always know how to obtain a capabilities document.</para>
+             <para>
+             The capabilities response document contains the following sections:
+            1. Service Identification section
+            The service identification section provides information about the WFS service itself.
+            2. Service Provider section
+            The service provider section provides metadata about the organization operating the WFS server.
+            3. Operation Metadata section
+            The operations metadata section provides metadata about the operations defined in this specification and implemented by a particular WFS server. This metadata includes the DCP, parameters and constraints for each operation.
+            4. FeatureType list section
+            This section defines the list of feature types (and operations on each feature type) that are available from a web feature service. Additional information, such as the default SRS, any other supported SRSs, or no SRS whatsoever (for non-spatial feature types), for WFS requests is provided for each feature type.
+            5. ServesGMLObjectType list section
+            This section defines the list of GML Object types, not derived from gml:AbstractFeatureType, that are available from a web feature service that supports the GetGMLObject operation. These types may be defined in a base GML schema, or in an application schema using its own namespace.
+            6. SupportsGMLObjectType list section
+            The Supports GML Object Type section defines the list of GML Object types that a WFS server would be capable of serving if it was deployed to serve data.
+            described by an application schema that either used those GML Object types directly (for non-abstract types), or defined derived types based on those types.
+            7. Filter capabilities section
+            The schema of the Filter Capabilities Section is defined in the Filter Encoding Implementation Specification [3]. This is an optional section. If it exists, then the WFS should support the operations advertised therein. If the Filter Capabilities Section is not defined, then the client should assume that the server only supports the minimum default set of filter operators.
+             </para>
+             </remarks>
+             <param name="serverUri">The url of wfs service.</param>
+             <param name="webProxy">The proxy of the wfs service.</param>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+             <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.GetLayers(System.String)">
+            <summary>
+            Get layer names from specific wfs service url.
+            </summary>
+            <param name="serviceLocationUrl">The url of wfs service.</param>
+            <returns>The collection represent layer names.</returns>
+            <remarks>Typically, it will call WfsFeatureSource.GetLayers(serviceLocationUrl) internally.</remarks>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.GetLayers(System.Uri,System.Net.IWebProxy)">
+            <summary>
+            Get layer names from specific wfs service url.
+            </summary>
+            <param name="serverUri">The url of wfs service.</param>
+            <param name="webProxy">The proxy of the wfs service.</param>
+            <returns>The collection represent layer names.</returns>
+            <remarks>Typically, it will call WfsFeatureSource.GetLayers(serverUri) internally.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureLayer.GetLayers(System.Uri)">
+            <summary>
+            Get layer names from specific wfs service url.
+            </summary>
+            <param name="serverUri">The url of wfs service.</param>
+            <returns>The collection represent layer names.</returns>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.WfsFeatureSource">
+            <summary>This class represents the wfs(web feature service) FeauteSource.</summary>
+            <remarks>
+            This class allows you to get features from an wfs server.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.#ctor">
+            <summary>
+            WfsFeatureSource Constructor.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.#ctor(System.String,System.String)">
+            <summary>
+            WfsFeatureSource Constructor
+            </summary>
+            <remarks>The parameters can not be null.</remarks>
+            <param name="serviceLocationUrl">The url of wfs service.</param>
+            <param name="typeName">The typename in the specify wfs service.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureSource.ServiceLocationUrl">
+            <summary>
+            The url of wfs service.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureSource.WfsNamespace">
+            <summary>
+            Add ogc as prefix to in some cases, currently it is only works in API GetFeaturesByColumnValue.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureSource.TypeName">
+            <summary>
+            The typename in the specify wfs service.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureSource.LastXmlResponse">
+            <summary>
+            The xml text represnets last respone, it will pass out by RequestedData event as parameter.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureSource.TimeoutInSeconds">
+            <summary>
+            This property specifies the timeout of the web request in seconds.  The default timeout value is 20 seconds.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WfsFeatureSource.WebProxy">
+            <summary>
+            This property gets or sets the proxy used for requesting a Web Response.
+            </summary>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.WfsFeatureSource.RequestingData">
+            <summary>This event is called before the requesting data by url from wfs server.</summary>
+            <remarks>This event is called before the requesting data by url from wfs server.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.OnRequestingData(ThinkGeo.MapSuite.Layers.RequestingDataWfsFeatureSourceEventArgs)">
+            <returns>None</returns>
+            <summary>
+            This method allows you to raise the RequestingData event from a derived
+            class.
+            </summary>
+            <remarks>
+            You can call this method from a derived class to enable it to raise the
+            RequestingData event. This may be useful if you plan to extend the FeatureSource
+            and you need access to the event.<br/>
+            	<br/>
+            Details on the event:<br/>
+            	<br/>
+            This event is called before the requesting data by url from wfs server.<br/>
+            	<br/>
+            </remarks>
+            <param name="requestingDataWfsFeatureSourceEventArgs">
+            This parameter is the event arguments which define the parameters passed to the
+            recipient of the event.
+            </param>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.WfsFeatureSource.RequestedData">
+            <summary>This event is called after the requesting data by url from wfs server.</summary>
+            <remarks>This event is called after the requesting data by url from wfs server.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.OnRequestedData(ThinkGeo.MapSuite.Layers.RequestedDataWfsFeatureSourceEventArgs)">
+            <returns>None</returns>
+            <summary>
+            This method allows you to raise the RequestedData event from a derived
+            class.
+            </summary>
+            <remarks>
+            You can call this method from a derived class to enable it to raise the
+            RequestedData event. This may be useful if you plan to extend the FeatureSource
+            and you need access to the event.<br/>
+            	<br/>
+            Details on the event:<br/>
+            	<br/>
+            This event is called after the requesting data by url from wfs server.<br/>
+            	<br/>
+            </remarks>
+            <param name="requestedDataWfsFeatureSourceEventArgs">
+            This parameter is the event arguments which define the parameters passed to the
+            recipient of the event.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetCapabilities(System.String)">
+             <summary>
+             Get capabilities from the specific wfs service url.
+             </summary>
+             <returns>The xml text represents capabilities of this wfs server.</returns>
+             <remarks><para>Every OGC Web Service (OWS), including a Web Feature Service, must have the ability to describe its capabilities by returning service metadata in response to a GetCapabilities request. Specifically, every web feature service must support the KVP encoded form of the GetCapabilities request over HTTP GET so that a client can always know how to obtain a capabilities document.</para>
+             <para>
+             The capabilities response document contains the following sections:
+            1. Service Identification section
+            The service identification section provides information about the WFS service itself.
+            2. Service Provider section
+            The service provider section provides metadata about the organization operating the WFS server.
+            3. Operation Metadata section
+            The operations metadata section provides metadata about the operations defined in this specification and implemented by a particular WFS server. This metadata includes the DCP, parameters and constraints for each operation.
+            4. FeatureType list section
+            This section defines the list of feature types (and operations on each feature type) that are available from a web feature service. Additional information, such as the default SRS, any other supported SRSs, or no SRS whatsoever (for non-spatial feature types), for WFS requests is provided for each feature type.
+            5. ServesGMLObjectType list section
+            This section defines the list of GML Object types, not derived from gml:AbstractFeatureType, that are available from a web feature service that supports the GetGMLObject operation. These types may be defined in a base GML schema, or in an application schema using its own namespace.
+            6. SupportsGMLObjectType list section
+            The Supports GML Object Type section defines the list of GML Object types that a WFS server would be capable of serving if it was deployed to serve data.
+            described by an application schema that either used those GML Object types directly (for non-abstract types), or defined derived types based on those types.
+            7. Filter capabilities section
+            The schema of the Filter Capabilities Section is defined in the Filter Encoding Implementation Specification [3]. This is an optional section. If it exists, then the WFS should support the operations advertised therein. If the Filter Capabilities Section is not defined, then the client should assume that the server only supports the minimum default set of filter operators.
+             </para>
+             </remarks>
+             <param name="serviceLocationUrl">The url of wfs service.</param>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+             <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetCapabilities(System.Uri)">
+             <summary>
+             Get capabilities from the specific wfs service url.
+             </summary>
+             <returns>The xml text represents capabilities of this wfs server.</returns>
+             <remarks><para>Every OGC Web Service (OWS), including a Web Feature Service, must have the ability to describe its capabilities by returning service metadata in response to a GetCapabilities request. Specifically, every web feature service must support the KVP encoded form of the GetCapabilities request over HTTP GET so that a client can always know how to obtain a capabilities document.</para>
+             <para>
+             The capabilities response document contains the following sections:
+            1. Service Identification section
+            The service identification section provides information about the WFS service itself.
+            2. Service Provider section
+            The service provider section provides metadata about the organization operating the WFS server.
+            3. Operation Metadata section
+            The operations metadata section provides metadata about the operations defined in this specification and implemented by a particular WFS server. This metadata includes the DCP, parameters and constraints for each operation.
+            4. FeatureType list section
+            This section defines the list of feature types (and operations on each feature type) that are available from a web feature service. Additional information, such as the default SRS, any other supported SRSs, or no SRS whatsoever (for non-spatial feature types), for WFS requests is provided for each feature type.
+            5. ServesGMLObjectType list section
+            This section defines the list of GML Object types, not derived from gml:AbstractFeatureType, that are available from a web feature service that supports the GetGMLObject operation. These types may be defined in a base GML schema, or in an application schema using its own namespace.
+            6. SupportsGMLObjectType list section
+            The Supports GML Object Type section defines the list of GML Object types that a WFS server would be capable of serving if it was deployed to serve data.
+            described by an application schema that either used those GML Object types directly (for non-abstract types), or defined derived types based on those types.
+            7. Filter capabilities section
+            The schema of the Filter Capabilities Section is defined in the Filter Encoding Implementation Specification [3]. This is an optional section. If it exists, then the WFS should support the operations advertised therein. If the Filter Capabilities Section is not defined, then the client should assume that the server only supports the minimum default set of filter operators.
+             </para>
+             </remarks>
+             <param name="serverUri">The url of wfs service.</param>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+             <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetCapabilities(System.Uri,System.Net.IWebProxy)">
+             <summary>
+             Get capabilities from the specific wfs service url.
+             </summary>
+             <returns>The xml text represents capabilities of this wfs server.</returns>
+             <remarks><para>Every OGC Web Service (OWS), including a Web Feature Service, must have the ability to describe its capabilities by returning service metadata in response to a GetCapabilities request. Specifically, every web feature service must support the KVP encoded form of the GetCapabilities request over HTTP GET so that a client can always know how to obtain a capabilities document.</para>
+             <para>
+             The capabilities response document contains the following sections:
+            1. Service Identification section
+            The service identification section provides information about the WFS service itself.
+            2. Service Provider section
+            The service provider section provides metadata about the organization operating the WFS server.
+            3. Operation Metadata section
+            The operations metadata section provides metadata about the operations defined in this specification and implemented by a particular WFS server. This metadata includes the DCP, parameters and constraints for each operation.
+            4. FeatureType list section
+            This section defines the list of feature types (and operations on each feature type) that are available from a web feature service. Additional information, such as the default SRS, any other supported SRSs, or no SRS whatsoever (for non-spatial feature types), for WFS requests is provided for each feature type.
+            5. ServesGMLObjectType list section
+            This section defines the list of GML Object types, not derived from gml:AbstractFeatureType, that are available from a web feature service that supports the GetGMLObject operation. These types may be defined in a base GML schema, or in an application schema using its own namespace.
+            6. SupportsGMLObjectType list section
+            The Supports GML Object Type section defines the list of GML Object types that a WFS server would be capable of serving if it was deployed to serve data.
+            described by an application schema that either used those GML Object types directly (for non-abstract types), or defined derived types based on those types.
+            7. Filter capabilities section
+            The schema of the Filter Capabilities Section is defined in the Filter Encoding Implementation Specification [3]. This is an optional section. If it exists, then the WFS should support the operations advertised therein. If the Filter Capabilities Section is not defined, then the client should assume that the server only supports the minimum default set of filter operators.
+             </para>
+             </remarks>
+             <param name="serverUri">The url of wfs service.</param>
+             <param name="webProxy">The proxy of the wfs service.</param>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+             <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetLayers(System.String)">
+            <summary>
+            Get layer names from specific wfs service url.
+            </summary>
+            <param name="serviceLocationUrl">The url of wfs service.</param>
+            <returns>The collection represent layer names.</returns>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If serviceLocationUrl is null, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If serviceLocationUrl is empty, we will throw an ArgumentException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetLayers(System.Uri)">
+            <summary>
+            Get layer names from specific wfs service url.
+            </summary>
+            <param name="serverUri">The url of wfs service.</param>
+            <returns>The collection represent layer names.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetLayers(System.Uri,System.Net.IWebProxy)">
+            <summary>
+            Get layer names from specific wfs service url.
+            </summary>
+            <param name="serverUri">The url of wfs service.</param>
+            <param name="webProxy">The proxy of the wfs service.</param>
+            <returns>The collection represent layer names.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has already been opened, it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method opens the FeatureSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concrete public method Open.
+            The Open method plays an important role, as it is responsible for initializing the
+            FeatureSource. Most methods on the FeatureSource will throw an exception if the state
+            of the FeatureSource is not opened. When the map draws each layer, it will open the
+            FeatureSource as one of its first steps, then after it is finished drawing with that
+            layer it will close it. In this way we are sure to release all resources used by the
+            FeatureSource.<br/>
+            	<br/>
+            When implementing this virtual method ,consider opening files for file-based sources,
+            connecting to databases in the database-based sources and so on. You will get a chance
+            to close these in the Close method of the FeatureSource.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.CloseCore">
+            <summary>
+            This method closes the FeatureSource and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concrete public method Close.
+            The close method plays an important role in the life cycle of the FeatureSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state, it will throw a InvalidOperationException.</exception>
+            <remarks>
+            	<para>This protected virtual method is called from the concrete public method
+                GetBoundingBox. It does not take into account any transaction activity, as this is
+                the responsibility of the concrete public method GetBoundingBox. In this way, as a
+                developer, if you choose to override this method you do not have to consider
+                transactions at all.<br/>
+            		<br/>
+                The default implementation of GetBoundingBoxCore uses the GetAllRecordsCore method
+                to calculate the bounding box of the FeatureSource. We strongly recommend that you
+                provide your own implementation for this method that will be more efficient.<br/>
+            		<br/>
+                If you do not override this method, it will get the BoundingBox by calling
+                the GetAllFeatureCore method and deriving it from each feature. This is a very
+                inefficient way to get the BoundingBox in most data sources. It is highly
+                recommended that you override this method and replace it with a highly optimized
+                version. For example, in a ShapeFile the BoundingBox is in the main header of the
+                file. Similarly, if you are using Oracle Spatial, you can execute a simple query to
+                get the BoundingBox of all the records without returning them. In these ways you
+                can greatly improve the performance of this method.</para>
+            </remarks>
+            <summary>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetColumnsCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the columns available for the FeatureSource.</summary>
+            <remarks>
+            As this is the virtual core version of the Columns method, it is intended to
+            be overridden in inherited version of the class. When overriding, you will be
+            responsible for getting a list of all of the columns supported by the FeatureSource. In
+            this way, the FeatureSource will know what columns are available and will remove any
+            extra columns when making calls to other core methods. For example, if you have a
+            FeatureSource that has three columns of information and the user calls a method that
+            requests four columns of information (something they can do with custom fields), we will
+            first compare what they are asking for to the results of the GetColumnsCore. This
+            way we can strip out custom columns before calling other Core methods, which are only
+            responsible for returning data in the FeatureSource. For more information on custom
+            fields, please see the documentation on OnCustomFieldsFetch.
+            </remarks>
+            <returns>This method returns the columns available for the FeatureSource.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetFeaturesByIdsCore(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns a collection of InternalFeatures by providing a group of Ids.</summary>
+            <returns>This method returns a collection of InternalFeatures by providing a group of Ids.</returns>
+            <remarks>
+            This method returns a collection of InternalFeatures by providing a group of Ids. The
+            internal implementation calls the GetAllFeaturesCore. Because of this, if you want a more
+            efficient version of this method, then we highly suggest you override the
+            GetFeaturesByIdsCore method and provide a fast way to find a group of InternalFeatures by their
+            Id.
+            </remarks>
+            <param name="ids">
+            This parameter represents the group of Ids which uniquely identified the InternalFeatures
+            in the FeatureSource.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the ids, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames, we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetFirstFeaturesWellKnownTypeCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the well known type that represents the first feature from FeatureSource.</summary>
+            <returns>This method returns the well known type that represents the first feature from FeatureSource.</returns>
+            <remarks>
+            	<para>This protected virtual method is called from the concrete public method
+                GetFirstFeaturesWellKnownType. It does not take into account any transaction activity, as this is the
+                responsibility of the concrete public method GetFirstFeaturesWellKnownType. This way, as a developer,
+                if you choose to override this method you do not have to consider transactions at
+                all.<br/>
+            		<br/>
+                The default implementation of GetCountCore uses the GetAllRFeaturesCore method to
+                get WellKnownType of the first feature from all features. We strongly recommend
+                that you provide your own implementation for this method that will be more
+                efficient.<br/>
+            		<br/>
+                If you do not override this method, it will get the count by calling the
+                GetAllFeaturesCore method and get WellKnownType of the first feature from all features. This is a very inefficient way
+                to get the count in most data sources. It is highly recommended that you override
+                this method and replace it with a highly optimized version. For example, in a
+                ShapeFile the record count is in the main header of the file. Similarly, if you are
+                using Oracle Spatial, you can execute a simple query to get the count of all of the
+                records without returning them. In these ways you can greatly improve the
+                performance of this method.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetAllFeaturesCore(System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns all of the InternalFeatures in the FeatureSource.</summary>
+            <returns>
+            The return decimalDegreesValue is a collection of all of the InternalFeatures in the
+            FeatureSource.
+            </returns>
+            <remarks>
+            This method returns all of the InternalFeatures in the FeatureSource. You will not need
+            to consider anything about pending transactions as this will be handled in the non Core
+            version of the method.<br/>
+            	<br/>
+            The main purpose of this method is to be the anchor of all of our default virtual
+            implementations within this class. We wanted as the framework developers to provide you
+            the user with as much default virtual implementation as possible. To do this we needed
+            a way to get access to all of the features. For example, we want to create a default
+            implementation for finding all of the InternalFeatures in a bounding box. Because this is an
+            abstract class we do not know the specifics of the underlying data or how its spatial
+            indexes work. What we do know is that if we get all the records then we can brute force
+            the answer. In this way if you inherited form this class and only implemented this one
+            method we can provide default implementations for virtually every other API.<br/>
+            	<br/>
+            While this is nice for you the developer if you decide to create your own FeatureSource
+            it comes with a price. The price is that it is very inefficient. In the case we just
+            discussed about finding all of the InternalFeatures in a bounding box we would not want to look
+            at every record to fulfil this method. Instead we would want to override the
+            GetFeaturesInsideBoundingBoxCore and implement specific code that would be fast. For
+            example in Oracle Spatial there is a specific SQL statement to do this operation very
+            quickly. The same holds true with other specific FeatureSource examples.<br/>
+            	<br/>
+            Most default implementations in the FeatureSource call the
+            GetFeaturesInsideBoundingBoxCore which by default calls the GetAllFeaturesCore. It is
+            our advice that if you create your own FeatureSource that you ALWAYS override the
+            GetFeatureInsideBoundingBox. It will ensure that nearly every other API will operate
+            efficiently. Please see the specific API to determine what method it uses.
+            </remarks>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WfsFeatureSource.GetFeaturesInsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method returns all of the InternalFeatures of this FeatureSource that are inside of the
+            specified bounding box.
+            </summary>
+            <returns>
+            The returned decimalDegreesValue is a collection of all of the InternalFeatures that are inside of the
+            bounding box.
+            </returns>
+            <remarks>
+            This method returns all of the InternalFeatures of this FeatureSource that are inside of the
+            specified bounding box. If you are overriding this method you will not need to consider
+            anything about transactions, as this is handled by the concrete version of this
+            method.<br/>
+            	<br/>
+            The default implementation of GetFeaturesInsideBoundingBoxCore uses the
+            GetAllRecordsCore method to determine which InternalFeatures are inside of the bounding box. We
+            strongly recommend that you provide your own implementation for this method that will
+            be more efficient. That is especially important for this method, as many other default
+            virtual methods use this for their calculations. When you override this method, we highly recommend
+            that you use any spatial indexes you have at your disposal to make this
+            method as fast as possible.
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box that you wish to find InternalFeatures inside
+            of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data that you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the boundingBox, we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.WfsNamespace">
+            <summary>
+            Wfs Name space.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.DotDensity</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.DotDensityExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityExceptionDescription.TheFieldTypeShouldBeNumeric">
+            <summary>
+              Looks up a localized string similar to The field type should be numeric..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.DotDensityStyle">
+            <summary>
+            This class allows you to display information by drawing points on an area based
+            on a value from the features data.
+            </summary>
+            <remarks>
+            This class allows you to display information by drawing points on an area based
+            on a value from the features data. The higher the value is in the data, the greater
+            the number of points that are drawn. The points themselves are distributed randomly inside of
+            the polygon.<br/>
+            	<br/>
+            You would use this style if you have areas (such as counties) and numeric data (such as
+            the number of births in those counties). In this example, you could plot a point in each county
+            to represent each birth. A county will show a higher density of points if it is smaller or
+            if there are more births there.<br/>
+            	<br/>
+            When you have data values that are too large to represent by plotting an individual point
+            for each, or data that is too
+            sparse, you can set the PointToValueRatio. Setting this will control the ratio of points
+            drawn to the value in the data. For example, if you have a value of 100 in the data and
+            you have the ratio set to 1, then you will get 100 points drawn. A ratio of higher than 1
+            will draw more points than the data value; in our example, a ratio of 2 will draw 200 points.
+            Conversely, a ratio of less than 1 will draw fewer points than the data value; in our example,
+            a ratio of 0.5 would draw 50 points.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.DotDensityStyle.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, you should set the
+            values by the properties.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.DotDensityStyle.#ctor(System.String,System.Double,System.Int32,ThinkGeo.MapSuite.Drawing.GeoColor)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify the column name, point-to-value ratio,
+            point size and point color.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This constructor allows you to set everything you need to a standard
+            scenario.
+            </remarks>
+            <param name="columnName">
+            This parameter is the name of the column in the FeatureSource that will supply
+            the data.
+            </param>
+            <param name="pointToValueRatio">This parameter controls the point-to-value ratio for the random dots.</param>
+            <param name="pointSize">
+            This parameter controls the size of each randomly placed point in the
+            area.
+            </param>
+            <param name="pointColor">
+            This parameter controls the color of each randomly placed point in the
+            area.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.DotDensityStyle.#ctor(System.String,System.Double,ThinkGeo.MapSuite.Styles.PointStyle)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in the column name, point-to-value ratio and
+            a custom point style.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            If you require a custom point symbol, this constructor allows you to set everything you need.
+            Custom points can include bitmaps and points that require custom fill
+            brushes.
+            </remarks>
+            <param name="columnName">
+            This parameter is the name of the column in the FeatureSource that will supply
+            the data.
+            </param>
+            <param name="pointToValueRatio">This parameter controls the point-to-value ratio for the random dots.</param>
+            <param name="customPointStyle">This parameter represents a custom point you want to draw.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityStyle.CustomPointStyle">
+            <summary>This property gets and sets a custom point style.</summary>
+            <value>This property gets a custom point style.</value>
+            <remarks>
+            You will use this property when you want to specify a point style that is not
+            just a simple colored dot. You may want to use a bitmap or take advantage of a
+            custom fill brush.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityStyle.ColumnName">
+            <summary>
+            This property gets and sets the column name that will be used for the density
+            value.
+            </summary>
+            <value>
+            This property gets the column name that will be used for the density
+            value.
+            </value>
+            <remarks>
+            This value should represent a value in the FeatureSource that is numeric. It will
+            be used in conjunction with the PointToValueRatio property to deterime how many points
+            are drawn in the area.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityStyle.PointSize">
+            <summary>This property gets and sets the point size of the density points.</summary>
+            <value>This property gets the point size of the density points.</value>
+            <remarks>
+            If you have sparse data, one way to better fill the area is to use larger point
+            sizes. The opposite is also true; if you have lots of data, smaller point sizes look
+            better.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityStyle.PointColor">
+            <summary>This property gets and sets the color of the density points.</summary>
+            <value>This property gets the color of the density points.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityStyle.PointToValueRatio">
+            <summary>This property gets and sets the ratio of points to value in the data.</summary>
+            <value>This property gets the ratio of points to value in the data.</value>
+            <remarks>
+            This property controls the ratio of points on the screen to numeric value in the
+            data. For example, if you have a value of 100 in the data and
+            you have the ratio set to 1, then you will get 100 points drawn. A ratio of higher than 1
+            will draw more points than the data value; in our example, a ratio of 2 will draw 200 points.
+            Conversely, a ratio of less than 1 will draw fewer points than the data value; in our example,
+            a ratio of 0.5 would draw 50 points.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.DotDensityStyle.CachedPoints">
+            <summary>
+            The cachedPoints for the dotdensity style to speed it up.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.DotDensityStyle.GetRequiredColumnNamesCore">
+            <remarks>
+            This abstract method is called from the concrete public method
+            GetRequiredFieldNames. In this method, we return the column names that are required for
+            the style to draw the feature properly. For example, if you have a style that colors
+            areas blue when a certain column value is over 100, then you need to be sure you include
+            that column name. This will ensure that the column data is returned to you in the
+            feature when it is ready to draw.<br/>
+            	<br/>
+            In many of the styles, we add properties to allow the user to specify which field they
+            need; then, in the GetRequiredColumnNamesCore, we read that property and add it to the
+            collection.
+            </remarks>
+            <summary>
+            This method returns the column data for each feature that is required for the
+            style to properly draw.
+            </summary>
+            <returns>This method returns a collection of column names that it needs.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.DotDensityStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When overriding this method, consider each feature and its column data values. You can
+            use the full power of the GeoCanvas to do the drawing. If you need column data for a
+            feature, be sure to override the GetRequiredColumnNamesCore and add the columns you need
+            to the collection. In many of the styles, we add properties to allow the user to specify
+            which field they need; then, in the GetRequiredColumnNamesCore, we read that property and
+            add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the features, we will throw an ArgumentNullException.</exception>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+    </members>
+</doc>

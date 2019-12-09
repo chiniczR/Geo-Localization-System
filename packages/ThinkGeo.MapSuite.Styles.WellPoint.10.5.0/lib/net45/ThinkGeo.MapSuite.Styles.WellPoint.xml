@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.WellPoint</name>
+    </assembly>
+    <members>
+        <member name="M:ThinkGeo.MapSuite.Styles.WellPointStyle.#ctor">
+            <summary>
+            This is the default constructor for the class.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.WellPointStyle.#ctor(System.Int32)">
+            <summary>
+            This is the constructor for the class.
+            </summary>
+            <param name="wellPointIndex">This parameter is the index of the well point style, it would be between 1 and 186 </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.WellPointStyle.#ctor(System.Int32,ThinkGeo.MapSuite.Drawing.GeoSolidBrush,System.Int32)">
+            <summary>
+            This is the constructor for the class.
+            </summary>
+            <param name="wellPointIndex">This parameter is the index of the well point style, it would be between 1 and 186 </param>
+            <param name="symbolSolidBrush">This parameter is the brush used to draw the well point style.</param>
+            <param name="symbolSize">This parameter is the size of the well point.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.WellPointStyle.#ctor(System.Int32,ThinkGeo.MapSuite.Drawing.GeoSolidBrush,ThinkGeo.MapSuite.Drawing.GeoPen,System.Int32)">
+            <summary>
+            This is the constructor for the class.
+            </summary>
+            <param name="wellPointIndex">This parameter is the index of the well point style, it would be between 1 and 186 </param>
+            <param name="symbolSolidBrush">This parameter is the brush used to draw the well point style.</param>
+            <param name="symbolPen">This parameter is the pen used to draw the well point style.</param>
+            <param name="symbolSize">This parameter is the size of the well point.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.WellPointStyle.WellPointIndex">
+            <summary>
+            This property gets or sets the index of the well point style, it is an integer between 1 and 186 
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.WellPointStyle.DrawSampleCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,ThinkGeo.MapSuite.Shapes.DrawingRectangleF)">
+            <summary>This method draws a sample feature on the canvas you provided.</summary>
+            <remarks>
+            This virtual method is called from the concrete public method Draw. In this
+            method, we draw a sample style on the canvas you provided. This is typically used to
+            display a legend or other sample area.<br/>
+            	<br/>
+            When implementing this virtual method, consider the canvas size and draw the sample
+            image appropriately. You should keep in mind that the sample typically shows up on a
+            legend.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+        </member>
+    </members>
+</doc>

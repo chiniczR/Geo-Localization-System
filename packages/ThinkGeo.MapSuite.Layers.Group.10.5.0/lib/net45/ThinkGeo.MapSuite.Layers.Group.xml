@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Group</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.GroupLayer">
+            <summary>This class represents a Layer backed by a group of layers.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GroupLayer.#ctor">
+            <summary>This is the default constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GroupLayer.#ctor(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Layers.Layer})">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename information for the group.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="layers">This parameter represents the layers in this class that you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GroupLayer.Layers">
+            <summary>
+            This property gets the layers you want to use.
+            </summary>
+            <decimalDegreesValue>This property gets the layers you want to use.</decimalDegreesValue>
+            <remarks>This property gets the layers you want to use.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GroupLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In GroupLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GroupLayer.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a Layer which has already been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method opens the Layer so that it is initialized and ready to use.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Open. The open
+            method plays an important role, as it is responsible for initializing the Layer. Most
+            methods on the Layer will throw an exception if the state of the Layer is not opened.
+            When the map draws each layer, it will open the layer as one of its first steps; then, after it
+            is finished drawing with that layer, it will close it. In this way, we are sure to
+            release all resources used by the Layer.<br/>
+            	<br/>
+            When implementing the abstract method, consider opening the FeatureSource or
+            RasterSource. You will get a chance to close these in the Close method of the
+            Layer.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GroupLayer.CloseCore">
+            <summary>
+            This method closes the FeatureSource and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This abstract method is called from the concrete public method Close. The close
+            method plays an important role in the life cycle of the Layer. It may be called after
+            drawing to release any memory and other resources that were allocated since the Open
+            method was called.<br/>
+            	<br/>
+            If you override the Core version of this method, it is recommended that you take
+            the following things into account: This method may be called multiple times, so we
+            suggest you write the method so that that a call to a closed Layer is ignored and does not
+            generate an error. We also suggest that in the Close you free all resources that have
+            been opened. Remember that the object will not be destroyed, but will be re-opened
+            possibly in the near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GroupLayer.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a layer which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the Layer.</summary>
+            <returns>This method returns the bounding box of the Layer.</returns>
+            <remarks>This method returns the bounding box of the Layer.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GroupLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Draw. This
+            method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties to
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter are the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+    </members>
+</doc>

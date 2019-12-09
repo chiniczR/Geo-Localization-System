@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Wmts</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.TileMatrixSet">
+            <summary>
+            This class holds a collection of TileMatrix shared the same Crs.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.TileMatrixSet.#ctor(System.String,System.String)">
+            <summary>
+            Default constrctor for the class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.TileMatrixSet.TileMatrices">
+            <summary>
+            Gets the collection of TileMatrix for the TileMatrixSet.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.TileMatrixSet.Id">
+            <summary>
+            Gets or sets the id of the TileMatrixSet.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.TileMatrixSet.Crs">
+            <summary>
+            Gets or sets the Crs(Coorindate reference system) for the TileMatrixSet.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.WmtsAxisOrder">
+            <summary>
+            This enum indicates the axis order or the Wmts axis order.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WmtsAxisOrder.XY">
+            <summary>
+            This value indicates the axis order is formed as X, Y.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WmtsAxisOrder.YX">
+            <summary>
+            This value indicates the axis order is formed as Y, X.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.WmtsSeverEncodingType">
+            <summary>
+            WMTS System.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WmtsSeverEncodingType.Kvp">
+            <summary>
+            Key Value Pairs encoding system.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WmtsSeverEncodingType.Restful">
+            <summary>
+            RESTful encoding system.
+            </summary>
+        </member>
+    </members>
+</doc>

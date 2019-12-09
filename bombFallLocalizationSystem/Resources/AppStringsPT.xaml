@@ -1,0 +1,141 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:bombFallLocalizationSystem"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <System:String x:Key="titleString1">Sistema de</System:String>
+    <System:String x:Key="titleString2">Localização</System:String>
+    <System:String x:Key="titleString3">de Quedas</System:String>
+    <System:String x:Key="mainString">Principal</System:String>
+    <System:String x:Key="loginString">Entrar</System:String>
+    <System:String x:Key="logoutString">Sair</System:String>
+    <System:String x:Key="reportString">Novo relatório de queda</System:String>
+    <System:String x:Key="analsysString">Análise</System:String>
+    <System:String x:Key="searchString">Busca</System:String>
+    <System:String x:Key="aboutString">Sobre</System:String>
+    <System:String x:Key="shareString">Compartilhar</System:String>
+    <System:String x:Key="questionsString">Dúvidas</System:String>
+    <System:String x:Key="listString">Lista de quedas</System:String>
+    <System:String x:Key="displayString">Exibição de quedas</System:String>
+    <System:String x:Key="welcomeString">Bem vindo/a, Visitante!</System:String>
+    <System:String x:Key="updateString">Atualizar detalhes de queda</System:String>
+    <System:String x:Key="loginLabelString">Entre seu nome-de-usuário e sua senha para fazer login</System:String>
+    <System:String x:Key="usernameString">Nome de Usuário</System:String>
+    <System:String x:Key="passwordString">Senha</System:String>
+    <System:String x:Key="invalidTryString">Nome-de-usuário ou senha invalido/as</System:String>
+    <System:String x:Key="reportTitleString1">Relatório</System:String>
+    <System:String x:Key="reportTitleString2">de Queda</System:String>
+    <System:String x:Key="newReportString">Novo relátorio sobre queda de bomba</System:String>
+    <System:String x:Key="addressString">Endereço de origem do relato</System:String>
+    <System:String x:Key="actuallyReportString">Relatar</System:String>
+    <System:String x:Key="referringToPrevLabel">Isto refere-se a uma queda anterior</System:String>
+    <System:String x:Key="whichPrevFallLabel1">Isto refere-se à queda de</System:String>
+    <System:String x:Key="whichPrevFallLabel2">minutos atrás</System:String>
+    <System:String x:Key="sameFallLabel" xml:space="preserve">Será - predefinidamente - assumido que relatórios referem-se à última queda
+registrada se forem relatados há até 10 minutos do último relatório. A menos que especificado
+de outra forma, é assumido que um relátorio feito mais de 10 minutos após o último relatório,
+refere-se a uma nova queda. Só é possível relatar quedas de hoje.</System:String>
+    <System:String x:Key="listExplainList" xml:space="preserve">Clique em qualquer queda
+listada no quadro à direita
+e seu respectivo pushpin no
+mapa ficará vermelho</System:String>
+    <System:String x:Key="fullTitle">Sistema de Localização de Quedas</System:String>
+    <System:String x:Key="langTip">Selecione a língua do sistema</System:String>
+    <System:String x:Key="updateLabelString">Selecione uma imagem com geotag para atualizar a localização de uma queda</System:String>
+    <System:String x:Key="selectPicString">Selecione uma foto</System:String>
+    <System:String x:Key="actualUpdateString">Atualizar</System:String>
+    <System:String x:Key="fallDetsDemoString">* Detalhes Atuais da Queda *</System:String>
+    <System:String x:Key="chooseFallString">Selecione a queda cujos detalhes você deseja atualizar</System:String>
+    <System:String x:Key="orangeLegendString">Local atual (estimado) da queda selecionada</System:String>
+    <System:String x:Key="gainsboroLegendString">Local da foto com geotag</System:String>
+    <System:String x:Key="changeProfilePicString">Mudar Foto</System:String>
+    <System:String x:Key="avgActDistString" xml:space="preserve">   Distância mediana entre a
+localização estimada e a real</System:String>
+    <System:String x:Key="fallByDistString">Diferença entre o local estimado e o real (KM)</System:String>
+    <System:String x:Key="analysisDisclaimerString" xml:space="preserve">A informação exibida nesta
+janela é precisa com relação à
+última atualização do sistema.</System:String>
+    <System:String x:Key="accuarcyString">Precisão</System:String>
+    <System:String x:Key="accuracyTooltipString">Percentual de quedas cuja localização exata tem uma distância à
+    localização estimada menor ou igual ao número especificado (no slider/text-box)</System:String>
+    <System:String x:Key="accuracyTitleString" xml:space="preserve">Avaliação de
+Qualidade</System:String>
+    <System:String x:Key="singleSearchRadioString">Busca por uma única queda</System:String>
+    <System:String x:Key="multSearchRadioString">Busca por múltiplas quedas</System:String>
+    <System:String x:Key="byAddressString">Busca por endereço</System:String>
+    <System:String x:Key="onlyAddressString">Endereço</System:String>
+    <System:String x:Key="byCoordsString">Busca por coordenadas</System:String>
+    <System:String x:Key="errorMarginString">Desvio aceitável, em Km</System:String>
+    <System:String x:Key="datePickerString">Data</System:String>
+    <System:String x:Key="hourPickerString">Hora</System:String>
+    <System:String x:Key="onlyGeotaggedString">Só com geotag</System:String>
+    <System:String x:Key="aboutWhatTitleString" xml:space="preserve">O Que É Isto?</System:String>
+    <System:String x:Key="aboutWhatString" xml:space="preserve">    Isto é um sistema para tentar localizar exatamente uma queda de bomba (na ver-
+ dade, qualquer evento) que foi relatado por um/a cidadã/o a um atendente de call-center. O sistema
+ prover a analistas os meios para propriamente analisar a precisão e a eficiência do sistema e seu
+ algoritmo de localização.</System:String>
+
+    <System:String x:Key="aboutInfoTitleString" xml:space="preserve">Como Funciona?</System:String>
+    <System:String x:Key="aboutInfoString" xml:space="preserve">    Primeiramente, há três tipos de usuários do sistema:
+        
+        1. Analistas
+        2. Funcionários de call-center
+        3. Visitas
+   
+    Só analístas podem acessar a janela de análise (i). Só funcíonarios de call-center podem dar entra-
+ da a novos relatos (ii) e atualizar os detalhes de uma queda (iii). Qualquer um pode buscar (iv), aces-
+ sar esta janela, a janela de dúvidas ou a janela de compartilhar. As atividades que são direcionadas a
+ funcionários (call-center ou analistas) requerem o login do usuário. Em mais detalhes, as atividades e-
+ numeradas acima podem ser descritas como:
+        
+        (i) Análise - contém informação para ajudar-los a averiguar a precisão e a eficiência do sistema
+        e seu algoritmo de localização.
+        
+        (ii) Novo Relato de Queda - ao receber um novo relato de queda, um funcionário do call-center
+        preenche o relatório no compartimento "Novo Relto de Queda" da Janela Principar. Como explicado
+        lá, assume-se que relatos entrados até 10 minutos desde o último relato referem-se a mesma queda.
+        Após o relato ser entrado, se este referê-se a uma queda ainda não relatada, uma nova queda é
+        acrescentada à database (à tabela); caso contrário, ele é agrupado com os outros relatos sobre
+        esta queda, e suas coordenadas são passados ao algoritmo KMeans-Clustering, que é usado para es-
+        a localização exata da queda (ou quedas).
+        
+        (iii) Atualizar Detalhes de Queda - ao receber uma foto com geotag da localização de uma queda, o
+        a carrega neste compartimento da Janela Principal. As coordenadas do geotag da foto são usados
+        para atualizar a localização estimada da queda, assim precisamente localizando-a. A diferença en-
+        tre a localização estimada e a precisa é armazenada e usada para ajudar a medir a eficiência do
+        sistema.
+        
+        (iv) Busca - permite buscar por local (por endereço ou coordenadas), data (opcional) e se a queda
+        já foi precisamente localizada ou não - i.e. se já foi carregada uma foto com geotag dela ou não -,
+        assim com permite o usuário definir a distância de desvio aceitável (predefinidamente, 100Km - é
+        recomendado não deixá-la em menos de 50 Km).</System:String>
+    <System:String x:Key="aboutThanksTitleString" xml:space="preserve">Gratidão Gera Gratidão</System:String>
+    <System:String x:Key="aboutThanksString" xml:space="preserve">        Aqui está uma lista de ferramentas e recursos, que usei e/ou adaptei
+        adaptei a este projeto, que eu gostaria de mencionar:
+        
+        - The font: Bebas Neue, by Ryoichi Tsunekawa from Dharma Type
+        Free for personal use, available at: github.com/dharmatype/Bebas-Neue
+        
+        - The algorithm: "K-Means Data Clustering Using C#", by James McCaffrey
+        Adapted for this project's specifications. Can be found at:
+        visualstudiomagazine.com/articles/2013/12/01/k-means-data-clustering-using-c.aspx
+    
+        - The geocoding: HERE Geocoder API.
+        Used with REST. Documentation: developer.here.com/documentation#geocoder
+        
+        - The graphs: Live Charts, by Alberto Rodríguez
+        Open-source data-visualization tool for the .NET framwork. Homepage: https://lvcharts.net/
+        
+        - The round buttons: "How to create/make rounded corner buttons in WPF?",
+        as answered by Kishore Kumar and edited by Hakan Fıstık, on StackExchange (adapted). Url:
+        stackoverflow.com/questions/6745663/how-to-create-make-rounded-corner-buttons-in-wpf</System:String>
+    <System:String x:Key="backString">Voltar atrás</System:String>
+    <System:String x:Key="forwardString">Seguir à frente</System:String>
+    <System:String x:Key="weGotAnswersString">Temos Respostas!</System:String>
+    <System:String x:Key="questionsWindowString" xml:space="preserve">Dúvidas? Sugestões? Reclamações?
+Comentários? Mande-nos um e-mail!</System:String>
+    <System:String x:Key="copyTooltipString">Copiar endereço eletrónico à área de trabalho</System:String>
+    <System:String x:Key="openGmailTooltipString">Abrir o Gmail no navegador padrão</System:String>
+    <System:String x:Key="mainWindowString">Janela Principal</System:String>
+
+</ResourceDictionary>

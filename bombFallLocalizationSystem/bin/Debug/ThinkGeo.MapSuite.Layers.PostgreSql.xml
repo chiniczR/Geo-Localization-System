@@ -1,0 +1,559 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.PostgreSql</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.ColumnNameNotExist">
+            <summary>
+              Looks up a localized string similar to The column name you input does not exist..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.ConnectionStringCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The connection string can not be null..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.FeatureSourceCanNotExecuteSqlQuery">
+            <summary>
+              Looks up a localized string similar to Executing sql queries is not supported and the user should always check the CanExecuteSqlQueries to ensure the FeatureSource support it before calling..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.FeatureSourceIsNotInTransaction">
+            <summary>
+              Looks up a localized string similar to The FeatureSource is not in a transaction..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.FeatureSourceIsNotOpen">
+            <summary>
+              Looks up a localized string similar to The FeatureSource is not in open process..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.InvalidSrid">
+            <summary>
+              Looks up a localized string similar to We can not find a valid Srid, please check the table exists. If this is a View, please set the Srid property on class...
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.ParameterIsInvalid">
+            <summary>
+              Looks up a localized string similar to The shape you provided does not pass our simple validation..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.ParameterIsNull">
+            <summary>
+              Looks up a localized string similar to The parameter you supplied may not be null..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlExceptionDescription.ParameterIsNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The parameter you supplied may not be null or empty..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer">
+            <summary>This class represents a FeatureSource backed by PostgreSQL.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor but it is not typically used.</overloads>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.#ctor(System.String,System.String,System.String)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in all of the data to create the
+            FeatureSource.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="connectionString">This parameter represents the connection string to connect to the server.</param>
+            <param name="tableName">This parameter represents the table name being accessed.</param>
+            <param name="featureIdColumn">
+            This parameter represents the name of the column that holds the unique feature
+            Id.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In PostgreSqlFeatureLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.ConnectionString">
+            <summary>
+            This property gets and sets the connection string used to connect to the
+            server.
+            </summary>
+            <value>This property gets the connection string used to connect to the server.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.TableName">
+            <summary>This property gets or sets the table name the database will use.</summary>
+            <value>This property gets the table name the database will use.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.FeatureIdColumn">
+            <summary>
+            This property gets or sets the name of the column that holds the unique feature
+            Id.
+            </summary>
+            <value>
+            This property gets the name of the column that holds the unique feature
+            Id.
+            </value>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureLayer.ExecuteNonQuery(System.String)">
+            <summary>This method executes a query that does not return a SQL result.</summary>
+            <returns>The number of records effected.</returns>
+            <remarks>This methods executes a query that has no results.</remarks>
+            <param name="sqlStatement">This parameter represents the SQL statement that will be executed.</param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource">
+            <summary>This class represents a FeatureSource backed by PostgreSQL.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor but it is not typically used.</overloads>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.#ctor(System.String,System.String,System.String)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in all of the data to create the
+            FeatureSource.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="connectionString">This parameter represents the connection string to connect to the server.</param>
+            <param name="tableName">This parameter represents the table name being accessed.</param>
+            <param name="featureIdColumn">
+            This parameter represents the name of the column that holds the unique feature
+            Id.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.ConnectionString">
+            <summary>
+            This property gets and sets the connection string used to connect to the
+            server.
+            </summary>
+            <value>This property gets the connection string used to connect to the server.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.TableName">
+            <summary>This property gets or sets the table name the database will use.</summary>
+            <value>This property gets the table name the database will use.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.FeatureIdColumn">
+            <summary>
+            This property gets or sets the name of the column that holds the unique feature
+            Id.
+            </summary>
+            <value>
+            This property gets the name of the column that holds the unique feature
+            Id.
+            </value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.IsEditable">
+            <summary>This property returns if the FeatureSource allows edits or is read only.</summary>
+            <value>
+            This property returns if the FeatureSource allows edits or is read only. The
+            property returns true if the FeatureSource allows edits and false if the FeatureSource
+            is read only.
+            </value>
+            <remarks>
+            	<para>This property is useful to check if a specific FeatureSource accepts editing.
+                If you call the BeginTransaction and this property is false then an exception will
+                be raised.<br/>
+            		<br/>
+                For developers who are creating or extending a FeatureSource it is expected that
+                you override this virtual method if the new FeatureSource you are creating allows
+                edits. By default the value if false meaning that if you want to allow edits you
+                must override this method and return true.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.ExecuteNonQueryCore(System.String)">
+            <summary>This method executes a query that does not return a SQL result.</summary>
+            <returns>None</returns>
+            <remarks>This methods executes a query that has no results.</remarks>
+            <param name="sqlStatement">This parameter represents the SQL statement that will be executed.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.ExecuteNonQuery(System.String)">
+            <summary>This method executes a query that does not return a SQL result.</summary>
+            <returns>None</returns>
+            <remarks>This methods executes a query that has no results.</remarks>
+            <param name="sqlStatement">This parameter represents the SQL statement that will be executed.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetApproximateCount">
+            <summary>
+            Get count proximately, this function is fast, but the result is not exact right.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetExactCount">
+            <summary>
+            This method returns the exact count though it takes longer than the standard
+            GetCount.
+            </summary>
+            <returns>
+            This method returns the exact count though it takes longer than the standard
+            GetCount.
+            </returns>
+            <remarks>
+            	<para>It uses a way in PostgreSQL that gets an exact count however it must access
+                each record which makes it slower on large tables. The standard GetCount method
+                only gets the approximate count however it is really fast. This way you have a
+                choice depending on if you need a fast approximate count or a slower by precise
+                count.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetFirstGeometryType">
+            <summary>
+            Get The shape type from the first record.
+            </summary>
+            <returns>The shape type of the first record.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.OpenCore">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has already been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method opens the FeatureSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concreate public method Open.
+            The open method play an important role as it is responsible for initializing the
+            FeatureSource. Most methods on the FeatureSource will throw an exception if the state
+            of the FeatureSource is not opened. When the map draws each layer it will open the
+            FeatureSource as one of its first steps, then after it is finished drawing with that
+            layer it will close it. In this way we are sure to release all resources used by the
+            FeatureSource.<br/>
+            	<br/>
+            When implementing this abstract method consider opening files for file based source,
+            connecting to databases in the database based sources and so on. You will get a chance
+            to close these in the Close method of the FeatureSource.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.CloseCore">
+            <summary>
+            This method opens the FeatureSource so that it is initialized and ready to
+            use.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concreate public method Close.
+            The close method plays an important role in the life cycle of the FeatureSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            It is recommended that if you override this method that you take the following things
+            into account. This method may be called multiple times so we suggest you write the so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the close you free all resources that have been opened.
+            Remember that the object will not be destroyed but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetCountCore">
+            <exception cref="!:" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <summary>
+            This method returns the count of the number of records in this
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the count of the number of records in this
+            FeatureSource.
+            </returns>
+            <remarks>
+            	<para>This protected virtual method is called from the concreate public method
+                GetCount. It does not take into account any transaction activity as this is the
+                responsibility of the concreate public method GetCount. In this way as a developer
+                if you choose to override this method you do not have to consider transaction at
+                all.<br/>
+            		<br/>
+                The default implementation of GetCountCore uses the GetAllRecordsCore method to
+                calculate how many records there are in the FeatureSource. We strongly recommend
+                that you provide your own implementation for this method that will be more
+                efficient<br/>
+            		<br/>
+                If you do not override this method the means it gets the count is by calling the
+                GetAllFeatureCore method and counting each feature. This is a very inefficient way
+                to get the count in most data sources. It is highly recommended that you override
+                this method and replace it with a highly optimized version. For example in a
+                ShapeFile the record count is in the main header of the file. Similarly if you are
+                using Oracle Spatial you can execute a simple query to get the count of all of the
+                record without returning them. In these ways you can greatly improve the
+                performance of this method.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetFeaturesInsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method returns all of the Features of this FeatureSource inside of the
+            specified bounding box.
+            </summary>
+            <returns>
+            The return value is a collection of all of the Features that are inside of the
+            bounding box.
+            </returns>
+            <remarks>
+            This method returns all of the Features of this FeatureSource inside of the
+            specified bounding box. If you are overriding this method you will not need to consider
+            anything about transactions as this is handled by the concreate version of this
+            method.<br/>
+            	<br/>
+            The default implementation of GetFeaturesInsideBoundingBoxCore uses the
+            GetAllRecordsCore method to determine which Features are inside of the bounding box. We
+            strongly recommend that you provide your own implementation for this method that will
+            be more efficient. It is especially important for this method as many other default
+            virtual methods use this for their calculations. We highly recommend when you override
+            this method that you use any spatial indexes you have at your disposal to make this
+            method as fast as possible.
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box you with to find Features inside
+            of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetFeaturesOutsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <returns>
+            This method returns all of the Features of this FeatureSource outside of the
+            specified bounding box.
+            </returns>
+            <summary>
+            This method returns all of the Features of this FeatureSource outside of the
+            specified bounding box.
+            </summary>
+            <remarks>
+            This method returns all of the Features of this FeatureSource outside of the
+            specified bounding box. If you are in a transaction and that transaction is live then
+            it will also take that into consideration.<br/>
+            	<br/>
+            	<br/>
+            The default implementation of GetFeaturesOutsideBoundingBoxCore uses the
+            GetAllRecordsCore method to determine which Features are outside of the bounding box.
+            We strongly recommend that you provide your own implementation for this method that
+            will be more efficient
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box you with to find Features outside
+            of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.CommitTransactionCore(ThinkGeo.MapSuite.Layers.TransactionBuffer)">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which is not in transaction it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method will commit the existing transaction to its underlying source of
+            data.
+            </summary>
+            <remarks>
+            	<para>This method will commit the existing transaction to its underlying source of
+                data. It will pass back the results of how the commit went to include any error
+                received. If you are implementing your own FeatureSource then this is one of the
+                crucial methods you must create. It should be fairly straight forward that you will
+                loop through the transaction buffer and add, edit or delete the Features in your
+                underlying data source. Remember to build and pass back the TransactionResult class
+                so that users of your FeatureSource can respond to failures you may encounter
+                committing the Features. We will handle the end of the transaction and also the
+                cleanup of the transaction buffer. Your task will be to commit the records and
+                produce a TransactionResult return.</para>
+            	<para>The Transaction System</para>
+            	<para>The transaction system of a FeatureSource sits on top of the inherited
+                implementation of any specific source such as Oracle Spatial or Shape files. In
+                this way it functions the same way for every FeatureSource. You start by calling
+                the BeginTransaction. This allocates a collection of in memory change buffers that
+                are used to store changes until you commit the transaction. So for example when you
+                call the Add, Delete or Update method the changes to the feature are stored in
+                memory only. If for any reason you choose to abandon the transaction you can call
+                RollbackTransaction at any time and the in memory buffer will be deleted and the
+                changes will be lost. When you are ready to commit the transaction you call the
+                CommitTransaction and the collections of changes are then passed to the
+                CommitTransactionCore method and the implementer of the specific FeatureSource is
+                responsible for integrating your changes into the underlying FeatureSource. By
+                default the IsLiveTransaction property is set to false which means that until you
+                commit the changes the FeatureSource API will not reflect any changes that are in
+                the temporary editing buffer.</para>
+            	<para>In the case where the IsLiveTransaction is set to true then things function
+                slightly differently. The live transaction concept means that all of the
+                modification you perform during a transaction are live from the standpoint of the
+                querying methods on the object.</para>
+            	<para>To setup an example imagine that you have a FeatureSource that has 10 records
+                in it. Next you begin a transaction and then call GetAllFeatures, the result would
+                be 10 records. After that you call a delete on one of the records and call the
+                GetAllFeatures again, this time you only get nine records. You receive nine records
+                even though the transaction has not yet been committed. In the same sense you could
+                have added a new record or modified an existing one and those changes are
+                considered live though not committed.</para>
+            	<para>In the case where you modify records such as expanding the size of a polygon
+                those changes as well are reflected. So for example you expand a polygon by
+                doubling its size and then do a spatial query that would not normally return the
+                smaller record but would return the larger records, in this case the larger record
+                is returned. You can set this property to be false as well in which case all of the
+                spatial related methods would ignore anything that is currently in the transaction
+                buffer waiting to be committed. In this case only after committing the transaction
+                would the FeatureSource reflect the changes.</para>
+            </remarks>
+            <returns>
+            The return value of this method is a TransactionResult class which gives you the
+            status of the transaction you just committed. It includes how many of the updates,
+            adds, and deletes were successful and any error that were encountered during the
+            committing of the transaction.
+            </returns>
+            <param name="transactionBuffer">
+            This parameter encapsulates all of the adds, edits and deleted that make up the
+            transaction. You will use this data to write the changes to your underlying data
+            source.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetAllFeaturesCore(System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns all of the Features in the FeatureSource.</summary>
+            <returns>
+            The return value is a collection of all of the Features in the
+            FeatureSource.
+            </returns>
+            <remarks>
+            This method returns all of the Features in the FeatureSource. You will not need
+            to consider anything about pending transactions as this will be handled in the non Core
+            version of the method.<br/>
+            	<br/>
+            The main purpose of this method is to be the anchor of all of our default virtual
+            implementations within this class. We wanted as the framework developers to provide you
+            the user with as much default virtual implementation as possible. To do this we needed
+            a way to get access to all of the features. For example, we want to create a default
+            implementation for finding all of the Features in a bounding box. Because this is an
+            abstract class we do not know the specifics of the underlying data or how its spatial
+            indexes work. What we do know is that if we get all the records then we can brute force
+            the answer. In this way if you inherited form this class and only implemented this one
+            method we can provide default implementations for virtually every other API.<br/>
+            	<br/>
+            While this is nice for you the developer if you decide to create your own FeatureSource
+            it comes with a price. The price is that it is very inefficient. In the case we just
+            discussed about finding all of the Features in a bounding box we would not want to look
+            at every record to fulfil this method. Instead we would want to override the
+            GetFeaturesInsideBoundingBoxCore and implement specific code that would be fast. For
+            example in Oracle Spatial there is a specific SQL statement to do this operation very
+            quickly. The same holds true with other specific FeatureSource examples.<br/>
+            	<br/>
+            Most default implementations in the FeatureSource call the
+            GetFeaturesInsideBoundingBoxCore which by default calls the GetAllFeaturesCore. It is
+            our advice that if you create your own FeatureSource that you ALWAYS override the
+            GetFeatureInsideBoundingBox. It will ensure that nearly every other API will operate
+            efficiently. Please see the specific API to determine what method it uses.
+            </remarks>
+            <param name="columnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetColumnsCore">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the columns available for the FeatureSource.</summary>
+            <remarks>
+            As this is the abstract core version of the GetColumns method it is intended to
+            be overridden in inherited version of the class. When overriding you will be
+            responsible for getting a list of all of the columns supported by the FeatureSource. In
+            this way the FeatureSource will know what columns are available and will remove any
+            extra columns when making calls to other core methods. For example if you have a
+            FeatureSource that has three columns of information and the user calls a method and
+            requests four columns of information, something they can do with custom fields, we will
+            first compare what they are asking for to the results of the GetColumnsCore. In this
+            way we can strip out custom columns before calling other Core methods which are only
+            responsible for returning data in the FeatureSource. For more information on custom
+            fields you can see the documentation on the OnCustomFieldsFetch.
+            </remarks>
+            <returns>This method returns the columns available for the FeatureSource.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetBoundingBoxCore">
+            <exception cref="!:" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <remarks>
+            	<para>This protected virtual method is called from the concreate public method
+                GetBoundingBox. It does not take into account any transaction activity as this is
+                the responsibility of the concreate public method GetBoundingBox. In this way as a
+                developer if you choose to override this method you do not have to consider
+                transaction at all.<br/>
+            		<br/>
+                The default implementation of GetBoundingBoxCore uses the GetAllRecordsCore method
+                to calculate the bounding box of the FeatureSource. We strongly recommend that you
+                provide your own implementation for this method that will be more efficient<br/>
+            		<br/>
+                If you do not override this method the means it gets the BoundingBox is by calling
+                the GetAllFeatureCore method and deriving it from each feature. This is a very
+                inefficient way to get the BoundingBox in most data sources. It is highly
+                recommended that you override this method and replace it with a highly optimized
+                version. For example in a ShapeFile the BoundingBox is in the main header of the
+                file. Similarly if you are using Oracle Spatial you can execute a simple query to
+                get the BoundingBox of all of the record without returning them. In these ways you
+                can greatly improve the performance of this method.</para>
+            </remarks>
+            <summary>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.GetFeaturesByIdsCore(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="!:" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns a collection of Features by providing a group of Ids.</summary>
+            <returns>This method returns a collection of Features by providing a group of Ids.</returns>
+            <remarks>
+            This method returns a collection of Features by providing a group of Ids. The
+            internal implementation calls the GetAllFeaturesCore. Because of this if you want an
+            efficient version of this method then we high suggest you override the
+            GetFeaturesByIdsCore method and provide a fast way to find a group of Features by their
+            Id.
+            </remarks>
+            <param name="ids">
+            This parameter represents the group of Ids which uniquely identified the Features
+            in the FeatureSource.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.PostgreSqlFeatureSource.ExecuteQueryCore(System.String)">
+            <summary>
+            Executes the query and returns the result returned by the query.
+            </summary>
+            <returns>The result set in the format of dataTable.</returns>
+            <remarks>
+            Use the ExcuteScalar method to retrieve a single value from the database. This
+            reaquires less code than use the ExcuteQuery method and performing the operations
+            necessary to generate the single value using the data.
+            </remarks>
+            <param name="sqlStatement">The sqlStatement to be excuted.</param>
+        </member>
+    </members>
+</doc>

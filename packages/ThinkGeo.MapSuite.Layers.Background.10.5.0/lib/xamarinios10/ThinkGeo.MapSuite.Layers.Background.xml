@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Background</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.BackgroundLayer">
+            <summary>This class draws the background of the map.</summary>
+            <remarks>This class draws the background of the map.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.BackgroundLayer.#ctor">
+            <summary>This is the default constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.BackgroundLayer.#ctor(ThinkGeo.MapSuite.Drawing.GeoBrush)">
+            <summary>This is a constructor for the class.</summary>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="backgroundBrush">This parameter is the brush that will be used draw the background layer.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.BackgroundLayer.BackgroundBrush">
+            <summary>This property gets and sets the brush for this background layer.</summary>
+            <decimalDegreesValue>This property gets the brush for this background layer.</decimalDegreesValue>
+            <remarks>None</remarks>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the Brush, we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.BackgroundLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>
+            This method will draw the background layer based on the parameters
+            provided.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            None
+            </remarks>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a FeatureLayer that is not opened, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the labeledInLayers, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the worldExtent, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the image, we will throw an ArgumentNullException.</exception>
+            <param name="canvas">
+            This parameter is the GeoCanvas used to Draw the layer.
+            </param>
+            <param name="labelsInAllLayers">This parameter is not used for BackgroundLayers.</param>
+        </member>
+    </members>
+</doc>

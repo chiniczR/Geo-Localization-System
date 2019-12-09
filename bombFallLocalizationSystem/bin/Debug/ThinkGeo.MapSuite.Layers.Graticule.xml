@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Graticule</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer">
+            <summary>
+            GraticuleFeatureLayer shows Meridians and Parallels displaying through the map. Meridians are lines of longitude and they have a North South orientation. Parallels are lines of latitude and they have an East West orientation.
+            Showing graticule for latitude and longitude is a standard way in cartography to give spatial references to the users.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.#ctor">
+            <summary>
+            This is the default constructor of the class.
+            </summary>
+            <remarks>If use this constructor, the projection is null.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.#ctor(ThinkGeo.MapSuite.Shapes.Projection)">
+            <summary>
+            This is a constructor for the class.
+            </summary>
+            <overloads>This constructor allows you to pass in the Projection.</overloads>
+            <param name="projection">This parameter represents the external projection which the map is actually displayed in, the internal projection is the Geodetic projection (Decimal Degrees).</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.GraticuleLineStyle">
+            <summary>
+            Gets or Sets the LineStyle of the Meridians and Parallels.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.GraticuleTextFont">
+            <summary>
+            Gets or Sets the GeoFont of the Meridians and Parallels.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.GraticuleTextBrush">
+            <summary>
+            Gets or Sets the GeoBrush of the Meridians and Parallels.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.Projection">
+            <summary>
+            Gets or Sets the Projection of the Meridians and Parallels.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GraticuleFeatureLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the AdornmentLayer.</summary>
+            <remarks>
+            This virtual method is called from the concrete public method Draw. This method
+            draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            You can use the full power of the GeoCanvas to do the drawing.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the geoCanvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the labelsInAllLayers, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a mapUnit that is not defined in the enumeration, it will throw a ArgumentOutOfRangeException.</exception>
+            <param name="labelsInAllLayers">This parameter represents the labels used for collision detection and duplication checking.</param>
+            <param name="canvas">This parameter is the canvas object (or a GeoImage) to draw on.</param>
+        </member>
+    </members>
+</doc>

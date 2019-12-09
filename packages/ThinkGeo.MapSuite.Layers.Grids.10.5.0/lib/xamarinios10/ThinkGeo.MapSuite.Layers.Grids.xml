@@ -1,0 +1,1576 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Grids</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.GridExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridExceptionDescription.NotSupported">
+            <summary>
+              Looks up a localized string similar to This feature is currently not supported..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridExceptionDescription.GridInterpolationModelDoesNotWork">
+            <summary>
+              Looks up a localized string similar to The input GridInterpolationModel is not able to replace all the NoData value..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GridFeatureLayer">
+            <summary>
+            This class uses the grid file provided.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureLayer.#ctor">
+            <summary>This is the default constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureLayer.#ctor(System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename information for the grid
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="gridPathFilename">This parameter is the path and filename of the grid file you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureLayer.PathFilename">
+            <summary>
+            This property gets and sets the path and filename to the grid file you want to
+            use.
+            </summary>
+            <decimalDegreesValue>This property gets the path and filename to the grid file you want to use.</decimalDegreesValue>
+            <remarks>This should be the complete path and filename of a grid file.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureLayer.CellSize">
+            <summary>
+            Gets the cell size from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureLayer.NumberOfColumns">
+            <summary>
+            Gets the column number from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureLayer.NumberOfRows">
+            <summary>
+            Gets the row number from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureLayer.NoDataValue">
+            <summary>
+            Gets the NoDataValue from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In GridFeatureLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureLayer.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a FeatureLayer which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the FeatureLayer.</summary>
+            <returns>This method returns the bounding box of the FeatureLayer.</returns>
+            <remarks>
+            This method is called from the concrete public method GetBoundingBox. It returns
+            the bounding box of the FeatureLayer.
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.GridFeatureSource">
+            <summary>
+            Reads cell data from a grid file and displays them in appropriate colors based on
+            their values.
+            </summary>
+            <remarks>
+                The <strong>GridFeatureSource</strong> displays cells with different colors in a
+                rectangle area of map. The color of a cell depends on the cell value in the grid
+                file. The grid file provides information about the grid, such as rows and columns
+                number, cordinate of lower left corner, cell size, and values of cells.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.#ctor">
+            <summary>This is the constructor the for the class. If you use this constructor then you need to set
+            the required properties manually.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.#ctor(System.String)">
+            <summary>This is the class constructor.</summary>
+            <overloads>
+            This constructor allows you to pass in a path and file name.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="gridPathFilename">This parameter represents the path and file name to the grid file.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.PathFilename">
+            <summary>This property gets and sets the path and file of the grid file you want to use.</summary>
+            <decimalDegreesValue>This property returns the path and file of the grid file you want to use.</decimalDegreesValue>
+            <remarks>
+            When you specify the path and file name it should be in the correct format.
+            If the path and filename you provided we cannot find it then we will throw an exception.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.CellSize">
+            <summary>
+            Gets the cell size of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.NumberOfColumns">
+            <summary>
+            Gets column number of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.NumberOfRows">
+            <summary>
+            Gets row number of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.LowerLeftPoint">
+            <summary>
+            Gets LowerLeft PointShape of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.NoDataValue">
+            <summary>
+            Gets the NoDataValue in the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.GridFeatureSource.IsEditable">
+            <summary>This property returns if the FeatureSource allows edits or is read only.</summary>
+            <decimalDegreesValue>
+            This property returns if the FeatureSource allows edits or is read only. The
+            property returns true if the FeatureSource allows edits and false if the FeatureSource
+            is read only.
+            </decimalDegreesValue>
+            <remarks>
+            	<para>This property is useful to check if a specific FeatureSource accepts editing.
+                If you call the BeginTransaction and this property is false then an exception will
+                be raised.<br/>
+            		<br/>
+                For developers who are creating or extending a FeatureSource it is expected that
+                you override this virtual method if the new FeatureSource you are creating allows
+                edits. By default the decimalDegreesValue if false meaning that if you want to allow edits you
+                must override this method and return true.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has already been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method opens the FeatureSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concreate public method Open.
+            The open method play an important role as it is responsible for initializing the
+            FeatureSource. Most methods on the FeatureSource will throw an exception if the state
+            of the FeatureSource is not opened. When the map draws each layer it will open the
+            FeatureSource as one of its first steps, then after it is finished drawing with that
+            layer it will close it. In this way we are sure to release all resources used by the
+            FeatureSource.<br/>
+            	<br/>
+            When implementing this virtual method consider opening files for file based source,
+            connecting to databases in the database based sources and so on. You will get a chance
+            to close these in the Close method of the FeatureSource.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.CloseCore">
+            <summary>
+            This method closes the FeatureSource and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concreate public method Close.
+            The close method plays an important role in the life cycle of the FeatureSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            It is recommended that if you override this method that you take the following things
+            into account. This method may be called multiple times so we suggest you write the so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the close you free all resources that have been opened.
+            Remember that the object will not be destroyed but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GetColumnsCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the columns available for the FeatureSource.</summary>
+            <remarks>
+            As this is the virtual core version of the Columns method it is intended to
+            be overridden in inherited version of the class. When overriding you will be
+            responsible for getting a list of all of the columns supported by the FeatureSource. In
+            this way the FeatureSource will know what columns are available and will remove any
+            extra columns when making calls to other core methods. For example if you have a
+            FeatureSource that has three columns of information and the user calls a method and
+            requests four columns of information, something they can do with custom fields, we will
+            first compare what they are asking for to the results of the GetColumnsCore. In this
+            way we can strip out custom columns before calling other Core methods which are only
+            responsible for returning data in the FeatureSource. For more information on custom
+            fields you can see the documentation on the OnCustomFieldsFetch.
+            </remarks>
+            <returns>This method returns the columns available for the FeatureSource.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.CommitTransactionCore(ThinkGeo.MapSuite.Layers.TransactionBuffer)">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which is not in transaction it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method will commit the existing transaction to its underlying source of
+            data.
+            </summary>
+            <remarks>
+            	<para>This method will commit the existing transaction to its underlying source of
+                data. It will pass back the results of how the commit went to include any error
+                received. If you are implementing your own FeatureSource then this is one of the
+                crucial methods you must create. It should be fairly straight forward that you will
+                loop through the transaction buffer and add, edit or delete the InternalFeatures in your
+                underlying data source. Remember to build and pass back the TransactionResult class
+                so that users of your FeatureSource can respond to failures you may encounter
+                committing the InternalFeatures. We will handle the end of the transaction and also the
+                cleanup of the transaction buffer. Your task will be to commit the records and
+                produce a TransactionResult return.</para>
+            	<para>The Transaction System</para>
+            	<para>The transaction system of a FeatureSource sits on top of the inherited
+                implementation of any specific source such as Oracle Spatial or Shape files. In
+                this way it functions the same way for every FeatureSource. You start by calling
+                the BeginTransaction. This allocates a collection of in memory change buffers that
+                are used to store changes until you commit the transaction. So for example when you
+                call the Add, Delete or Update method the changes to the feature are stored in
+                memory only. If for any reason you choose to abandon the transaction you can call
+                RollbackTransaction at any time and the in memory buffer will be deleted and the
+                changes will be lost. When you are ready to commit the transaction you call the
+                CommitTransaction and the collections of changes are then passed to the
+                CommitTransactionCore method and the implementer of the specific FeatureSource is
+                responsible for integrating your changes into the underlying FeatureSource. By
+                default the IsLiveTransaction property is set to false which means that until you
+                commit the changes the FeatureSource API will not reflect any changes that are in
+                the temporary editing buffer.</para>
+            	<para>In the case where the IsLiveTransaction is set to true then things function
+                slightly differently. The live transaction concept means that all of the
+                modification you perform during a transaction are live from the standpoint of the
+                querying methods on the object.</para>
+            	<para>To setup an example imagine that you have a FeatureSource that has 10 records
+                in it. Next you begin a transaction and then call GetAllFeatures, the result would
+                be 10 records. After that you call a delete on one of the records and call the
+                GetAllFeatures again, this time you only get nine records. You receive nine records
+                even though the transaction has not yet been committed. In the same sense you could
+                have added a new record or modified an existing one and those changes are
+                considered live though not committed.</para>
+            	<para>In the case where you modify records such as expanding the size of a polygon
+                those changes as well are reflected. So for example you expand a polygon by
+                doubling its size and then do a spatial query that would not normally return the
+                smaller record but would return the larger records, in this case the larger record
+                is returned. You can set this property to be false as well in which case all of the
+                spatial related methods would ignore anything that is currently in the transaction
+                buffer waiting to be committed. In this case only after committing the transaction
+                would the FeatureSource reflect the changes.</para>
+            </remarks>
+            <returns>
+            The return decimalDegreesValue of this method is a TransactionResult class which gives you the
+            status of the transaction you just committed. It includes how many of the updates,
+            adds, and deletes were successful and any error that were encountered during the
+            committing of the transaction.
+            </returns>
+            <param name="transactions">
+            This parameter encapsulates all of the adds, edits and deleted that make up the
+            transaction. You will use this data to write the changes to your underlying data
+            source.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GetAllFeaturesCore(System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns all of the InternalFeatures in the FeatureSource.</summary>
+            <returns>
+            The return decimalDegreesValue is a collection of all of the InternalFeatures in the
+            FeatureSource.
+            </returns>
+            <remarks>
+            This method returns all of the InternalFeatures in the FeatureSource. You will not need
+            to consider anything about pending transactions as this will be handled in the non Core
+            version of the method.<br/>
+            	<br/>
+            The main purpose of this method is to be the anchor of all of our default virtual
+            implementations within this class. We wanted as the framework developers to provide you
+            the user with as much default virtual implementation as possible. To do this we needed
+            a way to get access to all of the features. For example, we want to create a default
+            implementation for finding all of the InternalFeatures in a bounding box. Because this is an
+            abstract class we do not know the specifics of the underlying data or how its spatial
+            indexes work. What we do know is that if we get all the records then we can brute force
+            the answer. In this way if you inherited form this class and only implemented this one
+            method we can provide default implementations for virtually every other API.<br/>
+            	<br/>
+            While this is nice for you the developer if you decide to create your own FeatureSource
+            it comes with a price. The price is that it is very inefficient. In the case we just
+            discussed about finding all of the InternalFeatures in a bounding box we would not want to look
+            at every record to fulfil this method. Instead we would want to override the
+            GetFeaturesInsideBoundingBoxCore and implement specific code that would be fast. For
+            example in Oracle Spatial there is a specific SQL statement to do this operation very
+            quickly. The same holds true with other specific FeatureSource examples.<br/>
+            	<br/>
+            Most default implementations in the FeatureSource call the
+            GetFeaturesInsideBoundingBoxCore which by default calls the GetAllFeaturesCore. It is
+            our advice that if you create your own FeatureSource that you ALWAYS override the
+            GetFeatureInsideBoundingBox. It will ensure that nearly every other API will operate
+            efficiently. Please see the specific API to determine what method it uses.
+            </remarks>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <remarks>
+            	<para>This protected virtual method is called from the concreate public method
+                GetBoundingBox. It does not take into account any transaction activity as this is
+                the responsibility of the concreate public method GetBoundingBox. In this way as a
+                developer if you choose to override this method you do not have to consider
+                transaction at all.<br/>
+            		<br/>
+                The default implementation of GetBoundingBoxCore uses the GetAllRecordsCore method
+                to calculate the bounding box of the FeatureSource. We strongly recommend that you
+                provide your own implementation for this method that will be more efficient<br/>
+            		<br/>
+                If you do not override this method the means it gets the BoundingBox is by calling
+                the GetAllFeatureCore method and deriving it from each feature. This is a very
+                inefficient way to get the BoundingBox in most data sources. It is highly
+                recommended that you override this method and replace it with a highly optimized
+                version. For example in a ShapeFile the BoundingBox is in the main header of the
+                file. Similarly if you are using Oracle Spatial you can execute a simple query to
+                get the BoundingBox of all of the record without returning them. In these ways you
+                can greatly improve the performance of this method.</para>
+            </remarks>
+            <summary>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GetCountCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <summary>
+            This method returns the count of the number of records in this
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the count of the number of records in this
+            FeatureSource.
+            </returns>
+            <remarks>
+            	<para>This protected virtual method is called from the concreate public method
+                GetCount. It does not take into account any transaction activity as this is the
+                responsibility of the concreate public method GetCount. In this way as a developer
+                if you choose to override this method you do not have to consider transaction at
+                all.<br/>
+            		<br/>
+                The default implementation of GetCountCore uses the GetAllRecordsCore method to
+                calculate how many records there are in the FeatureSource. We strongly recommend
+                that you provide your own implementation for this method that will be more
+                efficient<br/>
+            		<br/>
+                If you do not override this method the means it gets the count is by calling the
+                GetAllFeatureCore method and counting each feature. This is a very inefficient way
+                to get the count in most data sources. It is highly recommended that you override
+                this method and replace it with a highly optimized version. For example in a
+                ShapeFile the record count is in the main header of the file. Similarly if you are
+                using Oracle Spatial you can execute a simple query to get the count of all of the
+                record without returning them. In these ways you can greatly improve the
+                performance of this method.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GetFeaturesInsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method returns all of the InternalFeatures of this FeatureSource inside of the
+            specified bounding box.
+            </summary>
+            <returns>
+            The return decimalDegreesValue is a collection of all of the InternalFeatures that are inside of the
+            bounding box.
+            </returns>
+            <remarks>
+            This method returns all of the InternalFeatures of this FeatureSource inside of the
+            specified bounding box. If you are overriding this method you will not need to consider
+            anything about transactions as this is handled by the concreate version of this
+            method.<br/>
+            	<br/>
+            The default implementation of GetFeaturesInsideBoundingBoxCore uses the
+            GetAllRecordsCore method to determine which InternalFeatures are inside of the bounding box. We
+            strongly recommend that you provide your own implementation for this method that will
+            be more efficient. It is especially important for this method as many other default
+            virtual methods use this for their calculations. We highly recommend when you override
+            this method that you use any spatial indexes you have at your disposal to make this
+            method as fast as possible.
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box you with to find InternalFeatures inside
+            of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the boundingBox we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GenerateGridMatrix(ThinkGeo.MapSuite.Layers.GridDefinition,ThinkGeo.MapSuite.Layers.GridInterpolationModel)">
+            <summary>
+            This method calculates all the cells in the grid and returns the result in the form of the GridCell matrix
+            </summary>
+            <param name="gridDefinition">This parameter contains the properties used to describe the grid.</param>
+            <param name="gridInterpolationModel">This parameter represents the interpolation model for calculating cell value of the grid</param>
+            <returns>This method returns the GridCell matrix which is calculated based on the input parameters.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GenerateGridMatrix">
+            <summary>
+            This method generates the cell matrix based on NumberOfColumns and NumberOfRows of current grid.
+            </summary>
+            <returns>This method returns a cell matrix of current grid.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.GridFeatureSource.GenerateGrid(ThinkGeo.MapSuite.Layers.GridDefinition,ThinkGeo.MapSuite.Layers.GridInterpolationModel,System.IO.Stream)">
+            <summary>
+            This method calculates all the cells in the grid and write the value of them into the grid file associates with the stream.
+            </summary>
+            <param name="gridDefinition">This parameter contains the parameters used to describe the grid.</param>
+            <param name="gridInterpolationModel">This parameter represents the interpolation model for calculating cell value of the grid</param>
+            <param name="outputStream">This parameter represents the stream associates with the output file.</param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as gridDefinition, there will be a ArgumentNullException thrown.</exception>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EmpiricalFunctionCoefficients.Range">
+            <summary>
+            Gets or sets the distance(x-axis) where the empirical function first flattens.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EmpiricalFunctionCoefficients.Nugget">
+            <summary>
+            Gets or sets the value of crossing point with empirical function and semivariance(y-axis).
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EmpiricalFunctionCoefficients.Sill">
+            <summary>
+            Gets or sets the value at which the semivariance(y-axis) attains the coefficients of Range.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer">
+            <summary>
+            This class uses the grid file provided.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.#ctor">
+            <summary>This is the default constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.CellSize">
+            <summary>
+            Gets the cell size from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.ColumnCount">
+            <summary>
+            Gets the column number from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.RowCount">
+            <summary>
+            Gets the row number from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.NoDataValue">
+            <summary>
+            Gets the NoDataValue from the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In GridFeatureLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayer.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a FeatureLayer which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the FeatureLayer.</summary>
+            <returns>This method returns the bounding box of the FeatureLayer.</returns>
+            <remarks>
+            This method is called from the concrete public method GetBoundingBox. It returns
+            the bounding box of the FeatureLayer.
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayerExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayerExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayerExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureLayerExceptionDescription.NotSupported">
+            <summary>
+              Looks up a localized string similar to This feature is currently not supported..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource">
+            <summary>
+            Reads cell data from a grid file and displays them in appropriate colors based on
+            their values.
+            </summary>
+            <remarks>
+                The <strong>GridFeatureSource</strong> displays cells with different colors in a
+                rectangle area of map. The color of a cell depends on the cell value in the grid
+                file. The grid file provides information about the grid, such as rows and columns
+                number, cordinate of lower left corner, cell size, and values of cells.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.#ctor">
+            <summary>This is the constructor the for the class. If you use this constructor then you need to set
+            the required properties manually.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.CellSize">
+            <summary>
+            Gets the cell size of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.ColumnCount">
+            <summary>
+            Gets column number of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.RowCount">
+            <summary>
+            Gets row number of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.LowerLeftPoint">
+            <summary>
+            Gets LowerLeft PointShape of the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.NoDataValue">
+            <summary>
+            Gets the NoDataValue in the grid.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.IsEditable">
+            <summary>This property returns if the FeatureSource allows edits or is read only.</summary>
+            <decimalDegreesValue>
+            This property returns if the FeatureSource allows edits or is read only. The
+            property returns true if the FeatureSource allows edits and false if the FeatureSource
+            is read only.
+            </decimalDegreesValue>
+            <remarks>
+            	<para>This property is useful to check if a specific FeatureSource accepts editing.
+                If you call the BeginTransaction and this property is false then an exception will
+                be raised.<br/>
+            		<br/>
+                For developers who are creating or extending a FeatureSource it is expected that
+                you override this virtual method if the new FeatureSource you are creating allows
+                edits. By default the decimalDegreesValue if false meaning that if you want to allow edits you
+                must override this method and return true.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has already been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method opens the FeatureSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concreate public method Open.
+            The open method play an important role as it is responsible for initializing the
+            FeatureSource. Most methods on the FeatureSource will throw an exception if the state
+            of the FeatureSource is not opened. When the map draws each layer it will open the
+            FeatureSource as one of its first steps, then after it is finished drawing with that
+            layer it will close it. In this way we are sure to release all resources used by the
+            FeatureSource.<br/>
+            	<br/>
+            When implementing this virtual method consider opening files for file based source,
+            connecting to databases in the database based sources and so on. You will get a chance
+            to close these in the Close method of the FeatureSource.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.CloseCore">
+            <summary>
+            This method closes the FeatureSource and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concreate public method Close.
+            The close method plays an important role in the life cycle of the FeatureSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            It is recommended that if you override this method that you take the following things
+            into account. This method may be called multiple times so we suggest you write the so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the close you free all resources that have been opened.
+            Remember that the object will not be destroyed but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GetColumnsCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the columns available for the FeatureSource.</summary>
+            <remarks>
+            As this is the virtual core version of the Columns method it is intended to
+            be overridden in inherited version of the class. When overriding you will be
+            responsible for getting a list of all of the columns supported by the FeatureSource. In
+            this way the FeatureSource will know what columns are available and will remove any
+            extra columns when making calls to other core methods. For example if you have a
+            FeatureSource that has three columns of information and the user calls a method and
+            requests four columns of information, something they can do with custom fields, we will
+            first compare what they are asking for to the results of the GetColumnsCore. In this
+            way we can strip out custom columns before calling other Core methods which are only
+            responsible for returning data in the FeatureSource. For more information on custom
+            fields you can see the documentation on the OnCustomFieldsFetch.
+            </remarks>
+            <returns>This method returns the columns available for the FeatureSource.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.CommitTransactionCore(ThinkGeo.MapSuite.Layers.TransactionBuffer)">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which is not in transaction it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method will commit the existing transaction to its underlying source of
+            data.
+            </summary>
+            <remarks>
+            	<para>This method will commit the existing transaction to its underlying source of
+                data. It will pass back the results of how the commit went to include any error
+                received. If you are implementing your own FeatureSource then this is one of the
+                crucial methods you must create. It should be fairly straight forward that you will
+                loop through the transaction buffer and add, edit or delete the InternalFeatures in your
+                underlying data source. Remember to build and pass back the TransactionResult class
+                so that users of your FeatureSource can respond to failures you may encounter
+                committing the InternalFeatures. We will handle the end of the transaction and also the
+                cleanup of the transaction buffer. Your task will be to commit the records and
+                produce a TransactionResult return.</para>
+            	<para>The Transaction System</para>
+            	<para>The transaction system of a FeatureSource sits on top of the inherited
+                implementation of any specific source such as Oracle Spatial or Shape files. In
+                this way it functions the same way for every FeatureSource. You start by calling
+                the BeginTransaction. This allocates a collection of in memory change buffers that
+                are used to store changes until you commit the transaction. So for example when you
+                call the Add, Delete or Update method the changes to the feature are stored in
+                memory only. If for any reason you choose to abandon the transaction you can call
+                RollbackTransaction at any time and the in memory buffer will be deleted and the
+                changes will be lost. When you are ready to commit the transaction you call the
+                CommitTransaction and the collections of changes are then passed to the
+                CommitTransactionCore method and the implementer of the specific FeatureSource is
+                responsible for integrating your changes into the underlying FeatureSource. By
+                default the IsLiveTransaction property is set to false which means that until you
+                commit the changes the FeatureSource API will not reflect any changes that are in
+                the temporary editing buffer.</para>
+            	<para>In the case where the IsLiveTransaction is set to true then things function
+                slightly differently. The live transaction concept means that all of the
+                modification you perform during a transaction are live from the standpoint of the
+                querying methods on the object.</para>
+            	<para>To setup an example imagine that you have a FeatureSource that has 10 records
+                in it. Next you begin a transaction and then call GetAllFeatures, the result would
+                be 10 records. After that you call a delete on one of the records and call the
+                GetAllFeatures again, this time you only get nine records. You receive nine records
+                even though the transaction has not yet been committed. In the same sense you could
+                have added a new record or modified an existing one and those changes are
+                considered live though not committed.</para>
+            	<para>In the case where you modify records such as expanding the size of a polygon
+                those changes as well are reflected. So for example you expand a polygon by
+                doubling its size and then do a spatial query that would not normally return the
+                smaller record but would return the larger records, in this case the larger record
+                is returned. You can set this property to be false as well in which case all of the
+                spatial related methods would ignore anything that is currently in the transaction
+                buffer waiting to be committed. In this case only after committing the transaction
+                would the FeatureSource reflect the changes.</para>
+            </remarks>
+            <returns>
+            The return decimalDegreesValue of this method is a TransactionResult class which gives you the
+            status of the transaction you just committed. It includes how many of the updates,
+            adds, and deletes were successful and any error that were encountered during the
+            committing of the transaction.
+            </returns>
+            <param name="transactions">
+            This parameter encapsulates all of the adds, edits and deleted that make up the
+            transaction. You will use this data to write the changes to your underlying data
+            source.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GetAllFeaturesCore(System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>This method returns all of the InternalFeatures in the FeatureSource.</summary>
+            <returns>
+            The return decimalDegreesValue is a collection of all of the InternalFeatures in the
+            FeatureSource.
+            </returns>
+            <remarks>
+            This method returns all of the InternalFeatures in the FeatureSource. You will not need
+            to consider anything about pending transactions as this will be handled in the non Core
+            version of the method.<br/>
+            	<br/>
+            The main purpose of this method is to be the anchor of all of our default virtual
+            implementations within this class. We wanted as the framework developers to provide you
+            the user with as much default virtual implementation as possible. To do this we needed
+            a way to get access to all of the features. For example, we want to create a default
+            implementation for finding all of the InternalFeatures in a bounding box. Because this is an
+            abstract class we do not know the specifics of the underlying data or how its spatial
+            indexes work. What we do know is that if we get all the records then we can brute force
+            the answer. In this way if you inherited form this class and only implemented this one
+            method we can provide default implementations for virtually every other API.<br/>
+            	<br/>
+            While this is nice for you the developer if you decide to create your own FeatureSource
+            it comes with a price. The price is that it is very inefficient. In the case we just
+            discussed about finding all of the InternalFeatures in a bounding box we would not want to look
+            at every record to fulfil this method. Instead we would want to override the
+            GetFeaturesInsideBoundingBoxCore and implement specific code that would be fast. For
+            example in Oracle Spatial there is a specific SQL statement to do this operation very
+            quickly. The same holds true with other specific FeatureSource examples.<br/>
+            	<br/>
+            Most default implementations in the FeatureSource call the
+            GetFeaturesInsideBoundingBoxCore which by default calls the GetAllFeaturesCore. It is
+            our advice that if you create your own FeatureSource that you ALWAYS override the
+            GetFeatureInsideBoundingBox. It will ensure that nearly every other API will operate
+            efficiently. Please see the specific API to determine what method it uses.
+            </remarks>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <remarks>
+            	<para>This protected virtual method is called from the concreate public method
+                GetBoundingBox. It does not take into account any transaction activity as this is
+                the responsibility of the concreate public method GetBoundingBox. In this way as a
+                developer if you choose to override this method you do not have to consider
+                transaction at all.<br/>
+            		<br/>
+                The default implementation of GetBoundingBoxCore uses the GetAllRecordsCore method
+                to calculate the bounding box of the FeatureSource. We strongly recommend that you
+                provide your own implementation for this method that will be more efficient<br/>
+            		<br/>
+                If you do not override this method the means it gets the BoundingBox is by calling
+                the GetAllFeatureCore method and deriving it from each feature. This is a very
+                inefficient way to get the BoundingBox in most data sources. It is highly
+                recommended that you override this method and replace it with a highly optimized
+                version. For example in a ShapeFile the BoundingBox is in the main header of the
+                file. Similarly if you are using Oracle Spatial you can execute a simple query to
+                get the BoundingBox of all of the record without returning them. In these ways you
+                can greatly improve the performance of this method.</para>
+            </remarks>
+            <summary>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the bounding box which encompasses all of the features in the
+            FeatureSource.
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GetCountCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">If the operation is done under source closed state it will throw a InvalidOperationException.</exception>
+            <summary>
+            This method returns the count of the number of records in this
+            FeatureSource.
+            </summary>
+            <returns>
+            This method returns the count of the number of records in this
+            FeatureSource.
+            </returns>
+            <remarks>
+            	<para>This protected virtual method is called from the concreate public method
+                GetCount. It does not take into account any transaction activity as this is the
+                responsibility of the concreate public method GetCount. In this way as a developer
+                if you choose to override this method you do not have to consider transaction at
+                all.<br/>
+            		<br/>
+                The default implementation of GetCountCore uses the GetAllRecordsCore method to
+                calculate how many records there are in the FeatureSource. We strongly recommend
+                that you provide your own implementation for this method that will be more
+                efficient<br/>
+            		<br/>
+                If you do not override this method the means it gets the count is by calling the
+                GetAllFeatureCore method and counting each feature. This is a very inefficient way
+                to get the count in most data sources. It is highly recommended that you override
+                this method and replace it with a highly optimized version. For example in a
+                ShapeFile the record count is in the main header of the file. Similarly if you are
+                using Oracle Spatial you can execute a simple query to get the count of all of the
+                record without returning them. In these ways you can greatly improve the
+                performance of this method.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GetFeaturesInsideBoundingBoxCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Collections.Generic.IEnumerable{System.String})">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a feature source which has not been opened it will throw an InvalidOperationException.</exception>
+            <summary>
+            This method returns all of the InternalFeatures of this FeatureSource inside of the
+            specified bounding box.
+            </summary>
+            <returns>
+            The return decimalDegreesValue is a collection of all of the InternalFeatures that are inside of the
+            bounding box.
+            </returns>
+            <remarks>
+            This method returns all of the InternalFeatures of this FeatureSource inside of the
+            specified bounding box. If you are overriding this method you will not need to consider
+            anything about transactions as this is handled by the concreate version of this
+            method.<br/>
+            	<br/>
+            The default implementation of GetFeaturesInsideBoundingBoxCore uses the
+            GetAllRecordsCore method to determine which InternalFeatures are inside of the bounding box. We
+            strongly recommend that you provide your own implementation for this method that will
+            be more efficient. It is especially important for this method as many other default
+            virtual methods use this for their calculations. We highly recommend when you override
+            this method that you use any spatial indexes you have at your disposal to make this
+            method as fast as possible.
+            </remarks>
+            <param name="boundingBox">
+            This parameter represents the bounding box you with to find InternalFeatures inside
+            of.
+            </param>
+            <param name="returningColumnNames">
+            This parameter allows you to select the field names of the column data you wish
+            to return with each Feature.
+            </param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the returningColumnNames we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the boundingBox we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GenerateGridMatrix(ThinkGeo.MapSuite.Layers.GridDefinition,ThinkGeo.MapSuite.Layers.GridInterpolationModel)">
+            <summary>
+            This method calculates all the cells in the grid and returns the result in the form of the GridCell matrix
+            </summary>
+            <param name="gridDefinition">This parameter contains the properties used to describe the grid.</param>
+            <param name="gridInterpolationModel">This parameter represents the interpolation model for calculating cell value of the grid</param>
+            <returns>This method returns the GridCell matrix which is calculated based on the input parameters.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GenerateGridMatrix">
+            <summary>
+            This method generates the cell matrix based on NumberOfColumns and NumberOfRows of current grid.
+            </summary>
+            <returns>This method returns a cell matrix of current grid.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.InMemoryGridFeatureSource.GenerateGrid(ThinkGeo.MapSuite.Layers.GridDefinition,ThinkGeo.MapSuite.Layers.GridInterpolationModel,System.IO.Stream)">
+            <summary>
+            This method calculates all the cells in the grid and write the value of them into the grid file associates with the stream.
+            </summary>
+            <param name="gridDefinition">This parameter contains the parameters used to describe the grid.</param>
+            <param name="gridInterpolationModel">This parameter represents the interpolation model for calculating cell value of the grid</param>
+            <param name="outputStream">This parameter represents the stream associates with the output file.</param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as gridDefinition, there will be a ArgumentNullException thrown.</exception>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.IsolineMatrix">
+            <summary>
+            Matrix Library .Net v2.0 By Anas Abidi, 2004.
+            
+            The Matrix Library contains Class Matrix which provides many 
+            static methods for making various matrix operations on objects
+            derived from the class or on arrays defined as double. The 
+            '+','-','*' operators are overloaded to work with the objects
+            derived from the matrix class.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Matrix object constructor, constructs an empty
+            matrix with dimensions: rows = noRows and cols = noCols.
+            </summary>
+            <param name="noRows"> no. of rows in this matrix </param>
+            <param name="noCols"> no. of columns in this matrix</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.#ctor(System.Double[0:,0:])">
+            <summary>
+            Matrix object constructor, constructs a matrix from an
+            already defined array object.
+            </summary>
+            <param name="Mat">the array the matrix will contain</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.IsolineMatrix.Item(System.Int32,System.Int32)">
+            <summary>
+            Set or get an element from the matrix
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.IsolineMatrix.NoRows">
+            <summary>
+            Set or get the no. of rows in the matrix.
+            Warning: Setting this property will delete all of
+            the elements of the matrix and set them to zero.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.IsolineMatrix.NoCols">
+            <summary>
+            Set or get the no. of columns in the matrix.
+            Warning: Setting this property will delete all of
+            the elements of the matrix and set them to zero.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.IsolineMatrix.toArray">
+            <summary>
+            This property returns the matrix as an array.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.OneD_2_TwoD(System.Double[])">
+            <summary>
+            Returns the 2D form of a 1D array. i.e. array with
+            dimension[n] is returned as an array with dimension [n,1]. 
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat"> 
+            the array to convert, with dimesion [n] 
+            </param>
+            <returns> the same array but with [n,1] dimension </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.TwoD_2_OneD(System.Double[0:,0:])">
+            <summary>
+            Returns the 1D form of a 2D array. i.e. array with
+            dimension[n,1] is returned as an array with dimension [n]. 
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat">
+            the array to convert, with dimesions [n,1] 
+            </param>
+            <returns>the same array but with [n] dimension</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Identity(System.Int32)">
+            <summary>
+            Returns an Identity matrix with dimensions [n,n] in the from of an array.
+            </summary>
+            <param name="n">the no. of rows or no. cols in the matrix</param>
+            <returns>An identity Matrix with dimensions [n,n] in the form of an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Add(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Returns the summation of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First array in the summation</param>
+            <param name="Mat2">Second array in the summation</param>
+            <returns>Sum of Mat1 and Mat2 as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Add(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the summation of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First matrix in the summation</param>
+            <param name="Mat2">Second matrix in the summation</param>
+            <returns>Sum of Mat1 and Mat2 as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Addition(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the summation of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First Matrix object in the summation</param>
+            <param name="Mat2">Second Matrix object in the summation</param>
+            <returns>Sum of Mat1 and Mat2 as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Subtract(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Returns the difference of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First array in the subtraction</param>
+            <param name="Mat2">Second array in the subtraction</param>
+            <returns>Difference of Mat1 and Mat2 as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Subtract(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the difference of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First matrix in the subtraction</param>
+            <param name="Mat2">Second matrix in the subtraction</param>
+            <returns>Difference of Mat1 and Mat2 as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Subtraction(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the difference of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First Matrix object in the subtraction</param>
+            <param name="Mat2">Second Matrix object in the subtraction</param>
+            <returns>Difference of Mat1 and Mat2 as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Multiply(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Returns the multiplication of two matrices with compatible 
+            dimensions.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat1">First array in multiplication</param>
+            <param name="Mat2">Second array in multiplication</param>
+            <returns>Mat1 multiplied by Mat2 as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Multiply(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the multiplication of two matrices with compatible 
+            dimensions OR the cross-product of two vectors.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat1">
+            First matrix or vector (i.e: dimension [3,1]) object in 
+            multiplication
+            </param>
+            <param name="Mat2">
+            Second matrix or vector (i.e: dimension [3,1]) object in 
+            multiplication
+            </param>
+            <returns>Mat1 multiplied by Mat2 as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Multiply(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the multiplication of two matrices with compatible 
+            dimensions OR the cross-product of two vectors.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat1">
+            First matrix or vector (i.e: dimension [3,1]) object in 
+            multiplication
+            </param>
+            <param name="Mat2">
+            Second matrix or vector (i.e: dimension [3,1]) object in 
+            multiplication
+            </param>
+            <returns>Mat1 multiplied by Mat2 as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Det(System.Double[0:,0:])">
+            <summary>
+            Returns the determinant of a matrix with [n,n] dimension.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">
+            Array with [n,n] dimension whose determinant is to be found
+            </param>
+            <returns>Determinant of the array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Det(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the determinant of a matrix with [n,n] dimension.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">
+            Matrix object with [n,n] dimension whose determinant is to be found
+            </param>
+            <returns>Determinant of the Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Inverse(System.Double[0:,0:])">
+            <summary>
+            Returns the inverse of a matrix with [n,n] dimension 
+            and whose determinant is not zero.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">
+            Array with [n,n] dimension whose inverse is to be found
+            </param>
+            <returns>Inverse of the array as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Inverse(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the inverse of a matrix with [n,n] dimension 
+            and whose determinant is not zero.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">
+            Matrix object with [n,n] dimension whose inverse is to be found
+            </param>
+            <returns>Inverse of the matrix as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Transpose(System.Double[0:,0:])">
+            <summary>
+            Returns the transpose of a matrix.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">Array whose transpose is to be found</param>
+            <returns>Transpose of the array as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Transpose(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the transpose of a matrix.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">Matrix object whose transpose is to be found</param>
+            <returns>Transpose of the Matrix object as a Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.SVD(System.Double[0:,0:],System.Double[0:,0:]@,System.Double[0:,0:]@,System.Double[0:,0:]@)">
+            <summary>
+            Evaluates the Singular Value Decomposition of a matrix, 
+            returns the  matrices S, U and V. Such that a given
+            Matrix = U x S x V'.
+            In case of an error the error is raised as an exception. 
+            Note: This method is based on the 'Singular Value Decomposition'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.  
+            </summary>
+            <param name="Mat_">Array whose SVD is to be computed</param>
+            <param name="S_">An array where the S matrix is returned</param>
+            <param name="U_">An array where the U matrix is returned</param>
+            <param name="V_">An array where the V matrix is returned</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.SVD(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix@,ThinkGeo.MapSuite.IsolineMatrix@,ThinkGeo.MapSuite.IsolineMatrix@)">
+            <summary>
+            Evaluates the Singular Value Decomposition of a matrix, 
+            returns the  matrices S, U and V. Such that a given
+            Matrix = U x S x V'.
+            In case of an error the error is raised as an exception. 
+            Note: This method is based on the 'Singular Value Decomposition'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.
+            </summary>
+            <param name="Mat">Matrix object whose SVD is to be computed</param>
+            <param name="S">A Matrix object where the S matrix is returned</param>
+            <param name="U">A Matrix object where the U matrix is returned</param>
+            <param name="V">A Matrix object where the V matrix is returned</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.LU(System.Double[0:,0:],System.Double[0:,0:]@,System.Double[0:,0:]@,System.Double[0:,0:]@)">
+            <summary>
+            Returns the LU Decomposition of a matrix. 
+            the output is: lower triangular matrix L, upper
+            triangular matrix U, and permutation matrix P so that
+            P*X = L*U.
+            In case of an error the error is raised as an exception.
+            Note: This method is based on the 'LU Decomposition and Its Applications'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.  
+            </summary>
+            <param name="Mat">Array which will be LU Decomposed</param>
+            <param name="L">An array where the lower traingular matrix is returned</param>
+            <param name="U">An array where the upper traingular matrix is returned</param>
+            <param name="P">An array where the permutation matrix is returned</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.LU(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix@,ThinkGeo.MapSuite.IsolineMatrix@,ThinkGeo.MapSuite.IsolineMatrix@)">
+            <summary>
+            Returns the LU Decomposition of a matrix. 
+            the output is: lower triangular matrix L, upper
+            triangular matrix U, and permutation matrix P so that
+            P*X = L*U.
+            In case of an error the error is raised as an exception. 
+            Note: This method is based on the 'LU Decomposition and Its Applications'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.  
+            </summary>
+            <param name="Mat">Matrix object which will be LU Decomposed</param>
+            <param name="L">A Matrix object where the lower traingular matrix is returned</param>
+            <param name="U">A Matrix object where the upper traingular matrix is returned</param>
+            <param name="P">A Matrix object where the permutation matrix is returned</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.SolveLinear(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Solves a set of n linear equations A.X = B, and returns
+            X, where A is [n,n] and B is [n,1]. 
+            In the same manner if you need to compute: inverse(A).B, it is
+            better to use this method instead, as it is much faster.  
+            In case of an error the error is raised as an exception. 
+            Note: This method is based on the 'LU Decomposition and Its Applications'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.
+            </summary>
+            <param name="MatA">The array 'A' on the left side of the equations A.X = B</param>
+            <param name="MatB">The array 'B' on the right side of the equations A.X = B</param>
+            <returns>Array 'X' in the system of equations A.X = B</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.SolveLinear(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Solves a set of n linear equations A.X = B, and returns
+            X, where A is [n,n] and B is [n,1]. 
+            In the same manner if you need to compute: inverse(A).B, it is
+            better to use this method instead, as it is much faster.  
+            In case of an error the error is raised as an exception. 
+            Note: This method is based on the 'LU Decomposition and Its Applications'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.
+            </summary>
+            <param name="MatA">Matrix object 'A' on the left side of the equations A.X = B</param>
+            <param name="MatB">Matrix object 'B' on the right side of the equations A.X = B</param>
+            <returns>Matrix object 'X' in the system of equations A.X = B</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Rank(System.Double[0:,0:])">
+            <summary>
+            Returns the rank of a matrix.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">An array whose rank is to be found</param>
+            <returns>The rank of the array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Rank(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the rank of a matrix.
+            In case of an error the error is raised as an exception. 
+            </summary>
+            <param name="Mat">a Matrix object whose rank is to be found</param>
+            <returns>The rank of the Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.PINV(System.Double[0:,0:])">
+            <summary>
+            Returns the pseudoinverse of a matrix, such that
+            X = PINV(A) produces a matrix 'X' of the same dimensions
+            as A' so that A*X*A = A, X*A*X = X.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat">An array whose pseudoinverse is to be found</param>
+            <returns>The pseudoinverse of the array as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.PINV(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the pseudoinverse of a matrix, such that
+            X = PINV(A) produces a matrix 'X' of the same dimensions
+            as A' so that A*X*A = A, X*A*X = X.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat">a Matrix object whose pseudoinverse is to be found</param>
+            <returns>The pseudoinverse of the Matrix object as a Matrix Object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Eigen(System.Double[0:,0:],System.Double[0:,0:]@,System.Double[0:,0:]@)">
+            <summary>
+            Returns the Eigenvalues and Eigenvectors of a real symmetric
+            matrix, which is of dimensions [n,n]. 
+            In case of an error the error is raised as an exception.
+            Note: This method is based on the 'Eigenvalues and Eigenvectors of a TridiagonalMatrix'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.
+            </summary>
+            <param name="Mat">
+            The array whose Eigenvalues and Eigenvectors are to be found
+            </param>
+            <param name="d">An array where the eigenvalues are returned</param>
+            <param name="v">An array where the eigenvectors are returned</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Eigen(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix@,ThinkGeo.MapSuite.IsolineMatrix@)">
+            <summary>
+            Returns the Eigenvalues and Eigenvectors of a real symmetric
+            matrix, which is of dimensions [n,n]. In case of an error the
+            error is raised as an exception.
+            Note: This method is based on the 'Eigenvalues and Eigenvectors of a TridiagonalMatrix'
+            section of Numerical Recipes in C by William H. Press,
+            Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery,
+            University of Cambridge Press 1992.
+            </summary>
+            <param name="Mat">
+            The Matrix object whose Eigenvalues and Eigenvectors are to be found
+            </param>
+            <param name="d">A Matrix object where the eigenvalues are returned</param>
+            <param name="v">A Matrix object where the eigenvectors are returned</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.ScalarMultiply(System.Double,System.Double[0:,0:])">
+            <summary>
+            Returns the multiplication of a matrix or a vector (i.e 
+            dimension [3,1]) with a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Value">The scalar value to multiply the array</param>
+            <param name="Mat">Array which is to be multiplied by a scalar</param>
+            <returns>The multiplication of the scalar and the array as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.ScalarMultiply(System.Double,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the multiplication of a matrix or a vector (i.e 
+            dimension [3,1]) with a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Value">The scalar value to multiply the array</param>
+            <param name="Mat">Matrix which is to be multiplied by a scalar</param>
+            <returns>The multiplication of the scalar and the array as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Multiply(ThinkGeo.MapSuite.IsolineMatrix,System.Double)">
+            <summary>
+            Returns the multiplication of a matrix or a vector (i.e 
+            dimension [3,1]) with a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat">Matrix object which is to be multiplied by a scalar</param>
+            <param name="Value">The scalar value to multiply the Matrix object</param>
+            <returns>
+            The multiplication of the scalar and the Matrix object as a 
+            Matrix object
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Multiply(System.Double,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the multiplication of a matrix or a vector (i.e 
+            dimension [3,1]) with a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Value">The scalar value to multiply the Matrix object</param>
+            <param name="Mat">Matrix object which is to be multiplied by a scalar</param>
+            <returns>
+            The multiplication of the scalar and the Matrix object as a 
+            Matrix object
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.ScalarDivide(System.Double,System.Double[0:,0:])">
+            <summary>
+            Returns the division of a matrix or a vector (i.e 
+            dimension [3,1]) by a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Value">The scalar value to divide the array with</param>
+            <param name="Mat">Array which is to be divided by a scalar</param>
+            <returns>The division of the array and the scalar as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.ScalarDivide(System.Double,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the division of a matrix or a vector (i.e 
+            dimension [3,1]) by a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Value">The scalar value to divide the array with</param>
+            <param name="Mat">Matrix which is to be divided by a scalar</param>
+            <returns>The division of the array and the scalar as an array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Division(ThinkGeo.MapSuite.IsolineMatrix,System.Double)">
+            <summary>
+            Returns the division of a matrix or a vector (i.e 
+            dimension [3,1]) by a scalar quantity.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Value">The scalar value to divide the Matrix object with</param>
+            <param name="Mat">Matrix object which is to be divided by a scalar</param>
+            <returns>
+            The division of the Matrix object and the scalar as a Matrix object
+            </returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.CrossProduct(System.Double[],System.Double[])">
+            <summary>
+            Returns the cross product of two vectors whose
+            dimensions should be [3] or [3,1].
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V1">First vector array (dimension [3]) in the cross product</param>
+            <param name="V2">Second vector array (dimension [3]) in the cross product</param>
+            <returns>Cross product of V1 and V2 as an array (dimension [3])</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.CrossProduct(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Returns the cross product of two vectors whose
+            dimensions should be [3] or [3x1].
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V1">First vector array (dimensions [3,1]) in the cross product</param>
+            <param name="V2">Second vector array (dimensions [3,1]) in the cross product</param>
+            <returns>Cross product of V1 and V2 as an array (dimension [3,1])</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.CrossProduct(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the cross product of two vectors whose
+            dimensions should be [3] or [3x1].
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V1">First Matrix (dimensions [3,1]) in the cross product</param>
+            <param name="V2">Second Matrix (dimensions [3,1]) in the cross product</param>
+            <returns>Cross product of V1 and V2 as a matrix (dimension [3,1])</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.DotProduct(System.Double[],System.Double[])">
+            <summary>
+            Returns the dot product of two vectors whose
+            dimensions should be [3] or [3,1].
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V1">First vector array (dimension [3]) in the dot product</param>
+            <param name="V2">Second vector array (dimension [3]) in the dot product</param>
+            <returns>Dot product of V1 and V2</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.DotProduct(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Returns the dot product of two vectors whose
+            dimensions should be [3] or [3,1].
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V1">First vector array (dimension [3,1]) in the dot product</param>
+            <param name="V2">Second vector array (dimension [3,1]) in the dot product</param>
+            <returns>Dot product of V1 and V2</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.DotProduct(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns the dot product of two vectors whose
+            dimensions should be [3] or [3,1].
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V1">First Matrix object (dimension [3,1]) in the dot product</param>
+            <param name="V2">Second Matrix object (dimension [3,1]) in the dot product</param>
+            <returns>Dot product of V1 and V2</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.VectorMagnitude(System.Double[])">
+            <summary>
+             Returns the magnitude of a vector whose dimension is [3] or [3,1].
+             In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V">The vector array (dimension [3]) whose magnitude is to be found</param>
+            <returns>The magnitude of the vector array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.VectorMagnitude(System.Double[0:,0:])">
+            <summary>
+             Returns the magnitude of a vector whose dimension is [3] or [3,1].
+             In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V">The vector array (dimension [3,1]) whose magnitude is to be found</param>
+            <returns>The magnitude of the vector array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.VectorMagnitude(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+             Returns the magnitude of a vector whose dimension is [3] or [3,1].
+             In case of an error the error is raised as an exception.
+            </summary>
+            <param name="V">Matrix object (dimension [3,1]) whose magnitude is to be found</param>
+            <returns>The magnitude of the Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.IsEqual(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Checks if two Arrays of equal dimensions are equal or not.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First array in equality check</param>
+            <param name="Mat2">Second array in equality check</param>
+            <returns>If two matrices are equal or not</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.IsEqual(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Checks if two matrices of equal dimensions are equal or not.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First Matrix in equality check</param>
+            <param name="Mat2">Second Matrix in equality check</param>
+            <returns>If two matrices are equal or not</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Equality(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Checks if two matrices of equal dimensions are equal or not.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First Matrix object in equality check</param>
+            <param name="Mat2">Second Matrix object in equality check</param>
+            <returns>If two matrices are equal or not</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.op_Inequality(ThinkGeo.MapSuite.IsolineMatrix,ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Checks if two matrices of equal dimensions are not equal.
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat1">First Matrix object in equality check</param>
+            <param name="Mat2">Second Matrix object in equality check</param>
+            <returns>If two matrices are not equal</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.Equals(System.Object)">
+            <summary>
+            Tests whether the specified object is a MatrixLibrary.Matrix
+            object and is identical to this MatrixLibrary.Matrix object.
+            </summary>
+            <param name="obj">The object to compare with the current object</param>
+            <returns>This method returns true if obj is the specified Matrix object identical to this Matrix object; otherwise, false.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.PrintMat(System.Double[0:,0:])">
+            <summary>
+            Returns a matrix as a string, so it can be viewed
+            in a multi-text textbox or in a richtextBox (preferred).
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat">The array to be viewed</param>
+            <returns>The string view of the array</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.PrintMat(ThinkGeo.MapSuite.IsolineMatrix)">
+            <summary>
+            Returns a matrix as a string, so it can be viewed
+            in a multi-text textbox or in a richtextBox (preferred).
+            In case of an error the error is raised as an exception.
+            </summary>
+            <param name="Mat">The Matrix object to be viewed</param>
+            <returns>The string view of the Matrix object</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.IsolineMatrix.ToString">
+            <summary>
+            Returns the matrix as a string, so it can be viewed
+            in a multi-text textbox or in a richtextBox (preferred).
+            In case of an error the error is raised as an exception.
+            </summary>
+            <returns>The string view of the Matrix object</returns>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.QuadTree.data">
+            <summary>
+            Store list point searched
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.QuadTree.Insert(System.Double,System.Double,System.Int32)">
+            <summary>
+            Insert a new node in the index
+            </summary>
+            <param name="x">X position of the node</param>
+            <param name="y">Y position of the node</param>
+            <param name="value">value associated with the node</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.QuadTree.Clean">
+            <summary>
+            Clean the data of a Query
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.QuadTree.GetData">
+            <summary>
+            Obtain the data of a Query
+            </summary>
+            <returns>An arrayList with the id of point searched</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.QuadTree.Clone">
+            <summary>
+            Shallow clone the QuadTree with its cleared arryList
+            </summary>
+            <returns>New QuadTree</returns>
+        </member>
+    </members>
+</doc>

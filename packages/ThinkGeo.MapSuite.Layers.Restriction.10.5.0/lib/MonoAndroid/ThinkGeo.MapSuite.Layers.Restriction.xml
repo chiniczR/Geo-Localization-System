@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Restriction</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.RestrictionExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionExceptionDescription.DefaultAndCustomStyleDuplicateForRestrictedLayer">
+            <summary>
+              Looks up a localized string similar to You are trying to use both a default style and the custom styles collection. If you want to add custom styles, please set RestrictionStyle as RestrictionStyle.UseCustomStyles..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionExceptionDescription.EnumerationOutOfRange">
+            <summary>
+              Looks up a localized string similar to The value for the enumeration is not one of the valid values..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.RestrictionLayer">
+             <summary>
+             This layer can show or hide one or many zones that you want to restrict from being displayed. You can
+             use the specified style to decorate the zones and set the lower/upper scale to control
+             at which zoom levels you want to show or hide the zones. The default decoration style is a hatch pattern.
+             You can change this to a circle with slash image, or, if you want a different look, you can use
+             custom styles.
+             </summary>
+             <example>
+             	<code lang="CS" title="C# sample" description="The example below shows how to use RestrictionLayer.">
+             RestrictionLayer restrictionLayer = new RestrictionLayer();
+             RectangleShape africaZone = new RectangleShape(-17.67, 37.01, 60.02, -34.68)
+             restrictionLayer.Zones.Add(africaZone);
+             restrictionLayer.RestrictionMode = RestrictionMode.ShowZones;
+             restrictionLayer.UpperScale = 250000000;
+             restrictionLayer.LowerScale = double.MinValue;
+            
+             ...
+             // You can see only Africa because we have added a RestrictionLayer and its mode is ShowZones.
+             restrictionLayer.RestrictionMode = RestrictionMode.ShowZones;
+            
+             ...
+             // You can not see Africa because we have added a RestrictionLayer and its mode is HideZones.
+             restrictionLayer.RestrictionMode = RestrictionMode.HideZones;
+             </code>
+             	<code lang="VB" title="VB sample" description="The example below shows how to use RestrictionLayer">
+             Dim restrictionLayer As RestrictionLayer =  New RestrictionLayer()
+             RectangleShape africaZone = New RectangleShape(-17.67, 37.01, 60.02, -34.68)
+             restrictionLayer.Zones.Add(africaZone)
+             restrictionLayer.RestrictionMode = RestrictionMode.ShowZones
+             restrictionLayer.UpperScale = 250000000
+             restrictionLayer.LowerScale = Double.MinValue
+            
+             ...
+             ' You can see only Africa because we have added a RestrictionLayer and its mode is ShowZones.
+             restrictionLayer.RestrictionMode = RestrictionMode.ShowZones
+            
+             ...
+             ' You can not see Africa because we have added a RestrictionLayer and its mode is HideZones.
+             restrictionLayer.RestrictionMode = RestrictionMode.HideZones
+             </code>
+             </example>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RestrictionLayer.#ctor">
+            <summary>Initializes a new instance of the <strong>RestictionLayer</strong> class.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RestrictionLayer.#ctor(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.AreaBaseShape})">
+            <summary>Initializes a new instance of the <strong>RestictionLayer</strong> class for the specified zones.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RestrictionLayer.#ctor(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.AreaBaseShape},ThinkGeo.MapSuite.Layers.RestrictionMode)">
+            <summary>Initializes a new instance of the <strong>RestictionLayer</strong> class for the specified zones and restriction mode.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RestrictionLayer.#ctor(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.AreaBaseShape},ThinkGeo.MapSuite.Layers.RestrictionMode,System.Double,System.Double)">
+            <summary>Initializes a new instance of the <strong>RestictionLayer</strong> class for the specified zones, restriction mode, upper scale and lower scale.</summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionLayer.UpperScale">
+            <summary>Specifies the upper threshold of the layer.</summary>
+            <remarks>
+            	<para><strong>If Restriction mode is ShowZones:</strong></para>
+            	<para>If currentScale is greater than <strong>UpperScale</strong>, it will hide the
+                whole map; otherwise, it will show the specified zones.</para>
+            	<para></para>
+            	<para></para>
+            	<para><strong>If Restriction mode is HideZones:</strong></para>
+            	<para>If currentScale is less than or equal to <strong>UpperScale</strong> and
+                greater than or equal to LowerScale, it will hide the specified zones; otherwise, it
+                will do nothing.</para>
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionLayer.LowerScale">
+            <summary>Specifies the lower threshold of the layer.</summary>
+            <remarks>
+            	<para>If Restriction mode is ShowZones:</para>
+            	<para>If currentScale is less than <strong>LowerScale</strong>, it will hide the
+                whole map; otherwise, it will show the specified zones.</para>
+            	<para></para>
+            	<para></para>
+            	<para>If Restriction mode is HideZones:</para>
+            	<para>if currentScale is less than or equal to UpperScale and greater than or equal
+                to <strong>LowerScale</strong>, it will hide the specified zones; otherwise it will
+                do nothing.</para>
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionLayer.CustomStyles">
+            <summary>Allows you to add custom styles to decorate restriction zones.  In this case, you must set RestrictionStyle to UseCustomStyles as well.</summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionLayer.RestrictionMode">
+            <summary>Specifies whether you want to show or hide zones.</summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionLayer.Zones">
+            <summary>Specifies the areas you want to restrict.</summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionLayer.RestrictionStyle">
+            <summary>Specifies the display style of the restriction zones.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RestrictionLayer.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a layer which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the zones.</summary>
+            <returns>This method returns the bounding box of the zones.</returns>
+            <remarks>This method returns the bounding box of the zones.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.RestrictionLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Draw. This
+            method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties to
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.RestrictionMode">
+            <summary>This enumeration specifies the restriction mode.</summary>
+            <seealso cref="T:ThinkGeo.MapSuite.Layers.RestrictionLayer">RestrictionLayer Class</seealso>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.RestrictionMode.HideZones">
+            <summary>Represents "hide zones".</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.RestrictionMode.ShowZones">
+            <summary>Represents "show zones".</summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.RestrictionResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.RestrictionResources.NoData">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.RestrictionStyle">
+            <summary>This enumeration specifies the type of restriction zone display style.</summary>
+            <example>
+            	<code lang="CS" title="C# sample" description="The example below shows how to use RestrictionStyle.">
+            RestrictionLayer restrictionLayer1 = new RestrictionLayer(); 
+            restrictionLayer1.RestrictionStyle = RestrictionStyle.HatchPattern; 
+             
+            RestrictionLayer restrictionLayer2 = new RestrictionLayer(); 
+            restrictionLayer2.RestrictionStyle = RestrictionStyle.CircleWithSlashImage; 
+             
+            RestrictionLayer restrictionLayer3 = new RestrictionLayer(); 
+            restrictionLayer3.RestrictionStyle = RestrictionStyle.UseCustomStyles; 
+            AreaStyle customStyle = new AreaStyle(new GeoSolidBrush(new GeoColor(150, GeoColor.StandardColors.Gray)));
+            restrictionLayer3.CustomStyles.Add(customStyle);
+            </code>
+            	<code lang="VB" title="VB sample" description="The example below shows how to use RestrictionStyle.">
+            Dim restrictionLayer1 As RestrictionLayer =  New RestrictionLayer() 
+            restrictionLayer1.RestrictionStyle = RestrictionStyle.HatchPattern 
+             
+            Dim restrictionLayer2 As RestrictionLayer =  New RestrictionLayer() 
+            restrictionLayer2.RestrictionStyle = RestrictionStyle.CircleWithSlashImage 
+             
+            Dim restrictionLayer3 As RestrictionLayer =  New RestrictionLayer() 
+            restrictionLayer3.RestrictionStyle = RestrictionStyle.UseCustomStyles 
+            Dim customStyle As AreaStyle =  New AreaStyle(New GeoSolidBrush(New GeoColor(150,GeoColor.StandardColors.Gray))) 
+            restrictionLayer3.CustomStyles.Add(customStyle)
+            </code>
+            </example>
+            <seealso cref="T:ThinkGeo.MapSuite.Layers.RestrictionLayer">RestrictionLayer Class</seealso>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.RestrictionStyle.HatchPattern">
+            <summary>Hatch pattern. Can be used to represent "no data" in this zone.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.RestrictionStyle.CircleWithSlashImage">
+            <summary>A tiled circle with slash (strikeout) image.  Can be used to represent restriction or lack of viewing permissions.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.RestrictionStyle.UseCustomStyles">
+            <summary>Will use a custom style instead of default style.</summary>
+        </member>
+    </members>
+</doc>

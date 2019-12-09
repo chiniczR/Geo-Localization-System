@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.IsoLine</name>
+    </assembly>
+    <members>
+        <member name="P:ThinkGeo.MapSuite.Layers.DynamicIsoLineLayer.DynamicGridInterpolationModel">
+            <summary>
+            This property represents the interpolation model used to generate IsoLines
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.IsoLineLayer.GetIsoFeatures(ThinkGeo.MapSuite.Layers.GridCell[0:,0:],System.Collections.Generic.IEnumerable{System.Double},System.String,ThinkGeo.MapSuite.Layers.IsoLineType)">
+            <summary>
+            This method returns features generated from the GridCell matrix.
+            </summary>
+            <param name="gridMatrix">This parameter represents the GridCell matrix where the features are generate from</param>
+            <param name="isoLineLevels">This parameter represents a collection of IsoLineLevel</param>
+            <param name="dataValueColumnName">This parameter represents the ColumnName of the DataValueColumn</param>
+            <param name="isoLineType">This parameter represents the type of the IsoLine</param>
+            /// <returns>Features generated from the GridCell matrix</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.IsoLineLayer.GetIsoFeatures(ThinkGeo.MapSuite.Layers.GridCell[0:,0:],System.Collections.Generic.IEnumerable{System.Double},System.String,ThinkGeo.MapSuite.Layers.IsoLineType,System.Double)">
+            <summary>
+            This method returns features generated from the GridCell matrix.
+            </summary>
+            <param name="gridMatrix">This parameter represents the GridCell matrix where the features are generate from</param>
+            <param name="isoLineLevels">This parameter represents a collection of IsoLineLevel</param>
+            <param name="dataValueColumnName">This parameter represents the ColumnName of the DataValueColumn</param>
+            <param name="isoLineType">This parameter represents the type of the IsoLine</param>
+            <param name="noDataValue">This parameter represents the no data value for IsoLine</param>
+            <returns>Features generated from the GridCell matrix</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.IsoLineLayer.GetIsoLineLevels(ThinkGeo.MapSuite.Layers.GridCell[0:,0:],System.Int32)">
+            <summary>
+            This method returns a collection of double that represents the levels of IsoLines
+            </summary>
+            <param name="gridMatrix">This parameter represents the GridCell matrix where the IsoLines are generated from</param>
+            <param name="isoLineLevelCount">This parameter represents the count of IsoLine level</param>
+            <returns>This method returns a collection of double that represents the levels of IsoLines</returns>
+        </member>
+    </members>
+</doc>

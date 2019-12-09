@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Heat</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.HeatLayer">
+            <summary>
+            HeatLayer allows you to better visualize data by making areas of high concentration "hotter" using warmer colors and low density areas visually cooler.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatLayer.#ctor">
+            <summary>This is the default constructor of the class.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatLayer.#ctor(ThinkGeo.MapSuite.Layers.FeatureSource)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>This constructor allows you to pass in the FeatureSource.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="featureSource">
+            This parameter is the FeatureSource that use to be drawn.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HeatLayer.FeatureSource">
+            <summary>This property gets the FeatureSource for the HeatLayer.</summary>
+            <value>This property gets the FeatureSource for the HeatLayer.</value>
+            <remarks>
+            The FeatureSource is the provider of data to the HeatLayer. There are different
+            FeatureSource classes to match the various ways that feature data is stored. It is
+            important that, when you inherit from the HeatLayer, in the constructor you set
+            the FeatureSource you want to use.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HeatLayer.HeatStyle">
+            <summary>
+            Gets or sets the style of <strong>HeatLayer</strong>.
+            </summary>
+            <remarks>
+            If this property is not set, it will use the default HeatStyle.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HeatLayer.UpperScale">
+            <summary>Specifies the upper threshold of the layer.</summary>
+            <remarks>
+            	<para>The HeatLayer only displays when the currentScale is less than or equal to UpperScale and greater than or equal
+                to <strong>LowerScale</strong>, otherwise it won't show anything.</para>
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.HeatLayer.LowerScale">
+            <summary>Specifies the lower threshold of the layer.</summary>
+            <remarks>
+            	<para>The HeatLayer only displays when the currentScale is less than or equal to UpperScale and greater than or equal
+                to <strong>LowerScale</strong>, otherwise it won't show anything.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatLayer.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a Layer which has already been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method opens the Layer so that it is initialized and ready to use.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Open. The
+            open method plays an important role, as it is responsible for initializing the Layer.
+            Most methods on the Layer will throw an exception if the state of the Layer is not
+            opened. When the map draws each layer, the layer will be opened as one of its first steps;
+            then, after it is finished drawing with that layer, it will close it. In this way, we
+            are sure to release all resources used by the Layer.<br/>
+            <br/>
+            When implementing the abstract method, consider opening the FeatureSource or
+            RasterSource. You will get a chance to close these in the Close method of the
+            Layer.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatLayer.CloseCore">
+            <summary>
+            This method closes the Layer and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This abstract method is called from the concrete public method Close. The close
+            method plays an important role in the life cycle of the Layer. It may be called after
+            drawing to release any memory and other resources that were allocated since the Open
+            method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed Layer is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This method is the concrete wrapper for the abstract method DrawCore. This
+                method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties that
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.HeatStyle">
+            <summary>
+            HeatStyle allows you to better visualize data by making areas of high concentration "hotter" using warmer colors and low density areas visually cooler.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor">
+            <summary>This is the default constructor of the class.</summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="pointIntensity">The parameter represents the point intensity, the default value is 10.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32,System.Int32)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="pointIntensity">The parameter represents the point intensity, the default value is 10.</param>
+            <param name="alpha">The parameter represents the alpha value of color, the default value is 255.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32,System.Double,ThinkGeo.MapSuite.Shapes.DistanceUnit)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="pointIntensity">The parameter represents the point intensity, the default value is 10.</param>
+            <param name="pointRadius">The parameter represents the point radius, the default value is 50 kilometers.</param>
+            <param name="pointRadiusUnit">The parameter represents the unit of point radius, the default value is kilometer.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32,System.Int32,System.Double,ThinkGeo.MapSuite.Shapes.DistanceUnit)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="pointIntensity">The parameter represents the point intensity, the default value is 10.</param>
+            <param name="alpha">The parameter represents the alpha value of color, the default value is 255.</param>
+            <param name="pointRadius">The parameter represents the point radius, the default value is 50 kilometers.</param>
+            <param name="pointRadiusUnit">The parameter represents the unit of point radius, the default value is kilometer.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.String,System.Double,System.Double)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="intensityColumnName">The parameter represents the intensity column name, the default value is empty string.</param>
+            <param name="intensityRangeStart">The parameter represents the range start of intensity, the default value is 0.</param>
+            <param name="intensityRangeEnd">The parameter represents the range end of intensity, the default value is 0.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32,System.String,System.Double,System.Double)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="alpha">The parameter represents the alpha value of color, the default value is 255.</param>
+            <param name="intensityColumnName">The parameter represents the intensity column name, the default value is empty string.</param>
+            <param name="intensityRangeStart">The parameter represents the range start of intensity, the default value is 0.</param>
+            <param name="intensityRangeEnd">The parameter represents the range end of intensity, the default value is 0.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.String,System.Double,System.Double,System.Double,ThinkGeo.MapSuite.Shapes.DistanceUnit)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="intensityColumnName">The parameter represents the intensity column name, the default value is empty string.</param>
+            <param name="intensityRangeStart">The parameter represents the range start of intensity, the default value is 0.</param>
+            <param name="intensityRangeEnd">The parameter represents the range end of intensity, the default value is 0.</param>
+            <param name="pointRadius">The parameter represents the point radius, the default value is 50 kilometers.</param>
+            <param name="pointRadiusUnit">The parameter represents the unit of point radius, the default value is kilometer.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32,System.String,System.Double,System.Double,System.Double,ThinkGeo.MapSuite.Shapes.DistanceUnit)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="alpha">The parameter represents the alpha value of color, the default value is 255.</param>
+            <param name="intensityColumnName">The parameter represents the intensity column name, the default value is empty string.</param>
+            <param name="intensityRangeStart">The parameter represents the range start of intensity, the default value is 0.</param>
+            <param name="intensityRangeEnd">The parameter represents the range end of intensity, the default value is 0.</param>
+            <param name="pointRadius">The parameter represents the point radius, the default value is 50 kilometers.</param>
+            <param name="pointRadiusUnit">The parameter represents the unit of point radius, the default value is kilometer.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.#ctor(System.Int32,System.Int32,System.String,System.Double,System.Double,System.Double,ThinkGeo.MapSuite.Shapes.DistanceUnit)">
+            <summary>This is a constructor for the class.</summary>
+            <param name="pointIntensity">The parameter represents the point intensity, the default value is 10.</param>
+            <param name="alpha">The parameter represents the alpha value of color, the default value is 255.</param>
+            <param name="intensityColumnName">The parameter represents the intensity column name, the default value is empty string.</param>
+            <param name="intensityRangeStart">The parameter represents the range start of intensity, the default value is 0.</param>
+            <param name="intensityRangeEnd">The parameter represents the range end of intensity, the default value is 0.</param>
+            <param name="pointRadius">The parameter represents the point radius, the default value is 50 kilometers.</param>
+            <param name="pointRadiusUnit">The parameter represents the unit of point radius, the default value is kilometer.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.PointIntensity" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.Alpha" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.IntensityRangeStart" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.IntensityRangeEnd" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.IntensityColumnName" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.PointRadius" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.PointRadiusUnit" -->
+        <!-- Badly formed XML comment ignored for member "P:ThinkGeo.MapSuite.Layers.HeatStyle.ColorPalette" -->
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties to
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.HeatStyle.GetRequiredColumnNamesCore">
+            <remarks>
+            This abstract method is called from the concrete public method
+            GetRequiredFieldNames. In this method, we return the column names that are required for
+            the style to draw the feature properly. For example, if you have a style that colors
+            areas blue when a certain column value is over 100, then you need to be sure you include
+            that column name. This will ensure that the column data is returned to you in the
+            feature when it is ready to draw.<br/>
+            	<br/>
+            In many of the styles, we add properties to allow the user to specify which field they
+            need; then, in the GetRequiredColumnNamesCore we read that property and add it to the
+            collection.
+            </remarks>
+            <summary>
+            This method returns the column data for each feature that is required for the
+            style to properly draw.
+            </summary>
+            <returns>This method returns a collection of column names that the style needs.</returns>pal
+        </member>
+    </members>
+</doc>

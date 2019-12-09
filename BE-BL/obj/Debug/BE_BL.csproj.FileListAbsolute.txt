@@ -1,0 +1,6 @@
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\BE-BL\bin\Debug\BE_BL.dll.config
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\BE-BL\bin\Debug\BE_BL.dll
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\BE-BL\bin\Debug\BE_BL.pdb
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\BE-BL\obj\Debug\BE_BL.csproj.CoreCompileInputs.cache
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\BE-BL\obj\Debug\BE_BL.dll
+C:\Users\chiniczr\Documents\WindowsSysEngineering\bombFallLocalizationSystem\BE-BL\obj\Debug\BE_BL.pdb

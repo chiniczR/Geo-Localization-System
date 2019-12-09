@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.Gradient</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.GradientStyle">
+            <summary>
+            This gradient style is a new style with the concept of GradientBrush. By
+            specifying the LowerValue and its color, as well as the UpperValue and its color, we can set
+            the color of each feature based on a column value using linear
+            interpolation.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.GradientStyle.#ctor(System.String,System.Double,ThinkGeo.MapSuite.Drawing.GeoSolidBrush,System.Double,ThinkGeo.MapSuite.Drawing.GeoSolidBrush)">
+            <summary>
+            This constructor creates a new instance by passing the ColumnName (which it will get
+            the data from) as well as the lowerValue and its corresponding SolidBrush, and the upperValue
+            and its corresponding SolidBrush.
+            </summary>
+            <remarks>
+            In this constructor, the NoDataValue defaults to -9999 and the
+            NoDataBrush color is transparent.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.GradientStyle.#ctor(System.String,System.Double,ThinkGeo.MapSuite.Drawing.GeoSolidBrush,System.Double,ThinkGeo.MapSuite.Drawing.GeoSolidBrush,System.Double,ThinkGeo.MapSuite.Drawing.GeoSolidBrush)">
+            <summary>
+            This constructor creates a new instance by passing the ColumnName (which it will get
+            the data from) as well as the lowerValue and its corresponding SolidBrush, the upperValue
+            and its corresponding SolidBrush, and the NoDataValue and its corresponding
+            SolidBrush.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.ColumnName">
+            <summary>This property gets and sets the column name used in the style.</summary>
+            <value>This property gets and sets the column name used in the style.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.LowerValue">
+            <summary>This property gets and sets the lower value used in the style.</summary>
+            <value>This property gets and sets the lower value used in the style.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.LowerGeoSolidBrush">
+            <summary>This property gets and sets the solid brush that is used for the style's lower value.</summary>
+            <value>This property gets and sets the solid brush that is used for the style's lower value.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.UpperValue">
+            <summary>This property gets and sets the upper value used in the style.</summary>
+            <value>This property gets and sets the upper value used in the style.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.UpperGeoSolidBrush">
+            <summary>This property gets and sets the solid brush that is used for the style's upper value.</summary>
+            <value>This property gets and sets the solid brush that is used for the style's upper value.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.NoDataValue">
+            <summary>This property gets and sets the no data value used in the style.</summary>
+            <value>This property gets and sets the no data value used in the style.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.GradientStyle.NoDataSolidBrush">
+            <summary>This property gets and sets the solid brush that is used for the style's NoDataValue.</summary>
+            <value>This property gets and sets the solid brush that is used for the style's NoDataValue.</value>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.GradientStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This virtual method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When implementing this virtual method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties to
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.GradientStyle.GetRequiredColumnNamesCore">
+            <remarks>
+            This abstract method is called from the concrete public method
+            GetRequiredFieldNames. In this method, we return the column names that are required for
+            the style to draw the feature properly. For example, if you have a style that colors
+            areas blue when a certain column value is over 100, then you need to be sure you include
+            that column name. This will ensure that the column data is returned to you in the
+            feature when it is ready to draw.<br/>
+            	<br/>
+            In many of the styles, we add properties to allow the user to specify which field they
+            need; then, in the GetRequiredColumnNamesCore we read that property and add it to the
+            collection.
+            </remarks>
+            <summary>
+            This method returns the column data for each feature that is required for the
+            style to properly draw.
+            </summary>
+            <returns>This method returns a collection of column names that the style needs.</returns>
+        </member>
+    </members>
+</doc>

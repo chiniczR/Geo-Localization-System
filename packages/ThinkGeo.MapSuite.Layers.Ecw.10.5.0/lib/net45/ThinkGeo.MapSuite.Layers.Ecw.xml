@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Ecw</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.EcwRasterLayer">
+            <summary>This class represents an ECW image to be drawn on the map.</summary>
+            <remarks>
+            The EcwRasterLayer represents an ECW file for drawing on the map. Simply provide
+            the path and filename of the ECW file, add the layer to the MapEngine class and
+            start drawing. You can also draw the layer manually outside of the MapEngine.<br/>
+            	<br/>
+            ECW:<br/>
+            	<br/>
+            ECW is a wavelet image compression system developed by ER Mapper. It allows you to
+            combine and compress large sets of satellite images into a single file. The images can
+            be accessed very quickly at a variety of scales. It is very popular in the GIS
+            community.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterLayer.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the PathFilename property manually before using the layer.
+            </overloads>
+            <remarks>
+            If you use this constructor, then you need to set the PathFilename property
+            manually before using the layer.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterLayer.#ctor(System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path or filename information for the ECW
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the ECW file you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterLayer.#ctor(System.String,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename for the ECW file and its associated world
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the ECW file you want to use.</param>
+            <param name="worldfilePathFilename">This parameter is the world file path and filename for the ECW file you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterLayer.#ctor(System.String,ThinkGeo.MapSuite.Shapes.RectangleShape)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename for the ECW file and the image extent to use.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the ECW file you want to use.</param>
+            <param name="imageExtent">This parameter is the image extent of ECW file you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EcwRasterLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In EcwRasterLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EcwRasterLayer.PathFilename">
+            <summary>
+            This property gets and sets the path and filename of the ECW file you want to
+            use.
+            </summary>
+            <value>This property gets the path and filename of the ECW file you want to use.</value>
+            <remarks>This should be the complete path and filename for an ECW file.</remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.EcwRasterSource">
+            <summary>This class represents the ECW raster source.</summary>
+            <remarks>
+            This class allows you to access pictures from an ECW file. This class is
+            typically used in the ECWLayer to allow ECW raster images to be shown on your map.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor and is not typically used.</overloads>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.#ctor(System.String)">
+            <overloads>This is the commonly used constructor for the class.</overloads>
+            <summary>This is the constructor for the class.</summary>
+            <returns>None</returns>
+            <remarks>
+            This is typically the constructor you want to use for this class. It allows you
+            to pass in the ECW file you wish to work with. Note that the ECW file is not accessed
+            or opened until you call the open command of the class.
+            </remarks>
+            <param name="imagePathFilename">
+            This parameter represents the path and file name of the ECW file you want to load
+            into the class for display.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.#ctor(System.String,System.String)">
+            <summary>
+            This is the constructor for the class.
+            </summary>
+            <remarks>
+             It allows you to pass in the ECW file you wish to work with, as well as its corresponding world file.
+             Note that the ECW file is not accessed or opened until you call the open command of the class.
+            </remarks>
+            <param name="imagePathFilename">
+            This parameter represents the path and file name of the ECW file you want to load
+            into the class for display.
+            </param>
+            <param name="worldfilePathFilename">The corresponding world file name that contains the world file information.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.#ctor(System.String,ThinkGeo.MapSuite.Shapes.RectangleShape)">
+            <summary>
+            This is the constructor for the class.
+            </summary>
+            <remarks>
+             It allows you to pass in the ECW file you wish to work with and its corresponding extent.
+             Note that the ECW file is not accessed or opened until you call the open command of the class.
+            </remarks>
+            <param name="imagePathFilename">
+            This parameter represents the path and file name of the ECW file you want to load
+            into the class for display.
+            </param>
+            <param name="imageExtent">The corresponding world extent, which can calculate out the world information with the help of width and height from the ECW file.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EcwRasterSource.PathFilename">
+            <summary>
+            This property gets or sets the file name and path of the ECW raster image you are
+            working with.
+            </summary>
+            <decimalDegreesValue>
+            This property returns the file name and path of the ECW raster image you are working
+            with.
+            </decimalDegreesValue>
+            <remarks>
+            If you wish to change the file the class is working with, you would change
+            it here. You cannot change the file you are working with while the class is in an open
+            state.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has been opened, it will throw an InvalidOperationException.</exception>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.EcwRasterSource.HasProjectionTextCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which is not open, it will throw an InvalidOperationException.</exception>
+            <summary>
+            This property returns true if the RasterSource has projection text, false if it does not.
+            </summary>
+            <remarks>
+            	<para>This protected virtual method is called from the concrete public property
+                HasProjectionText. Thus, if
+                you inherit RasterSource, please ensure that you override this virtual property to return
+                the correct projection status of your raster source.</para>
+            	<para></para>
+            	<para>We will check the HasProjectionText status before you call the
+                GetProjectionText method. It will throw an exception if the HasProjectionText
+                property returns false.</para>
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.GetProjectionTextCore">
+            <summary>
+            This method returns the projection text in proj4 format.
+            </summary>
+            <returns>Projection text string.</returns>
+            <remarks>
+            	<para>This protected virtual method is called from the concrete public method
+                GetProjectionText.</para>
+            	<para>The default implementation of this core method is to load the projection
+                information from the ECW file and return the projection information in proj4
+                projection string format.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.GetImageWidthCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the width of the raster image in screen coordinates.</summary>
+            <returns>This method returns the width of the raster image in screen coordinates.</returns>
+            <remarks>This method returns the width of the raster image in screen coordinates.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.GetImageHeightCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the height of the raster image in screen coordinates.</summary>
+            <returns>This method returns the height of the raster image in screen coordinates.</returns>
+            <remarks>This method returns the height of the raster image in screen coordinates.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.OpenCore">
+            <summary>
+            This method opens the ImageSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concrete public method Open.
+            The Open method plays an important role, as it is responsible for initializing the
+            ImageSource. Most methods on the ImageSource will throw an exception if the state of
+            the ImageSource is not opened. When the map draws each layer, it will open the
+            ImageSource as one of its first steps; then, after it is finished drawing with that
+            layer, it will close it. In this way, we are sure to release all resources used by the
+            ImageSource.<br/>
+            	<br/>
+            When implementing this abstract method, consider opening files for file based-sources,
+            connecting to databases in the database-based sources and so on. You will get a chance
+            to close these in the Close method of the ImageSource.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has already been opened, it will throw an InvalidOperationException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.CloseCore">
+            <summary>
+            This method opens the ImageSource so that it is initialized and ready to
+            use.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concrete public method Close.
+            The Close method plays an important role in the life cycle of the ImageSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.GetImageCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Int32,System.Int32)">
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass in a worldExtent that is invalid, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If you pass in a worldExtent that is invalid, we will throw an ArgumentException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a raster image width that is smaller than or equal to 0, we will throw an ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a raster image height that is smaller than or equal to 0, we will throw an ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <remarks>
+            This method is responsible for returning the image based on the parameters passed
+            in.
+            </remarks>
+            <summary>
+            This method returns an image based on the worldExtent and raster image width and
+            height.
+            </summary>
+            <returns>
+            This method returns an image based on the worldExtent and raster image width and
+            height.
+            </returns>
+            <param name="worldExtent">This parameter represents the worldExtent you want to draw.</param>
+            <param name="canvasWidth">This parameter represents the width of the raster image you want to draw.</param>
+            <param name="canvasHeight">This parameter represents the height of the raster image you want to draw.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.EcwRasterSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the RasterSource.</summary>
+            <returns>This method returns the bounding box of the RasterSource.</returns>
+            <remarks>This method returns the bounding box of the RasterSource.</remarks>
+        </member>
+    </members>
+</doc>

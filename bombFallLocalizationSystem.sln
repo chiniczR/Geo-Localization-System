@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "bombFallLocalizationSystem\PL.csproj", "{A8900837-1017-4755-B939-DBFEB527079D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_BEBL", "DAL\DAL_BEBL.csproj", "{3AC115D4-C4BA-4CDD-AF3D-4AC143FDDE0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8900837-1017-4755-B939-DBFEB527079D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8900837-1017-4755-B939-DBFEB527079D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8900837-1017-4755-B939-DBFEB527079D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8900837-1017-4755-B939-DBFEB527079D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC115D4-C4BA-4CDD-AF3D-4AC143FDDE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC115D4-C4BA-4CDD-AF3D-4AC143FDDE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC115D4-C4BA-4CDD-AF3D-4AC143FDDE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC115D4-C4BA-4CDD-AF3D-4AC143FDDE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E39818F-07DC-4D36-8263-86070E467A7F}
+	EndGlobalSection
+EndGlobal

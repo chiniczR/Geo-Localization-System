@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.NativeImage</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.NativeImageRasterSource">
+            <summary>
+            This class allows you to view standard .NET GDI+ image types such as BMP, TIF,
+            JPG, and PNG.
+            </summary>
+            <remarks>
+            This class handles all default supported image types of GDI+. As none of these
+            types embed geographic information in them, you will need to ensure that the image file
+            is always accompanied by a world file. The world file is text file that stores the
+            associated geographic information we need to properly display the image along with your
+            other feature data.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.#ctor">
+            <summary>This is the constructor the for the class.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.#ctor(System.String)">
+            <summary>This is the constructor the for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in a path and filename for the image you
+            want to load.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            You can specify a path and filename that does not actually exist if you use the
+            StreamLoading event. This event only uses the PathFilename parameter as a unique string
+            that will be passed to you in the event, so that you can determine what stream you want
+            to pass back.
+            </remarks>
+            <param name="imagePathFilename">This parameter represents the image you want to load.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.#ctor(System.String,System.String)">
+            <summary>This is the constructor the for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in a path and filename, and a world file path and filename, for the image you
+            want to load.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            You can specify a path and filename that does not actually exist if you use the
+            StreamLoading event. This event only uses the PathFilename parameter as a unique string
+            that will be passed to you in the event, so that you can determine what stream you want
+            to pass back.
+            </remarks>
+            <param name="imagePathFilename">This parameter represents the image you want to load.</param>
+            <param name="worldfilePathFilename">This parameter represents the world file path and filename you want to load.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.#ctor(System.String,ThinkGeo.MapSuite.Shapes.RectangleShape)">
+            <summary>This is the constructor the for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in a path, filename and extent for the image you
+            want to load.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            You can specify a path and filename that does not actually exist if you use the
+            StreamLoading event. This event only uses the PathFilename parameter as a unique string
+            that will be passed to you in the event, so that you can determine what stream you want
+            to pass back.
+            </remarks>
+            <param name="imagePathFilename">This parameter represents the image you want to load.</param>
+            <param name="imageExtent">This parameter represents the extnet of the image you want to load.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.IsNegative">
+            <summary>This property gets and sets whether the image shows as negative (inverted colors).</summary>
+            <decimalDegreesValue>This property gets whether the image shows as negative (inverted colors).</decimalDegreesValue>
+            <remarks>You can set this property to show the negative of the image.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.IsGrayscale">
+            <summary>This property gets and sets whether the image shows in grayscale.</summary>
+            <decimalDegreesValue>This property gets whether the image shows in grayscale.</decimalDegreesValue>
+            <remarks>This property allows you to show the image in grayscale.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.FileName">
+            <summary>This property returns the filename part of the PathFilename.</summary>
+            <decimalDegreesValue>This property returns the filename part of the PathFilename.</decimalDegreesValue>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.FilePath">
+            <summary>This property returns the path part of the PathFilename.</summary>
+            <decimalDegreesValue>This property returns the path part of the PathFilename.</decimalDegreesValue>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.ImagePathFilename">
+            <summary>
+            This property returns the path and filename of the image you want to
+            represent.
+            </summary>
+            <decimalDegreesValue>
+            This property returns the path and filename of the image you want to
+            represent.
+            </decimalDegreesValue>
+            <remarks>
+            When you specify the path and filename, it should be in the correct format as
+            such; however, the file does not need to actually exist on the file system. This is to allow us
+            to accept streams supplied by the developer at runtime. If you choose to provide a file
+            that exists, we will attempt to use it. If we cannot find it, then we will raise the
+            SteamLoading event and allow you to supply the stream. For example, you can pass in
+            "C:\NotARealPath\File1.jpg" which does not exist on the file system. When we raise the
+            event for you to supply a stream, we will pass to you the path and filename so you can
+            differentiate the files.
+            </remarks>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">Setting an invalid FilePathName structure will throw an ArgumentException.</exception>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.StreamLoading">
+            <summary>
+            This event allows you to pass in your own stream to represent the
+            image.
+            </summary>
+            <remarks>
+            If you wish, you can pass in your own stream to represent the image. The
+            stream can come from a variety of places, including isolated storage, a compressed file,
+            or an encrypted stream. When the image is finished with the stream it will dispose
+            of it, so be sure to keep this in mind when passing the stream in. If you do not pass in
+            an alternate stream, the class will attempt to load the file from the file system
+            using the PathFilename property.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.OnStreamLoading(ThinkGeo.MapSuite.Layers.StreamLoadingEventArgs)">
+            <summary>This method allows you to raise the StreamLoading event.</summary>
+            <returns>None</returns>
+            <remarks>
+            This method allows you to raise the StreamLoading event. Normally events are not
+            accessible to derived classes, so we exposed a way to raise the event as necessary
+            through this protected method.
+            </remarks>
+            <param name="e">
+            This parameter represents the event arguments you want to raise the StreamLoading
+            event with.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.GetImageWidthCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the width of the image in screen coordinates.</summary>
+            <returns>This method returns the width of the image in screen coordinates.</returns>
+            <remarks>This method returns the width of the image in screen coordinates.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.GetImageHeightCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the height of the image in screen coordinates.</summary>
+            <returns>This method returns the height of the image in screen coordinates.</returns>
+            <remarks>This method returns the height of the image in screen coordinates.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.OpenCore">
+            <summary>
+            This method opens the ImageSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concrete public method Open.
+            The Open method plays an important role, as it is responsible for initializing the
+            ImageSource. Most methods on the ImageSource will throw an exception if the state of
+            the ImageSource is not opened. When the map draws each layer, it will open the
+            ImageSource as one of its first steps; then, after it is finished drawing with that
+            layer, it will close it. In this way, we are sure to release all resources used by the
+            ImageSource.<br/>
+            	<br/>
+            When implementing this abstract method, consider opening files for file-based sources,
+            connecting to databases in the database-based sources and so on. You will get a chance
+            to close these in the Close method of the ImageSource.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has already been opened, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.NotSupportedException" caption="NotSupportedException">If the file format you passed is not one of these: .bmp, .gif, .exig, .jpg, .png, or .tiff, we will throw a NotSupportedException.</exception>
+            <exception cref="T:System.IO.FileNotFoundException" caption="FileNotFoundException">If the world file cannot be found using the filename you passed, we will throw an FileNotFoundException when the source is not from a stream.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.CloseCore">
+            <summary>
+            This method opens the ImageSource so that it is initialized and ready to
+            use.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concrete public method Close.
+            The Close method plays an important role in the life cycle of the ImageSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.GetImageCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Int32,System.Int32)">
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass in a worldExtent that is invalid, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If you pass in a worldExtent that is invalid, we will throw an ArgumentException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a image width that is smaller than or equal to 0, we will throw an ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a image height that is smaller than or equal to 0, we will throw an ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <remarks>
+            This method is responsible for returning the image based on the parameters passed
+            in.
+            </remarks>
+            <summary>
+            This method returns an image based on the worldExtent, image width and
+            image height.
+            </summary>
+            <returns>
+            This method returns an image based on the worldExtent, image width and
+            image height.
+            </returns>
+            <param name="worldExtent">This parameter represents the worldExtent you want to draw.</param>
+            <param name="canvasWidth">This parameter represents the width of the image you want to draw.</param>
+            <param name="canvasHeight">This parameter represents the height of the image you want to draw.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the RasterSource.</summary>
+            <returns>This method returns the bounding box of the RasterSource.</returns>
+            <remarks>This method returns the bounding box of the RasterSource.</remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer">
+            <summary>
+            This class represents general image types to be drawn on the map, such as .BMP,
+            .JPG, .PNG, etc.
+            </summary>
+            <remarks>
+            This type of layer is used to draw standard image types on the map.
+            These include .BMP, .JPG, .PNG, .TIFF, and all other image types that are
+            supported by the .NET Framework to be loaded as a Bitmap.<br/>
+            	<br/>
+            Each of these images will need a world file associated with it. The world file contains
+            the geospatial information pertaining to the image. Using the world file, we know its
+            spatial position and other required information to draw it on the map relative to other
+            images or spatial features. World files are small text files with an extension that
+            matches the original image's extension, but with the middle character of the extension
+            changed to a "w". If you have images that you want to use but do not have their world files,
+            please contact the source of the image so that they can provide one for you. world files are
+            fairly common in the GIS community.
+            </remarks>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.StreamLoading">
+            <summary>
+            This event allows you to pass in your own stream to represent the
+            image.
+            </summary>
+            <remarks>
+            If you wish, you can pass in your own stream to represent the image. The
+            stream can come from a variety of places, including isolated storage, a compressed file,
+            or an encrypted stream. When the image is finished with the stream it will dispose
+            of it, so be sure to keep this in mind when passing the stream in. If you do not pass in
+            an alternate stream, the class will attempt to load the file from the file system
+            using the PathFilename property.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the PathFilename property manually before using the layer.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            If you use this constructor, then you need to set the PathFilename property
+            manually before using the layer.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.#ctor(System.String)">
+            <overloads>
+            This constructor allows you to provide the path and filename information for the GDI+ image
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <summary>This is a constructor for the class.</summary>
+            <param name="imagePathFilename">This parameter is the path and filename of the GDI+ image file you want to use.
+            If you want to load a Tiff(.tif or .tiff) files, please use the GeoTiffRasterLayer instead for better performance.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.#ctor(System.String,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename information for both the GDI+ image file and its world file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the GDI+ image file you want to use.
+            If you want to load a Tiff(.tif or .tiff) files, please use the GeoTiffRasterLayer instead for better performance.</param>
+            <param name="worldfilePathFilename">This parameter is the world file path and filename for the GDI+ image you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.#ctor(System.String,ThinkGeo.MapSuite.Shapes.RectangleShape)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename for the GDI+ image file and the
+            image extent to use.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the GDI+ image file you want to use.
+            If you want to load a Tiff(.tif or .tiff) files, please use the GeoTiffRasterLayer instead for better performance.</param>
+            <param name="imageExtent">This parameter is the image extent of GDI+ image file you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In GdiPlusRasterLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.ImagePathFilename">
+            <summary>
+            This property gets and sets the path and filename of the image file you want to
+            use.
+            </summary>
+            <value>This property gets the path and filename of the image file you want to use.</value>
+            <remarks>This should be a complete path and filename for the image file.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.InterpolationMode">
+            <summary>
+                Gets or sets the interpolation mode associated with this System.Drawing.Graphics.
+            </summary>
+            <value>One of the System.Drawing.Drawing2D.InterpolationMode values.</value>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.NativeImageRasterLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>
+            This method will draw the image from the GeoImage source based on the parameters
+            provided.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            The DrawCore method will be called when the layer is being drawn. It will determine if
+            the image is within the extent and the threshold defined. If these
+            parameters are met, it will query the RasterSource for an image and then apply
+            the other various properties (such as transparency, etc.) on the image. Lastly, it will draw
+            the image on the GeoImage or native image passed into the method.
+            </remarks>
+            <param name="canvas">
+            This parameter is the GeoCanvas used to Draw the RasterLayer.
+            </param>
+            <param name="labelsInAllLayers">This parameter is not used for ImageLayers.</param>
+        </member>
+    </members>
+</doc>

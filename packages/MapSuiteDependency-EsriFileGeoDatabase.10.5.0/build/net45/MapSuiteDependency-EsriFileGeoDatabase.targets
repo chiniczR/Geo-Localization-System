@@ -1,0 +1,42 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Condition="'$(MSBuildThisFileDirectory)' != '' And
+                     HasTrailingSlash('$(MSBuildThisFileDirectory)') And
+                     Exists('$(MSBuildThisFileDirectory)\System.Data.SQLite.Core.targets.user')"
+          Project="$(MSBuildThisFileDirectory)\System.Data.SQLite.Core.targets.user" />
+  <ItemGroup>
+    <WrapperFiles Condition="'$(MSBuildThisFileDirectory)' != '' And
+                                   HasTrailingSlash('$(MSBuildThisFileDirectory)')"
+                        Include="$(MSBuildThisFileDirectory)**\*.*" />
+  </ItemGroup>
+  <Target Name="CopyWrapperFiles"
+          Condition="'$(CopyWrapperFiles)' != 'false' And
+                     '$(OutDir)' != '' And
+                     HasTrailingSlash('$(OutDir)') And
+                     Exists('$(OutDir)')"
+          Inputs="@(WrapperFiles)"
+          Outputs="@(WrapperFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')">
+    <Copy SourceFiles="@(WrapperFiles)"
+          DestinationFiles="@(WrapperFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+  <Target Name="CleanWrapperFiles"
+          Condition="'$(CleanWrapperFiles)' != 'false' And
+                     '$(OutDir)' != '' And
+                     HasTrailingSlash('$(OutDir)') And
+                     Exists('$(OutDir)')">
+    <Delete Files="@(WrapperFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      CopyWrapperFiles;
+    </PostBuildEventDependsOn>
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      CopyWrapperFiles;
+    </BuildDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanWrapperFiles;
+    </CleanDependsOn>
+  </PropertyGroup>
+</Project>

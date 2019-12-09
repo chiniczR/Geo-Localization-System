@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.IconValue</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.IconValueItem">
+            <summary>This class is a single item in an IconValueStyle.</summary>
+            <remarks>
+            	<para>This item is used in the IconValueStyle to determine which way to draw the
+                feature based on the FieldValue property.<br/>
+            		<br/>
+                How IconValueStyle works:<br/>
+            		<br/>
+                When you create an IconValueStyle, you need to add multiple IconValueItems to its
+                collection. You input the column name in the IconValueStyle and it will compare the
+                data's value to each IconValueItem's FieldValue. If they match, then it will draw
+                the Feature using the properties of the IconValueItem. In this way, you can render
+                different data with different icons or text.<br/>
+            		<br/>
+                The MinimumLength and MaximumLength properties are important because they are used
+                to ensure that a properly sized icon is used to draw things like road signs. For example,
+                you can set the minimum and maximum values so that the sign icon for a single-digit road
+                number uses one icon, while a two-digit road uses another, wider sign icon
+                in a separate IconValueItem.</para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueItem.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor for the class.</overloads>
+            <returns>None</returns>
+            <remarks>
+            If you use the constructor, then you should set all the properties
+            manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueItem.#ctor(System.String,System.String,ThinkGeo.MapSuite.Styles.TextStyle)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to set the field value, the path and filename of the
+            icon and the text style you want to use to render it.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            You would typically use this constructor if you are using an icon that's located on disk.
+            If you need to use an image from a stream instead, there is another overload that takes a
+            GeoImage.
+            </remarks>
+            <param name="fieldValue">This parameter is the value you want to match.</param>
+            <param name="iconPathFilename">This parameter is the path and filename of the image you want to use.</param>
+            <param name="textStyle">This parameter is the TextStyle of how you want the text drawn.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueItem.#ctor(System.String,ThinkGeo.MapSuite.Drawing.GeoImage,ThinkGeo.MapSuite.Styles.TextStyle)">
+            <remarks>
+            You will typically use this overload if you need to use a stream for the image.
+            If you need to use a file located on disk instead, there is another overload that takes the path and
+            filename to an image.
+            </remarks>
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to set the field value, the GeoImage, and the text
+            style you want to use to render it.
+            </overloads>
+            <returns>None</returns>
+            <param name="fieldValue">This parameter is the value you want to match.</param>
+            <param name="iconImage">This parameter is the GeoImage of the image you want to use.</param>
+            <param name="textStyle">This parameter is the TextStyle of how you want the text drawn.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueItem.TextStyle">
+            <summary>
+            This property gets and sets the style that will be used to draw the text in the
+            icon.
+            </summary>
+            <value>
+            This property gets the style that will be used to draw the text in the
+            icon.
+            </value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueItem.FieldValue">
+            <summary>
+            This property gets and sets the field value that has to match in the
+            IconValueStyle.
+            </summary>
+            <value>
+            This property gets the field value that has to match in the
+            IconValueStyle.
+            </value>
+            <remarks>
+            For an explanation on how the IconValueStyle works, see the IconValueStyle Class
+            remarks.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueItem.IconFilePathName">
+            <summary>
+            This property gets and sets the path and filename of the icon that will be
+            drawn.
+            </summary>
+            <value>
+            This property gets the path and filename of the icon that will be
+            drawn.
+            </value>
+            <remarks>
+            If you need to use a GeoImage, you can set the GeoImage in the constructor or
+            use the property.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueItem.TextValueLengthMin">
+            <summary>
+            This property gets and sets the minimum string length for this item to
+            match.
+            </summary>
+            <value>This property gets the minimum string length for this item to match.</value>
+            <remarks>
+            This is an important property because it is used to ensure that that a properly sized
+            icon is used to draw things like road signs. For example,
+            you can set the minimum and maximum values so that the sign icon for a single-digit road
+            number uses one icon, while a two-digit road uses another, wider sign icon
+            in a separate IconValueItem.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueItem.TextValueLengthMax">
+            <remarks>
+            This is an important property because it is used to ensure that that a properly sized
+            icon is used to draw things like road signs. For example,
+            you can set the minimum and maximum values so that the sign icon for a single-digit road
+            number uses one icon, while a two-digit road uses another, wider sign icon
+            in a separate IconValueItem.
+            </remarks>
+            <summary>
+            This property gets and sets the maximum string length for this item to
+            match.
+            </summary>
+            <value>This property gets the maximum string length for this item to match.</value>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueItem.GetIconImage">
+            <summary>This method gets the icon we will draw as a GeoImage.</summary>
+            <returns>This method gets the icon we will draw as a GeoImage.</returns>
+            <remarks>
+            This method is used when drawing to get the image as a GeoImage. We will
+            internally either pass along the GeoImage the user set, or create a GeoImage from the
+            IconFilePathName that was set.
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.IconValueStyle">
+            <summary>
+            This class allows you to choose different icons based on values in the data of a
+            feature.
+            </summary>
+            <remarks>
+            When you create an IconValueStyle, you need to add multiple IconValueItems to its
+            collection. You input the column name in the IconValueStyle and it will compare the
+            data's value to each IconValueItem's FieldValue. If they match, then it will draw
+            the Feature using the properties of the IconValueItem. In this way, you can render
+            different data with different icons or text.<br/>
+            <br/>
+            The MinimumLength and MaximumLength properties are important because they are used
+            to ensure that a properly sized icon is used to draw things like road signs. For example,
+            you can set the minimum and maximum values so that the sign icon for a single-digit road
+            number uses one icon, while a two-digit road uses another, wider sign icon
+            in a separate IconValueItem.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueStyle.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            If you use this constructor, then you need to set the required properties
+            manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueStyle.#ctor(System.String)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This constructor allows you to pass in the column name.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="columnName">This parameter is the column name you want to match on.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueStyle.#ctor(System.String,System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Styles.IconValueItem})">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This constructor allows you to pass in the column name.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="columnName">This parameter is the column name you want to match on.</param>
+            <param name="iconValueItems">This parameter is the icon value items you want to match on.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueStyle.ColumnName">
+            <summary>
+            This property gets and sets the column name that will be used for the drawing and
+            matching.
+            </summary>
+            <value>
+            This property gets the column name that will be used for the drawing and
+            matching.
+            </value>
+            <remarks>
+            This column name will be used to draw the text on the icon (if necessary) and to
+            also match the value in the IconStyleItem.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.IconValueStyle.IconValueItems">
+            <summary>This property gets the collection of IconValueItems for matching.</summary>
+            <value>This property gets the collection of IconValueItems for matching.</value>
+            <remarks>
+            You should create your IconValueItems and place them in this collection for
+            consideration.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When overriding this method, consider each feature and its column data values. You can
+            use the full power of the GeoCanvas to do the drawing. If you need column data for a
+            feature, be sure to override the GetRequiredColumnNamesCore and add the columns you need
+            to the collection. In many of the styles, we add properties to allow the user to specify
+            which field they need; then, in the GetRequiredColumnNamesCore, we read that property and
+            add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the features, we will throw an ArgumentNullException.</exception>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueStyle.GetRequiredColumnNamesCore">
+            <remarks>
+             This abstract method is called from the concrete public method
+             GetRequiredFieldNames. In this method, we return the column names that are required for
+             the style to draw the feature properly. For example, if you have a style that colors
+             areas blue when a certain column value is over 100, then you need to be sure you include
+             that column name. This will ensure that the column data is returned to you in the
+             feature when it is ready to draw.<br/>
+             	<br/>
+             In many of the styles, we add properties to allow the user to specify which field they
+             need; then, in the GetRequiredColumnNamesCore, we read that property and add it to the
+             collection.
+             </remarks>
+             <summary>
+             This method returns the column data for each feature that is required for the
+             style to properly draw.
+             </summary>
+             <returns>This method returns a collection of the column names that it needs.</returns>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If columnName is null, we will throw an ArgumentNullException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.IconValueStyle.GetLabelingCandidateCore(ThinkGeo.MapSuite.Shapes.Feature,ThinkGeo.MapSuite.Drawing.GeoCanvas)">
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the feature you passed in and determine if it is a candidate for
+            labeling. If it is, then we will add it to the return collection. The algorithm to
+            determine whether the label will draw is complex and determined by a number of properties
+            and factors.
+            </remarks>
+            <summary>
+            This method determines whether the specified feature is a good candidate to be labeled,
+            based on the labeling properties set.
+            </summary>
+            <param name="feature">
+            This parameter is the feature that will be considered as a labeling
+            candidate.
+            </param>
+            <param name="canvas">
+            This parameter is the canvas that will be used to draw the feature. This method will not
+            draw on this canvas, but rather will use it to determine font size, etc.
+            </param>
+        </member>
+    </members>
+</doc>

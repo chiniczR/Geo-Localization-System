@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="PL.ReportUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PL"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="35*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="27*"/>
+        </Grid.RowDefinitions>
+        <Label Name="reportLabel" FontSize="28" Grid.ColumnSpan="2" Margin="0,15,0,0" Content="{DynamicResource newReportString}" Style="{StaticResource loginLabelStyle}" FontWeight="SemiBold" BorderBrush="#57ba98" BorderThickness="0,4,0,3"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,15,0,0">
+                <Label Name="addressLabel" Margin="0,5,0,0" Content="{DynamicResource addressString}" Style="{StaticResource addrLabelStyle}"/>
+                <TextBox Name="addressBox" Margin="0,0,0,5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="25" FontFamily="Levenim MT" FontSize="14" BorderBrush="#182628" BorderThickness="2.4,1.2,1.2,2.4"/>
+                <CheckBox x:Name="prevFallCheck" Margin="0,5,0,0" Content="{DynamicResource referringToPrevLabel}" Style="{StaticResource checkContentStyle}" FontSize="15" Click="PrevFallCheck_Checked"/>
+                <!--Click="PrevFallCheck_Click"/>-->
+                <StackPanel x:Name="prevFallPanel" Margin="0,5,0,0" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=prevFallCheck, Path=IsChecked}" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <Label Name="howPrevFallLabel" Content="{DynamicResource whichPrevFallLabel1}">
+                        <Label.Style>
+                            <Style TargetType="Label" BasedOn="{StaticResource addrLabelStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=prevFallCheck, Path=IsChecked}" Value="False">
+                                        <Setter Property="Opacity" Value="0.3"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                    <TextBox x:Name="prevFallTextBox" Width="50" Height="25" FontFamily="Levenim MT" FontSize="14" HorizontalContentAlignment="Center" BorderBrush="#182628" BorderThickness="2.4,1.2,1.2,2.4" PreviewTextInput="PrevFallTextBox_PreviewTextInput">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=prevFallCheck, Path=IsChecked}" Value="False">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Text" Value=""/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                <Label Name="howPrevEndLabel" Content="{DynamicResource whichPrevFallLabel2}">
+                    <Label.Style>
+                        <Style TargetType="Label" BasedOn="{StaticResource addrLabelStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=prevFallCheck, Path=IsChecked}" Value="False">
+                                    <Setter Property="Opacity" Value="0.3"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+            </StackPanel>
+         </StackPanel>
+        <Button x:Name="actualReportButton" Grid.ColumnSpan="2" Margin="0,0,0,20" Content="{DynamicResource actuallyReportString}" Style="{StaticResource altButtonStyle}" Grid.Row="1" VerticalAlignment="Bottom" Click="ActualReportButton_Click"/>
+        <Grid Grid.Row="2">
+            <Grid.Background>
+                <!--<ImageBrush ImageSource="Resources/darkTealBG.jpg" Stretch="Fill" Opacity="0.6"/>-->
+                <SolidColorBrush Color="#3b945e"/>
+            </Grid.Background>
+            <Label Name="sameFallLabel" FontWeight="ExtraLight" BorderBrush="#f2f2f2" BorderThickness="2.6,1.2,1.2,2.6" FontSize="16" Margin="5,5,0,0" HorizontalAlignment="Left" Content="{DynamicResource sameFallLabel}" VerticalAlignment="Top" Style="{StaticResource smallLabelStyle}" Grid.Row="2" Grid.Column="0"/>
+            <Label x:Name="reportBottomLabel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource titleLabelStyle}" Content="{DynamicResource reportString}" FontSize="18" BorderBrush="DarkOliveGreen" FontFamily="./Resources/#Bebas Neue" BorderThickness="0,0,0,1" Margin="0,0,0,2"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="73*"/>
+                <RowDefinition Height="27*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel VerticalAlignment="Center">
+                    <Image Source="Resources/newReportIcon.png" MaxHeight="160" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch" Background="#182628">
+                <Label Grid.Row="1" VerticalAlignment="Top" Name="title1" FontFamily="./Resources/#Bebas Neue" FontWeight="UltraBold"  Margin="0,10,0,0" Height="50" FontSize="38" Foreground="#EDF5E1" HorizontalAlignment="Center" Content="{DynamicResource titleString1}"/>
+                <Label Grid.Row="1" VerticalAlignment="Center" Name="title2" FontFamily="./Resources/#Bebas Neue" FontWeight="Regular"  Height="50" FontSize="38" Foreground="#EDF5E1" HorizontalAlignment="Center" Content="{DynamicResource titleString2}"/>
+                <Label Grid.Row="1" VerticalAlignment="Bottom" Name="title3" FontFamily="./Resources/#Bebas Neue" FontWeight="UltraBold"  Margin="0,0,0,10" Height="50" FontSize="38" Foreground="#EDF5E1" HorizontalAlignment="Center" Content="{DynamicResource titleString3}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

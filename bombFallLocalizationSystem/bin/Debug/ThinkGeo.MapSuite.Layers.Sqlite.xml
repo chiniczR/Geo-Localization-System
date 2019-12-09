@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Sqlite</name>
+    </assembly>
+    <members>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteColumn.#ctor">
+            <summary>This method is the constructor for the DbfColumn.</summary>
+            <overloads>This is the default constructor.</overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ThinkGeo.MapSuite.Layers.SqliteColumn.#ctor(System.String,ThinkGeo.MapSuite.Layers.SqliteColumnType)" -->
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteColumn.ColumnType">
+            <summary>This property returns the type of the column.</summary>
+            <decimalDegreesValue>This property returns the type of the column.</decimalDegreesValue>
+            <remarks>None</remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.SqliteColumnType">
+            <summary>This enumeration represents the column type in Sqlite.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.SqliteColumnType.Null">
+            <summary>
+            Null values
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.SqliteColumnType.Integer">
+            <summary>
+            Integer values
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.SqliteColumnType.Real">
+            <summary>
+            Floating Point Values
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.SqliteColumnType.Text">
+            <summary>
+            String values
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.SqliteColumnType.Blob">
+            <summary>
+            Stored as raw binary data
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.SqliteColumnType.Numeric">
+            <summary>
+            Numeric, Boolean, Date/Time values
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.ColumnNameNotExist">
+            <summary>
+              Looks up a localized string similar to The column name you input does not exist..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.ConnectionStringCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The connection string can not be null..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.FeatureIdColumnNotExist">
+            <summary>
+              Looks up a localized string similar to Feature id column you input does not exist in the table..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.FeatureSourceCanNotExecuteSqlQuery">
+            <summary>
+              Looks up a localized string similar to Executing sql queries is not supported and the user should always check the CanExecuteSqlQueries to ensure the FeatureSource support it before calling..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.FeatureSourceIsNotInTransaction">
+            <summary>
+              Looks up a localized string similar to The FeatureSource is not in a transaction..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.FeatureSourceIsNotOpen">
+            <summary>
+              Looks up a localized string similar to The FeatureSource is not in open process..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.GeometryColumnNotExist">
+            <summary>
+              Looks up a localized string similar to Geometry column you input does not exist in the table..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.InvalidSrid">
+            <summary>
+              Looks up a localized string similar to We can not find a valid Srid, please check the table exists. If this is a View, please set the Srid property on class...
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.ParameterIsInvalid">
+            <summary>
+              Looks up a localized string similar to The shape you provided does not pass our simple validation..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.ParameterIsNull">
+            <summary>
+              Looks up a localized string similar to The parameter you supplied may not be null..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.ParameterIsNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The parameter you supplied may not be null or empty..
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteExceptionDescription.SqliteDatabaseIsReadOnly">
+            <summary>
+              Looks up a localized string similar to Do not use WAL mode by default when opening a SQLite file in Read. Add TransactionMode property to let user specify using WAL or not..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer">
+            <summary>This class represents a FeatureSource backed by SQLite.</summary>
+            <remarks>None</remarks>    
+            
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor but it is not typically used.</overloads>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to pass in all of the data to create the
+            FeatureSource.
+            </overloads>
+            <returns>None</returns>
+            <remarks>None</remarks>
+            <param name="connectionString">This parameter represents the connection string to connect to the server.</param>
+            <param name="tableName">This parameter represents the table name being accessed.</param>
+            <param name="featureIdColumn">
+            This parameter represents the name of the column that holds the unique feature
+            Id.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In SqliteFeatureLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.ConnectionString">
+            <summary>
+            This property gets and sets the connection string used to connect to the
+            server.
+            </summary>
+            <value>This property gets the connection string used to connect to the server.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.TableName">
+            <summary>This property gets or sets the table name the database will use.</summary>
+            <value>This property gets the table name the database will use.</value>
+            <remarks>None</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.FeatureIdColumn">
+            <summary>
+            This property gets or sets the name of the column that holds the unique feature
+            Id.
+            </summary>
+            <value>
+            This property gets the name of the column that holds the unique feature
+            Id.
+            </value>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureLayer.ExecuteNonQuery(System.String)">
+            <summary>This method executes a query that does not return a SQL result.</summary>
+            <returns>The number of records effected.</returns>
+            <remarks>This methods executes a query that has no results.</remarks>
+            <param name="sqlStatement">This parameter represents the SQL statement that will be executed.</param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.SqliteFeatureSource">
+            <summary>This class represents a FeatureSource backed by SQLite.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureSource.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor but it is not typically used.</overloads>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureSource.CreateTable(System.Data.SQLite.SQLiteConnection,System.String,System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Layers.SqliteColumn},ThinkGeo.MapSuite.GeographyUnit)">
+            <summary>
+            Creates a new table in the specified Sqlite database.
+            </summary>
+            <param name="connectionString">Sqlite connection for the database to create the table in</param>
+            <param name="tableName">Name of the new table</param>
+            <param name="nonGeometryColumns">nongeometry related columns to include in the new table</param>
+            <param name="unit">Unit used for projection</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureSource.CreateTable(System.String,System.String,System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Layers.SqliteColumn},ThinkGeo.MapSuite.GeographyUnit)">
+            <summary>
+            Creates a new table in the specified Sqlite database.
+            </summary>
+            <param name="connectionString">Connection string for the database to create the table in</param>
+            <param name="tableName">Name of the new table</param>
+            <param name="nonGeometryColumns">nongeometry related columns to include in the new table</param>
+            <param name="unit">Unit used for projection</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureSource.CreateView(System.Data.SQLite.SQLiteConnection,System.String,System.String,System.String,ThinkGeo.MapSuite.GeographyUnit,System.String)">
+            <summary>
+            Creates a new view in the specified Sqlite database
+            </summary>
+            <param name="connectionString">Connection for the database to create the table in</param>
+            <param name="viewName">Name of the new view</param>
+            <param name="createViewSql">Sql statement to use when creating the view</param>
+            /// <param name="featureIdColumn">The column to use as the feature Id</param>
+            <param name="unit">Unit used for projection</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.SqliteFeatureSource.CreateView(System.String,System.String,System.String,System.String,ThinkGeo.MapSuite.GeographyUnit)">
+            <summary>
+            Creates a new view in the specified Sqlite database
+            </summary>
+            <param name="connectionString">Connection string for the database to create the table in</param>
+            <param name="viewName">Name of the new view</param>
+            <param name="createViewSql">Sql statement to use when creating the view</param>
+            <param name="featureIdColumn">The column to use as the feature Id</param>
+            <param name="unit">Unit used for projection</param>
+        </member>
+    </members>
+</doc>

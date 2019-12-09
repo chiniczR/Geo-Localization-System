@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.Value</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.ValueItem">
+            <summary>This class represents a single value to match and styles to draw.</summary>
+            <remarks>
+            Value Style:<br/>
+            	<br/>
+            The ValueStyle allows you to match data in the FeatureSource against a value string. If
+            the value matches, then we will use the style defined in that item to do the drawing.
+            For example, let's say you have some data that contains states, and each state is categorized as either a high,
+            medium or low pollution state. Based on the string values of "High", Medium" and "Low",
+            we can match on these. If a feature's data for the column matched the string "High", then
+            we would use the high ValueItem's styles to draw that feature. This can be applied to all
+            kinds of things, such as road classifications, etc.<br/>
+            	<br/>
+            This can be somewhat slow because we have to match data from the FeatureSource. If
+            performance is key, then instead of using the ValueStyle, we recommend that you create a set
+            custom index for your layer, one index with only "High" elements, one for "Medium" and so on.
+            Then load each as a separate layer. In this way, you would only have one data set, but
+            multiple indexes. This is the fastest way if you are working with Shape Files. If you are
+            working with spatial databases, then we suggest creating a view to segment out each
+            category.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueItem.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <returns>None</returns>
+            <overloads>
+            If you use this constructor, you should set the necessary properties
+            manually.
+            </overloads>
+            <remarks>
+            If you use this constructor, you should set the necessary properties
+            manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.AreaStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify an AreaStyle you want to use. You should
+            use this if the features you are drawing are area-based. Alternatively, you can set the
+            properties of the DefaultAreaSytle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultAreaStyle.
+            </remarks>
+            <param name="value">
+            This parameter is the value that will match with the data specified for the
+            feature.
+            </param>
+            <param name="areaStyle">This parameter is the style you want to draw with if the value matches.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.LineStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a LineStyle you want to use. You should
+            use this if the features you are drawing are line-based. Alternatively, you can set the
+            properties of the DefaultLineSytle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultLineStyle.
+            </remarks>
+            <param name="value">
+            This parameter is the value that will match with the data specified for the
+            feature.
+            </param>
+            <param name="lineStyle">This parameter is the style you want to draw with if the value matches.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.PointStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a PointStyle you want to use. You should
+            use this if the features you are drawing are point based. Alternatively, you can set the
+            properties of the DefaultPointSytle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultPointStyle.
+            </remarks>
+            <param name="value">
+            This parameter is the value that will match with the data specified for the
+            feature.
+            </param>
+            <param name="pointStyle">This parameter is the style you want to draw with if the value matches.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.TextStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a TextStyle you want to use. You should
+            use this if the features you are drawing are text based. Alternatively, you can set the
+            properties of the DefaultTextSytle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultTextStyle.
+            </remarks>
+            <param name="value">
+            This parameter is the value that will match with the data specified for the
+            feature.
+            </param>
+            <param name="textStyle">This parameter is the style you want to draw with if the value matches.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueItem.#ctor(System.String,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.Style})">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a group of CustomStyles you want to use. You can add the potential AreaStyle,
+            LineStyle, or PointStyle to the CustomStyles to draw areas, lines and points separately.
+            </overloads>
+            <returns>None</returns>
+            <param name="value">
+            This parameter is the value that will match with the data specified for the
+            feature.
+            </param>
+            <param name="customStyles">This parameter represents the styles you want to draw with if the value matches.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueItem.Value">
+            <summary>
+            This property gets and sets the value that we use to match with the feature data.
+            If the value matches, we use the style for this item.
+            </summary>
+            <value>This property gets the value that we use to match with the feature data.</value>
+            <remarks>
+            The value must match exactly. If more complex matching is required, we
+            suggest you use the RegexStyle. The RegexStyle enables you to use regular expressions,
+            which are very powerful for fuzzy matching.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueItem.DefaultAreaStyle">
+            <summary>
+            This property gets and sets the default AreaStyle. You should use this style if
+            your features are area-based.
+            </summary>
+            <value>This property gets the default AreaStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueItem.DefaultLineStyle">
+            <summary>
+            This property gets and sets the default LineStyle. You should use this style if
+            your features are line-based.
+            </summary>
+            <value>This property gets the default LineStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueItem.DefaultPointStyle">
+            <summary>
+            This property gets and sets the default PointStyle. You should use this style if
+            your features are point-based.
+            </summary>
+            <value>This property gets the default LineStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueItem.DefaultTextStyle">
+            <summary>
+            This property gets and sets the default TextStyle. You should use this style if
+            your features are text-based (such as labels).
+            </summary>
+            <value>This property gets the default TextStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueItem.CustomStyles">
+            <summary>This property gets the collection of custom styles.</summary>
+            <value>This property gets the collection of custom styles.</value>
+            <remarks>
+            The custom styles allow you to use styles other than the default style
+            properties of the class. In this way, you can use a DotDensityStyle or any other style in the
+            API.
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.ValueStyle">
+            <remarks>
+            Value Style:<br/>
+            	<br/>
+            The ValueStyle allows you to match data in the FeatureSource against a value string. If
+            the value matches, then we will use the style defined in that item to do the drawing.
+            For example, let's say you have some data that contains states, and each state is categorized as either a high,
+            medium or low pollution state. Based on the string values of "High", Medium" and "Low",
+            we can match on these. If a feature's data for the column matched the string "High", then
+            we would use the high ValueItem's styles to draw that feature. This can be applied to all
+            kinds of things, such as road classifications, etc.<br/>
+            	<br/>
+            This can be somewhat slow because we have to match data from the FeatureSource. If
+            performance is key, then instead of using the ValueStyle, we recommend that you create a set
+            custom index for your layer, one index with only "High" elements, one for "Medium" and so on.
+            Then load each as a separate layer. In this way, you would only have one data set, but
+            multiple indexes. This is the fastest way if you are working with Shape Files. If you are
+            working with spatial databases, then we suggest creating a view to segment out each
+            category.
+            </remarks>
+            <summary>
+            This class allows you to match a value with data in the feature to determine how
+            to draw that feature.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueStyle.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, you need to set the
+            required properties manually.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            If you use this constructor, you need to set the required properties
+            manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueStyle.#ctor(System.String,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.ValueItem})">
+            <summary>
+            This is a constructor for this class.
+            </summary>
+            <param name="columnName">The columnName used to match with the value specified in the items.</param>
+            <param name="valueItems">The collection of ValueItems. Each item can have its own value to match.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueStyle.ColumnName">
+            <summary>
+            This property gets and sets the column name used to match with the value
+            specified in the items.
+            </summary>
+            <value>
+            This property gets the column name used to match with the value specified in
+            the items.
+            </value>
+            <remarks>This is the column we use for matching.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.ValueStyle.ValueItems">
+            <summary>
+            This property gets the collection of ValueItems. Each item can have its own value to
+            match.
+            </summary>
+            <value>This property gets the collection of ValueItems.</value>
+            <remarks>
+            You will want to add ValueItems to this collection. Each item can have its own
+            style and matching string.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style (based on its properties) may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When overriding this method, consider each feature and its column data values. You can
+            use the full power of the GeoCanvas to do the drawing. If you need column data for a
+            feature, be sure to override the GetRequiredColumnNamesCore and add the columns you need
+            to the collection. In many of the styles, we add properties to allow the user to specify
+            which field they need; then, in the GetRequiredColumnNamesCore, we read that property and
+            add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the features, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If columnName is null, we will throw an ArgumentNullException.</exception>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.ValueStyle.GetRequiredColumnNamesCore">
+            <remarks>
+             This abstract method is called from the concrete public method
+             GetRequiredFieldNames. In this method, we return the column names that are required for
+             the style to draw the feature properly. For example, if you have a style that colors
+             areas blue when a certain column value is over 100, then you need to be sure you include
+             that column name. This will ensure that the column data is returned to you in the
+             feature when it is ready to draw.<br/>
+             	<br/>
+             In many of the styles, we add properties to allow the user to specify which field they
+             need; then, in the GetRequiredColumnNamesCore, we read that property and add it to the
+             collection.
+             </remarks>
+             <summary>
+             This method returns the column data for each feature that is required for the
+             style to properly draw.
+             </summary>
+             <returns>This method returns a collection of the column names that it needs.</returns>
+             <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If columnName is null, we will throw an ArgumentNullException.</exception>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Adornments</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.LogoAdornmentLayer">
+            <summary>
+            This is the sub base class of <strong>AdornmentLayer</strong>. The <strong>LogoAdornmentLayer</strong> is
+            taken as Logo map of the Map Control.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.LogoAdornmentLayer.#ctor">
+            <summary>This method is the default constructor for the LogoAdornmentLayer.</summary>
+            <remarks>None</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.LogoAdornmentLayer.#ctor(ThinkGeo.MapSuite.Drawing.GeoImage)">
+            <summary>
+            This is the constructor for the LogoAdormentLayer that receives a specified logo.
+            </summary>
+            <param name="image">This parameter represents the logo to be drawn on the map.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.LogoAdornmentLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the LogoAdornmentLayer.</summary>
+            <remarks>
+            This virtual method is called from the concreate public method Draw. In this
+            method draw the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            You can use the full power of the AdornmentLayer to do the drawing.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the geoCanvas we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the labelsInAllLayers we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a mapUnit that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.</exception>
+            <param name="labelsInAllLayers">This parameter are the labels used for collision detection and duplication check</param>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+        </member>
+        <member name="E:ThinkGeo.MapSuite.Layers.MagneticDeclinationAdornmentLayer.StreamLoading">
+            <summary>
+            This event allows you to pass in your own stream to represent the
+            image.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MagneticDeclinationAdornmentLayer.MagneticFieldPathFilename">
+            <summary>
+            International Geomagnetic Reference Field (IGRF-11)
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.MagneticDeclinationAdornmentLayer.OnStreamLoading(ThinkGeo.MapSuite.Layers.StreamLoadingEventArgs)">
+            <summary>This method allows you to raise the StreamLoading event.</summary>
+            <returns>None</returns>
+            <remarks>
+            This method allows you to raise the StreamLoading event. Normally events are not
+            accessible to derived classes, so we exposed a way to raise the event as necessary
+            through this protected method.
+            </remarks>
+            <param name="e">
+            This parameter represents the event arguments you want to raise the StreamLoading
+            event with.
+            </param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.MagneticDeclinationExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MagneticDeclinationExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MagneticDeclinationExceptionDescription.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.MagneticDeclinationExceptionDescription.DateTimeBeyondFileSupportLife">
+            <summary>
+              Looks up a localized string similar to The supported datetime should be between 1900 and 2015..
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.AdornmentsResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.AdornmentsResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.AdornmentsResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.AdornmentsResource.PoweredByLogo">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.AdornmentsResource.IGRF11">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.AdornmentsResource.IGRF12">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer">
+            <summary>
+            The <strong>ScaleBarAdornmentLayer</strong> class allows you show a bar graphic on
+            the map that displays the distance scale for the current map extent.
+            </summary>
+            <remarks>
+            Use the <strong>ScaleBarAdornmentLayer</strong> class as a quick way to implement
+            a <strong>ScaleBar</strong>. When using the <strong>ScaleBarAdornmentLayer</strong>,
+            you also need to add a ScaleLineAdornmentLayer to the map control. One thing we should pay attention to is that the
+            ScaleBar will not be drawn when the CurrentExtent is outside of
+            Range(-90,180,90,-180).
+            </remarks>
+            <example>
+            	<code lang="CS" title="C# Sample" description="The example below will display a ScaleBarAdornmentLayer on the Map.">
+            		<![CDATA[
+            ScaleBarAdornmentLayer scaleLineAdornmentLayer = new ScaleBarAdornmentLayer();
+            mapEngine.AdornmentLayers.Add("ScaleLineAdornmentLayer", scaleLineAdornmentLayer);]]>
+            	</code>
+            	<code lang="VB" title="VB Sample" description="The example below will display a ScaleBarAdornmentLayer on the Map.">
+            		<![CDATA[
+            Dim scaleLineAdornmentLayer As New ScaleBarAdornmentLayer()
+            mapEngine.AdornmentLayers.Add("ScaleLineAdornmentLayer", scaleLineAdornmentLayer) ]]>
+            	</code>
+            </example>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.#ctor">
+            <summary>
+            Creates a new instance of the <strong>ScaleBarAdornmentLayer</strong>
+            class.
+            </summary>
+            <remarks>
+            When displaying a <strong>ScaleBarAdornmentLayer</strong>, we need to instance a
+            ScaleLineAdornmentLayer and add it to MapEngine. The ScaleBar will not be drawn when the
+            <strong>CurrentExtent</strong> is outside of the world Extent(-90,180-,90,-180).
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.ProjectionToDecimalDegrees">
+            <summary>
+            Gets or sets a Proj4 projection parameter string which shows what coordinate system the map is using.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.DisplayUnitString">
+            <summary>
+            This propery is a dictionary that exposes what text will be drawn to represent the ScaleLine
+            Unit.
+            </summary>
+            <remarks>
+            We will display different letters for different units of measure; for example: "m"
+            for meters, "ft" for feet, etc.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.UnitFamily">
+             <summary>
+             Gets or sets the <strong>UnitSystem</strong> (Imperial/Metric) to be used for the ScaleBar.
+             </summary>
+            <remarks>
+             By setting this property, you can control whether to use a metric or imperial
+             measurement system for the ScaleBar.
+             </remarks>
+            <example>
+            The example below sets the <strong>ScaleBar</strong> to use the metric system of measurement.
+                 <code lang="VB" title="UnitFamily">
+            Dim adornment As New ScaleBarAdornmentLayer()
+            adornment.UnitFamily = UnitSystem.Metric
+                 </code>
+                 <code lang="CS" title="UnitFamily">
+            ScaleBarAdornmentLayer adornment = new ScaleBarAdornmentLayer();
+            adornment.UnitFamily = UnitSystem.Metric;
+                 </code>
+            </example>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.Thickness">
+            <summary>
+            Gets or sets the thickness of the ScaleBar. It is an integer value representing the height
+            of the ScaleBar in screen units.
+            </summary>
+            <requirements>
+            You can set this property to control the height (or thickness) of the ScaleBar.
+            A large number would make the ScaleBar thicker, while a smaller number would make it
+            thinner.
+            </requirements>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.MaxWidth">
+            <summary>
+            Gets or Sets the <strong>MaxWidth</strong> of the ScaleBar.
+            </summary>
+            <remarks>
+            You can use this property to set the maximum width that you want the ScaleBar to
+            occupy on the map. The <strong>ScaleBarAdornmentLayer</strong> will automatically adjust its
+            size based upon the current extent of the map. By setting this property, you can control
+            the maximum width the ScaleBar will occupy on the map.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.BarBrush">
+            <summary>
+            The property is the <strong>GeoBrush</strong> that will be used to draw the ScaleBar.
+            </summary>
+            <remarks>
+            This <strong>BarBrush</strong> property will give you full control over the
+            appearance of the <strong>ScaleBarAdornmentLayer</strong>.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.AlternateBarBrush">
+            <summary>
+            The property is the <strong>GeoBrush</strong> that will be used to draw the alternate ScaleBar.
+            </summary>
+            <remarks>
+            This <strong>AlternateBarBrush</strong> property will give you full control over the
+            appearance of the <strong>ScaleBarAdornmentLayer</strong>.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.MaskBrush">
+            <summary>
+            Gets or sets the color for the <strong>ScaleBarAdornmentLayer</strong>'s mask, if
+            the <strong>HasMask</strong> property is set to true.
+            </summary>
+            <requirements>
+            Setting the <strong>MaskBrush</strong> gives you control over how the mask of the
+            <strong>ScaleBarAdornmentLayer</strong> will look. For example, if you have set the map's
+            <strong>CanvasBrush</strong> to a TextureBrush, you might want to set the ScaleBar mask
+            to the same brush to keep the two looking similar.
+            </requirements>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.HasMask">
+            <summary>
+            Gets or sets whether the ScaleBar will have a mask or not. A boolean value representing
+            whether or not a mask is shown.
+            </summary>
+            <remarks>
+            Depending upon the look of your map and your requirements, you may or may not want
+            a mask on the ScaleBar. You can control whether or not the ScaleBar has a mask by
+            setting this property. If you set the <strong>HasMask</strong> property to true, be
+            sure to specify a mask color (or texture) by using the <strong>MaskBrush</strong> property.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.MaskContour">
+            <summary>Gets or sets the pen for the outline of the ScaleBar mask.</summary>
+            <remarks>
+            By using this property you can control the border of the mask, if the
+            <strong>HasMask</strong> property is set to true. If you do not want a contour or
+            border to show, you should set the pen to transparent.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ScaleBarAdornmentLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Draw. This
+            method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties to
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.ScaleBarExceptionDescription">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarExceptionDescription.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleBarExceptionDescription.InputGeometryTypeIsNotValid">
+            <summary>
+              Looks up a localized string similar to Input Geometry Type Is Not Valid.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.UnitSystem">
+            <summary>
+            System of measurement.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.UnitSystem.Imperial">
+            <summary>
+            Imperial measurement system.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.UnitSystem.Metric">
+            <summary>
+            Metric measurement system.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.UnitSystem.NauticalMile">
+            <summary>
+            Metric measurement system with Nautical Mile.
+            </summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer">
+            <summary>
+            The <strong>ScaleLineAdornmentLayer</strong> is a concrete class inherited from
+            <strong>AdornmentLayer</strong>. The <strong>ScaleLineAdornmentLayer</strong> class
+            allows you show a ScaleLine graphic on the map.
+            </summary>
+            <remarks>
+            The <strong>ScaleLineAdornmentLayer</strong> of the map is a quick way to
+            implement a ScaleLine. When doing this, we also have to add a
+            <strong>ScaleLineAdornmentLayer</strong> to the map control.
+            </remarks>
+            <example>
+            	<code lang="CS" title="C# sample" description="The example below shows how to add a ScaleLineAdornmentLayer to MapEngine.">
+            		<![CDATA[
+            ScaleLineAdornmentLayer scaleLineAdornmentLayer = new ScaleLineAdornmentLayer();
+            mapEngine.AdornmentLayers.Add("ScaleLineAdornmentLayer", scaleLineAdornmentLayer);]]>
+            	</code>
+            	<code lang="VB" title="VB sample" description="The example below shows how to add a ScalelineAdornmentLayer to MapEngine.">
+            		<![CDATA[
+            Dim scaleLineAdornmentLayer As New ScaleLineAdornmentLayer()
+            mapEngine.AdornmentLayers.Add("ScaleLineAdornmentLayer", scaleLineAdornmentLayer)]]>
+            	</code>
+            </example>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.#ctor">
+            <summary>
+            Creates a new instance of the <strong>ScaleLineAdornmentLayer</strong> class. The
+            default location of this <strong>ScaleLineAdornmentLayer</strong> is the lower left corner of
+            the CurrentExtent of the map.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.#ctor(ThinkGeo.MapSuite.Shapes.ScreenPointF)">
+            <summary>
+            Creates a new instance of the <strong>ScaleLineAdornmentLayer</strong> class by
+            passing in the specified ScreenPoint, which will be the start position of this
+            <strong>ScaleLineAdornmentLayer</strong> when it is shown on the map.
+            </summary>
+            <param name="startPoint">The start position of the ScaleLineAdornmentLayer that will be shown on the Map.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.#ctor(ThinkGeo.MapSuite.Layers.AdornmentLocation)">
+            <summary>
+            Creates a new instance of the <strong>ScaleLineAdornmentLayer</strong> class by
+            passing in the specified enumeration of the <strong>AdornmentLocation</strong> that will be used
+            to set the start position of this <strong>ScaleLineAdornmentLayer</strong> when it is shown on the
+            map.
+            </summary>
+            <param name="location">
+            This parameter specifies the location of the start point of the
+            ScaleLineAdornmentLayer.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.ProjectionToDecimalDegrees">
+            <summary>
+            Gets or sets a Proj4 projection parameter string which shows what coordinate system the map is using.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.DisplayUnitString">
+            <summary>
+            This propery is a dictionary that exposes what text will be drawn to represent the ScaleLine
+            Unit.
+            </summary>
+            <remarks>
+            We will display different letters for different units of measure; for example: "m"
+            for meters, "ft" for feet, etc.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.UnitSystem">
+             <summary>
+             Gets or sets the <strong>UnitSystem</strong> to be used for the ScaleLine.
+             </summary>
+            <remarks>
+             By setting this property, you can set the top and button unit for the ScaleLine.
+             </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.ScaleLineAdornmentLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Draw. This
+            method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties to
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.ScaleLineUnitSystem">
+            <summary>
+            Unit Mode
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.ScaleLineUnitSystem.Default">
+            <summary>
+            Metric measurement system on the top and Imperial measurement system on the bottom.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.ScaleLineUnitSystem.MetricAndNauticalMile">
+            <summary>
+            Metric measurement system on the top and Nautical Mile replace Mile in Imperial measurement system.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.ScaleLineUnitSystem.NauticalMileAndImperial">
+            <summary>
+            Nautical Mile replace Kilometer in Metric measurement system and Imperial measurement system on the bottom.
+            </summary>
+        </member>
+    </members>
+</doc>

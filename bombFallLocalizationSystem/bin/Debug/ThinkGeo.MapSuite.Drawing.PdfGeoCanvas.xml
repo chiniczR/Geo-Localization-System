@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Drawing.PdfGeoCanvas</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas">
+            <summary>
+                This class represents a canvas that is used to draw geographic shapes on
+                a PDF document.
+            </summary>
+            <remarks>
+                <para>
+                    This class allows you to use PDF drawing to render your features.<br />
+                    <br />
+                    The basic flow of the use of the class is to first call the BeginDrawing and pass
+                    in a image along with its world extent.
+                </para>
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.DrawAreaCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.ScreenPointF[]},ThinkGeo.MapSuite.Drawing.GeoPen,ThinkGeo.MapSuite.Drawing.GeoBrush,ThinkGeo.MapSuite.Drawing.DrawingLevel,System.Single,System.Single,ThinkGeo.MapSuite.Drawing.PenBrushDrawingOrder)">
+            <summary>This method draws the area on the GeoCanvas.</summary>
+            <overloads>
+                This overload allows you to pass in the GeoPen and the DrawingLevel you want to
+                draw on.
+            </overloads>
+            <remarks>
+                <para>
+                    This method use used to draw on the GeoCanvas. It provides you number of
+                    overload that allow you control how it is drawn. By specifying the GeoBrush we will
+                    fill in the area. By specifying the GeoPen we will outline the area using that
+                    GeoPen. You can also call a overload which will allow you to specify both a GeoPen
+                    and GeoBrush.
+                </para>
+                <para>
+                    The DrawingLevel allows you to specify the level you will draw on when
+                    drawing many areas. This is very usefully when you want to draw a drop shadow for
+                    example. You can draw the black backdrop on the lowest level with a offset then
+                    draw the normal shape on a higher level without a offset.
+                </para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">
+                In the event you attempt to call
+                this method when the GeoCanvas's IsDrawing mode is false it will throw an InvalidOperationException.
+            </exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">
+                Passing invalid well-known binary in the
+                areaShapeWkb parameter will thrown an ArgumentException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the areaShapeWkb
+                we will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the outlinePen and
+                a null as the fillBrush we will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                drawingLevel that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <param name="areaShapeWkb">This parameter is the area in well know binary format.</param>
+            <param name="outlinePen">
+                This parameter describes the outline GeoPen that will be used to draw the
+                area.
+            </param>
+            <param name="drawingLevel">This parameter determines the DrawingLevel the the GeoPen will draw on.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.DrawLineCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.ScreenPointF},ThinkGeo.MapSuite.Drawing.GeoPen,ThinkGeo.MapSuite.Drawing.DrawingLevel,System.Single,System.Single)">
+            <remarks>
+                <para>
+                    This method use used to draw on the GeoCanvas. By specifying the GeoPen we
+                    will draw the line using that GeoPen.
+                </para>
+                <para>
+                    The DrawingLevel allows you to specify the level you will draw on when
+                    drawing many lines. This is very usefully when you want to draw a road. You can
+                    draw the black background on the lowest level then draw white line on a higher
+                    level slightly thinner. This will give a great effect of a road.
+                </para>
+            </remarks>
+            <summary>Draws the LineShape on the GeoCanvas.</summary>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">
+                In the event you attempt to call
+                this method when the GeoCanvas's IsDrawing mode is false it will throw an InvalidOperationException.
+            </exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">
+                Passing invalid well-known binary in the
+                lineShapeWkb parameter will thrown an ArgumentException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the lineShapeWkb
+                we will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the linePen we
+                will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                drawingLevel that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <param name="lineShapeWkb">This parameter is the LineShape in well know binary format.</param>
+            <param name="linePen">
+                This parameter describes the GeoPen that will be used to draw the
+                LineShape.
+            </param>
+            <param name="drawingLevel">This parameter determines the DrawingLevel the the GeoPen will draw on.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.DrawEllipseCore(ThinkGeo.MapSuite.Shapes.ScreenPointF,System.Single,System.Single,ThinkGeo.MapSuite.Drawing.GeoPen,ThinkGeo.MapSuite.Drawing.GeoBrush,ThinkGeo.MapSuite.Drawing.DrawingLevel,System.Single,System.Single,ThinkGeo.MapSuite.Drawing.PenBrushDrawingOrder)">
+            <summary>Draws the point on the GeoCanvas.</summary>
+            <remarks>
+                <para>
+                    This method use used to draw on the GeoCanvas. It provides you number of
+                    overload that allow you control how it is drawn. By specifying the GeoBrush we will
+                    fill in the area of the point. By specifying the GeoPen we will outline the point
+                    using that GeoPen. You can also call a overload which will allow you to specify
+                    both a GeoPen and GeoBrush.
+                </para>
+                <para>
+                    The DrawingLevel allows you to specify the level you will draw on when
+                    drawing many areas.
+                </para>
+            </remarks>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">
+                In the event you attempt to call
+                this method when the GeoCanvas's IsDrawing mode is false it will throw an InvalidOperationException.
+            </exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">
+                Passing invalid well-known binary in the
+                pointShapeWkb parameter will thrown an ArgumentException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the pointShapeWkb
+                we will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the outlinePen and
+                a null as the fillBrush we will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                drawingLevel that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <param name="centerPointWkb">This parameter is the point in well know binary format.</param>
+            <param name="size">This parameter describes the size of the circle that will be used to draw the point.</param>
+            <param name="outlinePen">
+                This parameter describes the outline GeoPen that will be used to draw the
+                point.
+            </param>
+            <param name="fillBrush">
+                This parameter describes the fill GeoBrush that will be used to draw the
+                point.
+            </param>
+            <param name="drawingLevel">
+                This parameter determines the DrawingLevel the the GeoPen or GeoBrush will draw
+                on.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.DrawScreenImageWithoutScalingCore(ThinkGeo.MapSuite.Drawing.GeoImage,System.Single,System.Single,ThinkGeo.MapSuite.Drawing.DrawingLevel,System.Single,System.Single,System.Single)">
+            <summary>Draws an unscaled image on the GeoCanvas.</summary>
+            <remarks>Drawing an image unscaled is faster than using the API that scales it.</remarks>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">
+                In the event you attempt to call
+                this method when the GeoCanvas's IsDrawing mode is false it will throw an InvalidOperationException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the image we will
+                throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                drawingLevel that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">
+                Passing an invalid image parameter will thrown
+                an ArgumentException.
+            </exception>
+            <param name="image">The image you want to draw unscaled.</param>
+            <param name="centerXInWorld">The X part of the center point of where you want to draw the image.</param>
+            <param name="centerYInWorld">The Y part of the center point of where you want to draw the image.</param>
+            <param name="drawingLevel">This parameter determines the DrawingLevel the image will draw on.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.DrawScreenImageCore(ThinkGeo.MapSuite.Drawing.GeoImage,System.Single,System.Single,System.Single,System.Single,ThinkGeo.MapSuite.Drawing.DrawingLevel,System.Single,System.Single,System.Single)">
+            <summary>Draws a scaled image on the GeoCanvas.</summary>
+            <remarks>
+                Drawing an image scaled is slower than using the API that draws it
+                unscaled.
+            </remarks>
+            <param name="image">The image you want to draw.</param>
+            <param name="centerXInWorld">The X part of the center point of where you want to draw the image.</param>
+            <param name="centerYInWorld">The Y part of the center point of where you want to draw the image.</param>
+            <param name="widthInScreen">
+                The width you want to scale the image to. This is the width the image will be
+                drawn.
+            </param>
+            <param name="heightInScreen">
+                The height you want to scale the image to. This is the height the image will be
+                drawn.
+            </param>
+            <param name="drawingLevel">This parameter determines the DrawingLevel the image will draw on.</param>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">
+                In the event you attempt to call
+                this method when the GeoCanvas's IsDrawing mode is false it will throw an InvalidOperationException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the image we will
+                throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                drawingLevel that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                widthInScreen that is not greater than 0 it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                heightInScreen that is not greater than 0 it will throw a ArgumentOutOfRangeException.
+            </exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.DrawTextCore(System.String,ThinkGeo.MapSuite.Drawing.GeoFont,ThinkGeo.MapSuite.Drawing.GeoBrush,ThinkGeo.MapSuite.Drawing.GeoPen,System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.ScreenPointF},ThinkGeo.MapSuite.Drawing.DrawingLevel,System.Single,System.Single,System.Single,ThinkGeo.MapSuite.Drawing.DrawingTextAlignment)">
+            <summary>
+                <para>
+                    This method allows you to draw the text at the specified location with the
+                    specified brush and font parameters.
+                </para>
+            </summary>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">
+                In the event you attempt to call
+                this method when the GeoCanvas's IsDrawing mode is false it will throw an InvalidOperationException.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">
+                If you pass in a
+                drawingLevel that is not defined in the enumeration it will throw a ArgumentOutOfRangeException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the fillBrush we
+                will throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the text we will
+                throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the font we will
+                throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">
+                If you pass a blank string in the text parameter
+                will thrown an ArgumentException.
+            </exception>
+            <remarks>
+                <para>This method use used to draw on the GeoCanvas.</para>
+                <para>
+                    The DrawingLevel allows you to specify the level you will draw on when
+                    drawing many text pieces. This is very usefully when you want to draw a drop shadow
+                    for example. You can draw the black backdrop on the lowest level with a offset then
+                    draw the normal shape on a higher level without a offset.
+                </para>
+            </remarks>
+            <param name="text">This parameter specifies the text you wish to draw.</param>
+            <param name="font">This parameter represents the font you wish to use to draw the text.</param>
+            <param name="fillBrush">
+                This parameter specifies the kind of fill you want to use to draw the
+                text.
+            </param>
+            <param name="drawingLevel">
+                This parameter specifies the drawing level you wish to draw the text on. Higher
+                levels overwrite lower levels.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.MeasureTextCore(System.String,ThinkGeo.MapSuite.Drawing.GeoFont)">
+            <summary>
+                This method returns the rectangle containing of the specified text when drawn
+                with the specified font.
+            </summary>
+            <remarks>This method is typically used for labeling to determine of labels overlap.</remarks>
+            <returns>
+                This method returns the rectangle containing of the specified text when drawn
+                with the specified font.
+            </returns>
+            <param name="text">This parameter represent the text you want to measure.</param>
+            <param name="font">This parameter represent the font of the text you want to measure.</param>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the text we will
+                throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">
+                If you pass a null as the font we will
+                throw an ArgumentNullException.
+            </exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">
+                If you pass a blank string in the text parameter
+                will thrown an ArgumentException.
+            </exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.BeginDrawingCore(System.Object,ThinkGeo.MapSuite.Shapes.RectangleShape,ThinkGeo.MapSuite.GeographyUnit)">
+            <remarks>
+                This is the first method that needs to be called before any drawing takes place.
+                Calling this method will set the IsDrawing property to true. When you finish drawing
+                you must call the EndDrawing to commit the changes to the image.
+            </remarks>
+            <summary>This method begins the drawing on the GeoCanvas.</summary>
+            <param name="canvasImage">This parameter represents the image you want the GeoCanvas to draw on.</param>
+            <param name="worldExtent">This parameter is the world extent of the canvasImage.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.EndDrawingCore">
+            <summary>This method ends and commits the drawing on the GeoCanvas.</summary>
+            <remarks>
+                This methods should be called when you are finished drawing. It will commit the
+                image changes to the image you passed in on the BeginDrawing. It will also set the
+                IsDrawing to false. After you call this method it will put the GeoCanvas into an
+                invalid state so if you then call any drawing methods it will raise an
+                exception.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.ToNativeImageCore(ThinkGeo.MapSuite.Drawing.GeoImage)">
+            <summary>This method returns a native image object from a GeoCanvas passed in.</summary>
+            <returns>This method returns a native image object from a GeoCanvas passed in.</returns>
+            <remarks>
+                It is faster to provide a native image object to the canvas for drawing. In some
+                cases you may not know what the native image type is. For example for GDI+ it is a
+                bitmap class but dot GDI it may be a handle to a HBitmap. If you are not sure how to
+                create the native image object you should first create a GeoImage and then call this
+                method and it will pass you back the native image object. You can then use it to get
+                excellent drawing performance in the GeoCanvas.
+            </remarks>
+            <param name="image">This parameter is the GeoCanvas you want to convert to a native image.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.ToGeoImageCore(System.Object)">
+            <summary>This method returns a GeoImage from a native image object.</summary>
+            <returns>This method returns a GeoImage from a native image object.</returns>
+            <remarks>
+                This method will allows you to convert your native image object to a GeoImage.
+                Many times when you work with a GeoCanvas you may not know the format of the native
+                image. Using this method you can always convert it back to a GeoImage which is a stream
+                of a TIFF.
+            </remarks>
+            <param name="nativeImage">
+                This parameter is the native image object you want to convert to a
+                GeoImage.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.GetStreamFromGeoImage(ThinkGeo.MapSuite.Drawing.GeoImage)">
+            <summary>This method returns a stream that represents the GeoImage in PNG format.</summary>
+            <returns>This method returns a stream that represents the GeoImage in PNG format.</returns>
+            <remarks>
+                This method allows you to get the stream out of a GeoImage. The stream is a
+                memory stream and the bytes are in Tiff format. From the stream you can then save it to
+                whatever format you need.
+            </remarks>
+            <param name="image">This parameter is the GeoImage you want to convert to a stream.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.ConvertGeoImageToMemoryStream(ThinkGeo.MapSuite.Drawing.GeoImage)">
+            <summary>This method converts a GeoImage to a memory stream.</summary>
+            <overloads>This overload saves the bytes to the memory stream in Tiff format.</overloads>
+            <returns>This method converts a GeoImage to a memory stream.</returns>
+            <remarks>
+                This method is used to get a Tiff memory stream from a GeoImage using the canvas
+                specific methods. If you need to get a different format other than Tiff then you can
+                use the other overload which allows you to specify the output format.
+            </remarks>
+            <param name="image">This parameter is the GeoImage you want to convert to a stream.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.ConvertGeoImageToMemoryStream(ThinkGeo.MapSuite.Drawing.GeoImage,System.Drawing.Imaging.ImageFormat)">
+            <summary>This method converts a GeoImage to a memory stream.</summary>
+            <overloads>
+                This overload saves the bytes to the memory stream in the format you
+                specify.
+            </overloads>
+            <returns>
+                The return is a memory stream with the bytes formatted based on the image format
+                you specify.
+            </returns>
+            <remarks>
+                This method allows you to save the GeoImage to any format you specify. This
+                allows you to save it for example to PNG or toher formats and then save it to
+                disk.
+            </remarks>
+            <param name="image">This parameter is the GeoImage you want to convert to a memory stream.</param>
+            <param name="imageFormat">This parameter is the image format you want the stream in.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Drawing.PdfGeoCanvas.CreateGeoImage(System.Int32,System.Int32)">
+            <summary>This method returns a GeoImage based on the height and width you provide.</summary>
+            <returns>This method returns a GeoImage based on the height and width you provide.</returns>
+            <remarks>You can use this static member to easily create a GeoCanvas.</remarks>
+            <param name="width">This parameter is the width of the GeoImage.</param>
+            <param name="height">This parameter is the height of the GeoImage.</param>
+        </member>
+    </members>
+</doc>

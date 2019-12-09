@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="PL.MainUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PL"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="analysis" UriSource="Resources/analysisIcon.png"/>
+        <BitmapImage x:Key="search" UriSource="Resources/searchIcon.png"/>
+        <BitmapImage x:Key="about" UriSource="Resources/aboutIcon.png"/>
+        <BitmapImage x:Key="share" UriSource="Resources/shareIcon.png"/>
+        <BitmapImage x:Key="question" UriSource="Resources/questionsIcon.png"/>
+        <BitmapImage x:Key="localization" UriSource="Resources/locationIcon.png"/>
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*" Name="secOptions"/>
+            <ColumnDefinition Width="80*"/>
+            <!--<ColumnDefinition Width="28*" Name="fallsList"/>
+            <ColumnDefinition Width="52*" Name="fallsDisplay"/>-->
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="68*"/>
+                <RowDefinition Height="32*"/>
+            </Grid.RowDefinitions>
+            <m:Map Name="fallsView"
+                       Center="33.082253, 32.7795"
+                       BorderBrush="#282828" BorderThickness="4,1.5,1.5,4"
+                       ZoomLevel="4.5" Margin="40,20,25,20"
+                       CredentialsProvider="AlRsFQqP1pJMK0XAEwpVlXhZavETLszIXeemZV0KeGcLsZuXRmtYfiLdn9-Z9T_6"
+                       Mode="Road" Grid.Row="0"
+                       IsManipulationEnabled="True">
+            </m:Map>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <ListView Name="fallsListBox" BorderBrush="#182628" Grid.Column="1" BorderThickness="3,1,1,3"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="15" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     ScrollViewer.CanContentScroll="True" Grid.Row="1" FontFamily="LevenimMT" SelectionChanged="FallsListBox_SelectionChanged">
+                    <ListView.Background>
+                        <!--<ImageBrush ImageSource="Resources/darkTealBG.jpg" Stretch="Fill" Opacity="0.9"/>-->
+                        <SolidColorBrush Color="Transparent"/>
+                    </ListView.Background>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Background" Value="#57ba98"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="FontFamily" Value="./Resources/#Head Versus Hearte"/>
+                            <Setter Property="FontWeight" Value="Thin"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,2" />
+                            <Setter Property="Height" Value="25"/>
+                            <Setter Property="FontSize" Value="13"/>
+                            <Setter Property="Foreground" Value="#EDF5E1"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="#05386B"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="#9e363a"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#05386B"/>
+                                    <Setter Property="FontSize" Value="11"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource FallsListColumnHeaderStyle}">
+                            <GridViewColumn Header="Date" Width="175" DisplayMemberBinding="{Binding date}"/>
+                            <GridViewColumn Header="Lat" Width="95" DisplayMemberBinding="{Binding y, StringFormat=N3}"/>
+                            <GridViewColumn Header="Lon" Width="95" DisplayMemberBinding="{Binding x, StringFormat=N3}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBlock Name="listViewExplainTxtBlock" FontWeight="ExtraLight" VerticalAlignment="Top" Grid.Column="0" Text="{DynamicResource listExplainList}" Margin="15" Style="{StaticResource bigTextStyle}" TextAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="0" Grid.ColumnSpan="1">
+            <Grid.Background>
+                <!--<ImageBrush ImageSource="Resources/yellowGoldBG.jpg"  Stretch="Fill"/>-->
+                <SolidColorBrush Color="#182628"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="47*"/>
+                <RowDefinition Height="28*"/>
+            </Grid.RowDefinitions>
+            <Label Name="title1" Content="{DynamicResource titleString1}" FontFamily="./Resources/#Bebas Neue" FontWeight="UltraBold"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,15" Height="45" FontSize="34" Foreground="#EDF5E1"/>
+            <Label Name="title2" Content="{DynamicResource titleString2}" FontFamily="./Resources/#Bebas Neue" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,15" Height="45"  FontSize="34" Foreground="#EDF5E1"/>
+            <Label Name="title3" Content="{DynamicResource titleString3}" FontFamily="./Resources/#Bebas Neue" FontWeight="UltraBold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,15,0,0" Height="45" FontSize="34" Foreground="#EDF5E1"/>
+            <Menu x:Name="secOptionsMenu" Margin="0,5,0,0" HorizontalAlignment="Center" Grid.Row="1" Background="Transparent" VerticalAlignment="Center">
+                <Button Name="analysisButton" Content="{DynamicResource analsysString}"
+                        Style="{StaticResource secMenuButtonStyle}" Margin="0,0,0,5" Click="AnalysisButton_Click"/>
+                <Button Name="searchButton" Content="{DynamicResource searchString}"
+                        Style="{StaticResource secMenuButtonStyle}" Margin="0,5,0,5" Click="SearchButton_Click"/>
+                <Button Name="aboutButton" Content="{DynamicResource aboutString}"
+                        Style="{StaticResource secMenuButtonStyle}" Margin="0,5,0,5" Click="AboutButton_Click"/>
+                <Button Name="shareButton" Content="{DynamicResource shareString}"
+                        Style="{StaticResource secMenuButtonStyle}" Margin="0,5,0,5" Click="ShareButton_Click"/>
+                <Button Name="questionsButton" Content="{DynamicResource questionsString}"
+                        Style="{StaticResource secMenuButtonStyle}" Margin="0,5,0,5" Click="QuestionsButton_Click"/>
+            </Menu>
+            <Image Margin="10,0,10,15" Grid.Row="2" VerticalAlignment="Center">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=secOptionsMenu, Path=IsMouseOver}" Value="False">
+                                <Setter Property="Source" Value="{StaticResource localization}"/>
+                                <Setter Property="MaxHeight" Value="120"/>
+                                <Setter Property="MaxWidth" Value="120"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=analysisButton, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Source" Value="{StaticResource analysis}"/>
+                                <Setter Property="MaxHeight" Value="120"/>
+                                <Setter Property="MaxWidth" Value="120"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=searchButton, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Source" Value="{StaticResource search}"/>
+                                <Setter Property="MaxHeight" Value="120"/>
+                                <Setter Property="MaxWidth" Value="120"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=aboutButton, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Source" Value="{StaticResource about}"/>
+                                <Setter Property="MaxHeight" Value="120"/>
+                                <Setter Property="MaxWidth" Value="120"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=shareButton, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Source" Value="{StaticResource share}"/>
+                                <Setter Property="MaxHeight" Value="120"/>
+                                <Setter Property="MaxWidth" Value="120"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=questionsButton, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Source" Value="{StaticResource question}"/>
+                                <Setter Property="MaxHeight" Value="120"/>
+                                <Setter Property="MaxWidth" Value="120"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Grid>
+        <Grid Grid.Column="1">
+            <!--<m:Map Name="fallsView"
+                       Center="32.082253, 34.7795"
+                       ZoomLevel="8" Margin="20"
+                       CredentialsProvider="AlRsFQqP1pJMK0XAEwpVlXhZavETLszIXeemZV0KeGcLsZuXRmtYfiLdn9-Z9T_6"
+                       Mode="Road" Grid.Row="0"
+                       IsManipulationEnabled="True">
+            </m:Map>-->
+        </Grid>
+    </Grid>
+</UserControl>

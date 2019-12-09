@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Styles.Regex</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Styles.RegexItem">
+            <summary>This class represents a single Regex Match statement and styles to draw.</summary>
+            <remarks>
+            The RegexItem represents a single matching criteria for a RegexStyle.<br/>
+            	<br/>
+            RegexStyle:<br/>
+            	<br/>
+            The RegexStyle allows you to use complex regular expression matching to determine how
+            your features are drawn. A regular expression is a matching syntax that allows you to
+            match a string based on very complex criteria. For example, let's say you have a layer that has a
+            column in the data that contains school names. Most school names include the type of school
+            they are. For instance, you may have "Lincoln Middle School" or "Bush High School." There are
+            variations to these names though, containing words such as "Elementary" or "Prep." With a regular
+            expression, you can create matching criteria that will allow you to match on many
+            variations of the names. It is especially useful for fuzzy matches where your data is
+            not clearly categorized. Another classic example is for matching or validating email
+            addresses, where matching rules can become complex.<br/>
+            	<br/>
+            In the RegexStyle, you specify the matching criteria string and also the style you want
+            to use to draw the feature if the criteria matches. It is a simple yet powerful style
+            for dealing with complex rule sets and imprecise data.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexItem.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <returns>None</returns>
+            <overloads>
+            If you use this constructor, you should set the necessary properties
+            manually.
+            </overloads>
+            <remarks>
+            If you use this constructor, you should set the necessary properties
+            manually.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.AreaStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify an AreaStyle you want to use. You should
+            use this if the features you are drawing are area-based. Alternatively, you can set the
+            properties of the DefaultAreaStyle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultAreaStyle.
+            </remarks>
+            <param name="regularExpression">
+            This parameter is the regular expression statement you would like to
+            match.
+            </param>
+            <param name="areaStyle">
+            This parameter is the style you want to draw with if the regular expression
+            matches.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.LineStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a LineStyle you want to use. You should
+            use this if the features you are drawing are line-based. Alternatively, you can set the
+            properties of the DefaultLineStyle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultLineStyle.
+            </remarks>
+            <param name="regularExpression">
+            This parameter is the regular expression statement you would like to
+            match.
+            </param>
+            <param name="lineStyle">
+            This parameter is the style you want to draw with if the regular expression
+            matches.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.PointStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a PointStyle you want to use. You should
+            use this if the features you are drawing are point-based. Alternatively, you can set the
+            properties of the DefaultPointStyle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultPointStyle.
+            </remarks>
+            <param name="regularExpression">
+            This parameter is the regular expression statement you would like to
+            match.
+            </param>
+            <param name="pointStyle">
+            This parameter is the style you want to draw with if the regular expression
+            matches.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexItem.#ctor(System.String,ThinkGeo.MapSuite.Styles.TextStyle)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify a TextStyle you want to use. You should
+            use this if the features you are drawing are text-based. Alternatively, you can set the
+            properties of the DefaultTextStyle directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the DefaultTextStyle.
+            </remarks>
+            <param name="regularExpression">
+            This parameter is the regular expression statement you would like to
+            match.
+            </param>
+            <param name="textStyle">
+            This parameter is the style you want to draw with if the regular expression
+            matches.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexItem.#ctor(System.String,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.Style})">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to specify the TextStyles you want to use. You should
+            use this if the features you are drawing are text-based. Alternatively, you can set the
+            properties of the CustomStyles directly on the class.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            It is recommended that you do not use this constructor unless it is absolutely necessary.
+            Instead, you can set the properties directly on the CustomStyles.
+            </remarks>
+            <param name="regularExpression">
+            This parameter is the regular expression statement you would like to
+            match.
+            </param>
+            <param name="styles">
+            This parameter represents the styles you want to draw with if the regular expression
+            matches.
+            </param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexItem.RegularExpression">
+            <summary>This property gets and sets the regular expression text used for matching.</summary>
+            <value>This property gets the regular expression text used for matching.</value>
+            <remarks>
+            This should be a valid regular expression string. Formatting regular expression
+            strings is outside the scope of this documentation; however, there are many useful
+            resources on the web for learning about regular expressions.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexItem.CustomStyles">
+            <summary>This property gets the collection of custom styles.</summary>
+            <value>This property gets the collection of custom styles.</value>
+            <remarks>
+            The custom styles allow you to use styles other than the default style
+            properties of the class. In this way, you can use a DotDensityStyle or any other style in the
+            API.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexItem.DefaultAreaStyle">
+            <summary>
+            This property gets and sets the default AreaStyle. You should use this style if
+            your features are area-based.
+            </summary>
+            <value>This property gets the default AreaStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexItem.DefaultLineStyle">
+            <summary>
+            This property gets and sets the default LineStyle. You should use this style if
+            your features are line-based.
+            </summary>
+            <value>This property gets the default LineStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexItem.DefaultPointStyle">
+            <summary>
+            This property gets and sets the default PointStyle. You should use this style if
+            your features are point-based.
+            </summary>
+            <value>This property gets the default LineStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexItem.DefaultTextStyle">
+            <summary>
+            This property gets and sets the default TextStyle. You should use this style if
+            your features are text-based (such as labels).
+            </summary>
+            <value>This property gets the default TextStyle.</value>
+            <remarks>
+            The default style allows you to directly set properties on the styles without
+            having to create a new style each time. You can start simply by setting properties like color, etc.
+            This makes modifying styles very easy.
+            </remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.RegexMatching">
+            <summary>
+            This enumeration defines the matching criteria for regular expression
+            matching.
+            </summary>
+            <remarks>
+            This is used to determine how much of a string needs to match a regular expression in order
+            to declare it a match for that expression.
+            Sometimes, you only need one part of the string to match in order for the expression to
+            be considered a match; other times you may want the entire string to match.
+            </remarks>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Styles.RegexMatching.MatchFirstOnly">
+            <summary>Only part of the string must match the regular expression.</summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Styles.RegexMatching.MatchAll">
+            <summary>The entire string must match the regular expression.</summary>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Styles.RegexStyle">
+            <remarks>
+            	<para>RegexStyle:</para>
+            	<para>The RegexStyle allows you to use complex regular expression matching to determine how
+                your features are drawn. A regular expression is a matching syntax that allows you to
+                match a string based on very complex criteria. For example, let's say you have a layer that has a
+                column in the data that contains school names. Most school names include the type of school
+                they are. For instance, you may have "Lincoln Middle School" or "Bush High School." There are
+                variations to these names though, containing words such as "Elementary" or "Prep." With a regular
+                expression, you can create matching criteria that will allow you to match on many
+                variations of the names. It is especially useful for fuzzy matches where your data is
+                not clearly categorized. Another classic example is for matching or validating email
+                addresses, where matching rules can become complex.</para>
+            	<para>In the RegexStyle, you specify the matching criteria string and also the style you want
+                to use to draw the feature if the criteria matches. It is a simple yet powerful style
+                for dealing with complex rule sets and imprecise data.</para>
+            </remarks>
+            <summary>
+            This class allows you to draw features differently based on regular expression
+            matching.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexStyle.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor for the class. If you use this constructor, you
+            need to set the various properties manually.
+            </overloads>
+            <remarks>
+            If you use this constructor, you need to set the various properties
+            manually.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexStyle.#ctor(System.String,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.RegexItem})">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you specify the columnName and regexItems for the class.  You
+            can also set the various properties manually.
+            </overloads>
+            <remarks>
+            None.
+            </remarks>
+            <returns>None</returns>
+             <param name="columnName">This parameter is the columnName you want to use in the style.</param>
+             <param name="regexItems">This parameter specifies the regexItems in the style.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexStyle.#ctor(System.String,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.RegexItem},ThinkGeo.MapSuite.Styles.RegexMatching)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you specify the columnName, regexItems and regexMatching rule for the class. You
+            can also set the various properties manually.
+            </overloads>
+            <remarks>
+            None.
+            </remarks>
+            <returns>None</returns>
+             <param name="columnName">This parameter is the columnName you want to use in the style.</param>
+             <param name="regexItems">This parameter specifies the regexItems in the style.</param>
+             <param name="regexMatching">This parameter specifies the regexMatching rule for the style.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexStyle.RegexMatchingRule">
+            <summary>
+            This property gets and sets the regular expression matching rule. The rule
+            determines whether we match the entire string or just any portion of it.
+            </summary>
+            <value>This property gets the regular expression matching rule.</value>
+            <remarks>
+            This is used to determine how much of a string needs to match a regular expression in order
+            to declare it a match for that expression.
+            Sometimes, you only need one part of the string to match in order for the expression to
+            be considered a match; other times you may want the entire string to match.
+            </remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexStyle.ColumnName">
+            <summary>
+            This property gets and sets the column name whose value will be tested against the regular
+            expression.
+            </summary>
+            <value>
+            This property gets the column name whose value will be tested against the regular
+            expression.
+            </value>
+            <remarks>This is the column we use for matching.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Styles.RegexStyle.RegexItems">
+            <summary>
+            This property gets the collection of RegexItems. Each item can have its own
+            regular expression to match.
+            </summary>
+            <value>This property gets the collection of RegexItems.</value>
+            <remarks>
+            You will want to add RegexItems to this collection. Each item can have its own
+            style and matching string.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexStyle.DrawCore(System.Collections.Generic.IEnumerable{ThinkGeo.MapSuite.Shapes.Feature},ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate},System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the features on the canvas you provided.</summary>
+            <remarks>
+            This overridden method is called from the concrete public method Draw. In this
+            method, we take the features you passed in and draw them on the canvas you provided.
+            Each style based on its properties may draw each feature differently.<br/>
+            	<br/>
+            	<br/>
+            When overriding this method, consider each feature and its column data values. You can
+            use the full power of the GeoCanvas to do the drawing. If you need column data for a
+            feature, be sure to override the GetRequiredColumnNamesCore and add the columns you need
+            to the collection. In many of the styles, we add properties to allow the user to specify
+            which field they need; then, in the GetRequiredColumnNamesCore, we read that property and
+            add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method when the GeoCanvas's IsDrawing mode is false, it will throw an InvalidOperationException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the canvas, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass a null as the features, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If columnName is null, we will throw an ArgumentNullException.</exception>
+            <param name="features">This parameter represents the features you want to draw on the canvas.</param>
+            <param name="canvas">This parameter represents the canvas you want to draw the features on.</param>
+            <param name="labelsInThisLayer">The labels will be drawn in the current layer only.</param>
+            <param name="labelsInAllLayers">The labels will be drawn in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Styles.RegexStyle.GetRequiredColumnNamesCore">
+            <remarks>
+            This abstract method is called from the concrete public method
+            GetRequiredFieldNames. In this method, we return the column names that are required for
+            the style to draw the feature properly. For example, if you have a style that colors
+            areas blue when a certain column value is over 100, then you need to be sure you include
+            that column name. This will ensure that the column data is returned to you in the
+            feature when it is ready to draw.<br/>
+            	<br/>
+            In many of the styles, we add properties to allow the user to specify which field they
+            need; then, in the GetRequiredColumnNamesCore, we read that property and add it to the
+            collection.
+            </remarks>
+            <summary>
+            This method returns the column data for each feature that is required for the
+            style to properly draw.
+            </summary>
+            <returns>This method returns a collection of the column names that it needs.</returns>
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If columnName is null, we will throw an ArgumentNullException.</exception>
+        </member>
+    </members>
+</doc>

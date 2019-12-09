@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.WorldMapKit</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.WorldMapKitLayer">
+            <summary>
+            This class is use for world map kit, and you also can get map from ThinkGeo world map kit server.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.#ctor">
+            <summary>
+            The default constructor
+            </summary>
+            <remarks>The constructor initilizes the properties. UpperThreshold is set to double.MaxValue, LowerThreshold is set to double.MinValue.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.#ctor(System.String,System.String)">
+            <summary>
+            This is the constructor the for the class.
+            </summary>
+            <param name="clientId">The clientId for the WorldMapKit Server.</param>
+            <param name="privateKey">The privateKey for the WorldMapKit Server.</param>
+            <remarks>This constructor initializes a new layer and assgin a license key.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.#ctor(ThinkGeo.MapSuite.Layers.WorldMapKitLayerType,System.String,System.String)">
+            <summary>
+            This is the constructor the for the class.
+            </summary>
+            <param name="layerType"></param>
+            <param name="clientId">The clientId for the WorldMapKit Server.</param>
+            <param name="privateKey">The privateKey for the WorldMapKit Server.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.#ctor(ThinkGeo.MapSuite.Layers.WorldMapKitLayerType,System.Net.IWebProxy,System.String,System.String)">
+            <summary>
+            This is the constructor the for the class.
+            </summary>
+            <param name="layerType"></param>
+            <param name="clientId"></param>
+            <param name="privateKey"></param>
+            <param name="webProxy"></param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.ClientId">
+            <summary>
+            Gets or sets a value that is your Client Id.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.PrivateKey">
+            <summary>
+            Gets or sets a value that is unique to your client ID, please keep your key secure.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.ClearCache">
+            <summary>
+            This method clears the tile cache.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.Projection">
+            <summary>
+            Gets or sets a WorldMapKitProjection represents which projection will be use.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.TileCache">
+            <summary>
+            Gets or sets a BitmapTileCache represents which tile cache will be use.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.UpperThreshold">
+            <summary>
+            Gets or sets a value represents upper threshold for scale.
+            </summary>
+            <remarks>Is the current scale is beyond this value, the map will not render.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.LowerThreshold">
+            <summary>
+            Gets or sets a value represents lower threshold for scale.
+            </summary>
+            <remarks>Is the current scale is less than this value, the map will not render.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.TimeoutInSecond">
+            <summary>
+            This property specifies the timeout of the web request in seconds.  The default timeout value is 20 seconds.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetServerLayerNames">
+            <summary>This method returns the names of all layers at the server side.</summary>
+            <returns>This method returns the names of all layers at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetServerStyleNames">
+            <summary>This method returns the names of all styles at the server side.</summary>
+            <returns>This method returns the names of all styles at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetServerOutputFormats">
+            <summary>This method returns the output format at the server side.</summary>
+            <returns>This method returns the output format at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetServerCrss">
+            <summary>
+            This method returns the projected or geographic coordinate reference systems to be used.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetServerExceptionFormats">
+            <summary>This method returns the exception format at the server side.</summary>
+            <returns>The exception format at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetServiceVersion">
+            <summary>
+            This API gets the WMS server version of the service.
+            </summary>
+            <returns>Returns a string reflecting the version of the service in WMS.</returns>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.HasBoundingBox">
+            <summary>
+            This property indicates whether a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs.
+            </summary>
+            <remarks>The value of WorldMapKitLayer is false.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.GetRequestUrl(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Int32,System.Int32)">
+            <summary>
+            Get the request URLs from the client to the WMS servers.
+            </summary>
+            <param name="worldExtent">The world extent requested by the client to get the map.</param>
+            <param name="canvasWidth">The returning map width, as well as the drawing canvas width.</param>
+            <param name="canvasHeight">The returning map height, as well as the drawing canvas height.</param>
+            <returns>The request URLs from the client to the WMS servers.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.OpenCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a Layer which has already been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method opens the Layer so that it is initialized and ready to use.</summary>
+            <remarks>
+            This abstract method is called from the concrete public method Open. The
+            open method plays an important role, as it is responsible for initializing the Layer.
+            Most methods on the Layer will throw an exception if the state of the Layer is not
+            opened. When the map draws each layer, the layer will be opened as one of its first steps;
+            then, after it is finished drawing with that layer, it will close it. In this way, we
+            are sure to release all resources used by the Layer.<br/>
+            <br/>
+            When implementing the abstract method, consider opening the FeatureSource or
+            RasterSource. You will get a chance to close these in the Close method of the
+            Layer.
+            </remarks>
+            <returns>None</returns>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.IsOpenCore">
+            <summary>This property returns true if the Layer is open and false if it is not.</summary>
+            <decimalDegreesValue>This property returns true if the Layer is open and false if it is not.</decimalDegreesValue>
+            <remarks>
+            Various methods on the Layer require that it be in an open state. If one of those
+            methods is called when the state is not open, then the method will throw an exception.
+            To enter the open state, you must call the Layer Open method. The method will raise an
+            exception if the current Layer is already open.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.CloseCore">
+            <summary>
+            This method closes the Layer and releases any resources it was
+            using.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This abstract method is called from the concrete public method Close. The close
+            method plays an important role in the life cycle of the Layer. It may be called after
+            drawing to release any memory and other resources that were allocated since the Open
+            method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed Layer is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.DrawImage(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+             <summary>
+             This method draws image on the canvas with specified labelsInAllLayers
+             </summary>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.
+             This parameter represents the labels used for collision detection and duplication
+             checking.
+            </param>
+            <param name="labelsInAllLayers">This parameter is the labels in all layers.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.DrawCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Collections.ObjectModel.Collection{ThinkGeo.MapSuite.Styles.SimpleCandidate})">
+            <summary>This method draws the Layer.</summary>
+            <remarks>
+            This method is the concrete wrapper for the abstract method DrawCore. This
+                method draws the representation of the layer based on the extent you provided.<br/>
+            	<br/>
+            When implementing this abstract method, consider each feature and its column data
+            values. You can use the full power of the GeoCanvas to do the drawing. If you need
+            column data for a feature, be sure to override the GetRequiredColumnNamesCore and add
+            the columns you need to the collection. In many of the styles, we add properties that
+            allow the user to specify which field they need; then, in the GetRequiredColumnNamesCore,
+            we read that property and add it to the collection.
+            </remarks>
+            <returns>None</returns>
+            <param name="canvas">This parameter is the canvas object or a GeoImage to draw on.</param>
+            <param name="labelsInAllLayers">
+            This parameter represents the labels used for collision detection and duplication
+            checking.
+            </param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.IsExtentWithinThreshold(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Double,System.Double,System.Int32,ThinkGeo.MapSuite.GeographyUnit)">
+            <summary>
+            This method retures a value represents whether the currentExtent is within the passing in thresholds.
+            </summary>
+            <param name="currentExtent">The RectangleShape represents the current extent.</param>
+            <param name="upperThreshold">The upper threshold for scale.</param>
+            <param name="lowerThreshold">The lower threshold for scale.</param>
+            <param name="canvasWidth">The width of canvas which will use to draw.</param>
+            <param name="mapUnit">The GeographyUnit represents map unit for currentExtent</param>
+            <returns>This method retures a value represents whether the currentExtent is within the passing in thresholds. If returns true, is within. otherwise out of thresholds.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.IsExtentWithinThreshold(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Double,System.Double,System.Int32,ThinkGeo.MapSuite.GeographyUnit,System.Single)">
+            <summary>
+            This method retures a value represents whether the currentExtent is within the passing in thresholds.
+            </summary>
+            <param name="currentExtent">The RectangleShape represents the current extent.</param>
+            <param name="upperThreshold">The upper threshold for scale.</param>
+            <param name="lowerThreshold">The lower threshold for scale.</param>
+            <param name="canvasWidth">The width of canvas which will use to draw.</param>
+            <param name="mapUnit">The GeographyUnit represents map unit for currentExtent</param>
+            <param name="dpi">This parameter is the dpi of the current extent.</param>
+            <returns>This method retures a value represents whether the currentExtent is within the passing in thresholds. If returns true, is within. otherwise out of thresholds.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitLayer.DrawExceptionCore(ThinkGeo.MapSuite.Drawing.GeoCanvas,System.Exception)">
+            <summary>
+            This method will draw on the canvas when the layer.Draw throw exception and
+            the DrawExceptionMode is set to DrawException instead of ThrowException.
+            </summary>
+            <param name="canvas">The target canvas to draw the layer.</param>
+            <param name="e">The exception thrown when layer.Draw().</param>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.WorldMapKitProjection">
+            <summary>
+            This enumeration represents which projection will use for world map kit.
+            </summary>
+            <remarks>The Default item is the same as DecimalDegrees.</remarks>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WorldMapKitProjection.Default">
+            <summary>
+            The same as DecimalDegrees.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WorldMapKitProjection.DecimalDegrees">
+            <summary>
+            DecimalDegrees, for example, the EPSG:4326 is decimal degrees.
+            </summary>
+        </member>
+        <member name="F:ThinkGeo.MapSuite.Layers.WorldMapKitProjection.SphericalMercator">
+            <summary>
+            SphericalMercator, for example, the Google Maps use EPSG:900913 is spherical mercator.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.#ctor(System.Uri,System.Net.IWebProxy)">
+            <summary>
+            This is the constructor the for the class.
+            </summary>
+            <remarks>This constructor initializes a new WorldMapKitWmsRasterSource and downloads and parses the service description.</remarks>
+            <param name="uri">URI of the WMS server.</param>
+            <param name="proxy">Proxy to use for the current WMS layer.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.ClientId">
+            <summary>
+            Gets or sets a value that is unique to your client ID, please keep your key secure.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.PrivateKey">
+            <summary>
+            Gets or sets a value that is unique to your client ID, please keep your key secure.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.ActiveLayerNames">
+            <summary>
+            This property allows the active layers requested from the client to be shown on the map.
+            </summary>
+            <remarks>When requesting a map, a client may specify the layers to be shown on the map.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.ActiveStyleNames">
+            <summary>
+            This property allows the active styles requested from the client to be shown on the map.
+            </summary>
+            <remarks>When requesting a map, a client may specify the styles to be shown on the map.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.TimeoutInSecond">
+            <summary>
+            This property specifies the timeout of the web request in seconds.  The default timeout value is 20 seconds.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.Crs">
+            <summary>
+            This property gets or sets the projected or geographic coordinate reference system to be used.
+            </summary>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.Parameters">
+            <summary>
+            This property specifies a dictionary used to update the request sent from the client to
+            the WMS server.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetServerLayerNames">
+            <summary>This method returns the names of all layers at the server side.</summary>
+            <returns>The names of all layers at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetServerStyleNames">
+            <summary>This method returns the names of all styles at the server side.</summary>
+            <returns>The names of all styles at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetServerOutputFormats">
+            <summary>This method returns the output format at the server side.</summary>
+            <returns>The output format at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetServerCrss">
+            <summary>
+            This method returns the projected or geographic coordinate reference systems to be used.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetServerExceptionFormats">
+            <summary>This method returns the exception format at the server side.</summary>
+            <returns>The exception format at the server side.</returns>
+            <remarks>None.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetServiceVersion">
+            <summary>
+            This API gets the WMS server version of the service.
+            </summary>
+            <returns>Returns a string reflecting the version of the service in WMS.</returns>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.Proxy">
+            <summary>
+            This property gets or sets the proxy used for requesting a Web Response.
+            </summary>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetRequestUrl(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Int32,System.Int32)">
+            <summary>
+            Get the request URLs from the client to the WMS servers.
+            </summary>
+            <param name="worldExtent">The world extent requested by the client to get the map.</param>
+            <param name="canvasWidth">The returning map width, as well as the drawing canvas width.</param>
+            <param name="canvasHeight">The returning map height, as well as the drawing canvas height.</param>
+            <returns>The request URLs from the client to the WMS servers.</returns>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.WorldMapKitWmsRasterSource.GetImageCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Int32,System.Int32)">
+            <remarks>
+            This method is responsible for returning the image based on the parameters passed
+            in.
+            </remarks>
+            <summary>
+            This method returns an image based on the worldExtent and image width and
+            height.
+            </summary>
+            <returns>
+            This method returns an image based on the worldExtent and image width and
+            height.
+            </returns>
+            <param name="worldExtent">This parameter represents the worldExtent you want to draw.</param>
+            <param name="canvasWidth">This parameter represents the width of the image you want to draw.</param>
+            <param name="canvasHeight">This parameter represents the height of the image you want to draw.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Jpeg2000</name>
+    </assembly>
+    <members>
+        <member name="T:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer">
+            <summary>
+            This class represents .JP2 (JPEG2000) image type to be drawn on the map.
+            </summary>
+            <remarks>
+            JPEG2000 files are fairly common in the GIS community.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer.#ctor">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This is the default constructor. If you use this constructor, then you need to set
+            the PathFilename property manually before using the raster layer.
+            </overloads>
+            <returns>None</returns>
+            <remarks>
+            If you use this constructor, then you need to set the PathFilename property
+            manually before using the raster layer.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer.#ctor(System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path or filename information for the JP2 file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the JP2 file you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer.#ctor(System.String,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename information for both the JP2 image and its world file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the JP2 image file you want to use.</param>
+            <param name="worldFilePathFilename">This parameter is the world file path and filename for the JP2 image you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer.#ctor(System.String,ThinkGeo.MapSuite.Shapes.RectangleShape)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and filename for the JP2 image file and the
+            image extent to use.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the layer ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and filename of the JP2 image file you want to use.</param>
+            <param name="imageExtent">This parameter is the image extent of JP2 image file you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer.HasBoundingBox">
+            <summary>
+            This property checks to see if a Layer has a BoundingBox or not. If it has no
+            BoundingBox, it will throw an exception when you call the GetBoundingBox() and
+            GetFullExtent() APIs. In EcwRasterLayer, we override this API and mark it as true.
+            </summary>
+            <remarks>The default implementation in the base class returns false.</remarks>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.Jpeg2000RasterLayer.PathFilename">
+            <summary>
+            This property gets and sets the path and filename of the ECW file you want to
+            use.
+            </summary>
+            <value>This property gets the path and filename of the ECW file you want to use.</value>
+            <remarks>This should be the complete path and filename for an ECW file.</remarks>
+        </member>
+        <member name="T:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource">
+            <summary>This class represents the JPEG2000 raster source.</summary>
+            <remarks>
+            This class allows you to access pictures form an JPEG2000 file. This class is
+            typically used in the JPEG2000RasterLayer to allow JPEG2000 raster images to be shown on your map.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.#ctor">
+            <summary>This is the constructor for the class.</summary>
+            <overloads>This is the default constructor and is not typically used.</overloads>
+            If you use this constructor then you need to set the properties
+            manually before using the source.
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.#ctor(System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and file information for the JPEG2000RasterSource
+            file.`
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the RasterSource ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and file name of the file you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.#ctor(System.String,System.String)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the path and file information and world file information for the JPEG2000RasterSource
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the RasterSource ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and file name of the file you want to use.</param>
+            <param name="worldFilePathFilename">This parameter is the path and file name of the world file you want to use.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.#ctor(System.String,ThinkGeo.MapSuite.Shapes.RectangleShape)">
+            <summary>This is a constructor for the class.</summary>
+            <overloads>
+            This constructor allows you to provide the file and path information and extent information for the JPEG2000RasterSource
+            file.
+            </overloads>
+            <returns>None</returns>
+            <remarks>This constructor gets the RasterSource ready to use.</remarks>
+            <param name="imagePathFilename">This parameter is the path and file name of the ECW file you want to use.</param>
+            <param name="imageExtent">This parameter is the image extent of ECW file you want to use.</param>
+        </member>
+        <member name="P:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.PathFilename">
+            <summary>
+            This property gets or sets the file name and path of the ECW raster image you are
+            working with.
+            </summary>
+            <decimalDegreesValue>
+            This property returns the file name and path of the ECW raster image you are working
+            with.
+            </decimalDegreesValue>
+            <remarks>
+            If you wish to change the file the class is working with, you would change
+            it here. You cannot change the file you are working with while the class is in an open
+            state.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has been opened, it will throw an InvalidOperationException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.GetImageWidthCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the width of the raster image in screen coordinates.</summary>
+            <returns>This method returns the width of the raster image in screen coordinates.</returns>
+            <remarks>This method returns the width of the raster image in screen coordinates.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.GetImageHeightCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the height of the raster image in screen coordinates.</summary>
+            <returns>This method returns the height of the raster image in screen coordinates.</returns>
+            <remarks>This method returns the height of the raster image in screen coordinates.</remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.OpenCore">
+            <summary>
+            This method opens the ImageSource so that it is initialized and ready to
+            use.
+            </summary>
+            <remarks>
+            This protected virtual method is called from the concrete public method Open.
+            The Open method plays an important role, as it is responsible for initializing the
+            ImageSource. Most methods on the ImageSource will throw an exception if the state of
+            the ImageSource is not opened. When the map draws each layer, it will open the
+            ImageSource as one of its first steps; then, after it is finished drawing with that
+            layer, it will close it. In this way, we are sure to release all resources used by the
+            ImageSource.<br/>
+            	<br/>
+            When implementing this abstract method, consider opening files for file based-sources,
+            connecting to databases in the database-based sources and so on. You will get a chance
+            to close these in the Close method of the ImageSource.
+            </remarks>
+            <returns>None</returns>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has already been opened, it will throw an InvalidOperationException.</exception>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.CloseCore">
+            <summary>
+            This method opens the ImageSource so that it is initialized and ready to
+            use.
+            </summary>
+            <returns>None</returns>
+            <remarks>
+            This protected virtual method is called from the concrete public method Close.
+            The Close method plays an important role in the life cycle of the ImageSource. It may
+            be called after drawing to release any memory and other resources that were allocated
+            since the Open method was called.<br/>
+            	<br/>
+            If you override this method, it is recommended that you take the following things
+            into account: This method may be called multiple times, so we suggest you write the method so
+            that that a call to a closed FeatureSource is ignored and does not generate an error.
+            We also suggest that in the Close you free all resources that have been opened.
+            Remember that the object will not be destroyed, but will be re-opened possibly in the
+            near future.
+            </remarks>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.GetImageCore(ThinkGeo.MapSuite.Shapes.RectangleShape,System.Int32,System.Int32)">
+            <exception cref="T:System.ArgumentNullException" caption="ArgumentNullException">If you pass in a worldExtent that is invalid, we will throw an ArgumentNullException.</exception>
+            <exception cref="T:System.ArgumentException" caption="ArgumentException">If you pass in a worldExtent that is invalid, we will throw an ArgumentException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a raster image width that is smaller than or equal to 0, we will throw an ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException" caption="ArgumentOutOfRangeException">If you pass in a raster image height that is smaller than or equal to 0, we will throw an ArgumentOutOfRangeException.</exception>
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a raster source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <remarks>
+            This method is responsible for returning the image based on the parameters passed
+            in.
+            </remarks>
+            <summary>
+            This method returns an image based on the worldExtent and raster image width and
+            height.
+            </summary>
+            <returns>
+            This method returns an image based on the worldExtent and raster image width and
+            height.
+            </returns>
+            <param name="worldExtent">This parameter represents the worldExtent you want to draw.</param>
+            <param name="canvasWidth">This parameter represents the width of the raster image you want to draw.</param>
+            <param name="canvasHeight">This parameter represents the height of the raster image you want to draw.</param>
+        </member>
+        <member name="M:ThinkGeo.MapSuite.Layers.Jpeg2000RasterSource.GetBoundingBoxCore">
+            <exception cref="T:System.InvalidOperationException" caption="InvalidOperationException">In the event you attempt to call this method on a image source which has not been opened, it will throw an InvalidOperationException.</exception>
+            <summary>This method returns the bounding box of the RasterSource.</summary>
+            <returns>This method returns the bounding box of the RasterSource.</returns>
+            <remarks>This method returns the bounding box of the RasterSource.</remarks>
+        </member>
+    </members>
+</doc>

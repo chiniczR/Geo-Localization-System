@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThinkGeo.MapSuite.Layers.Noaa</name>
+    </assembly>
+    <members>
+        <member name="M:ThinkGeo.MapSuite.Layers.NoaaRadarRasterLayer.#ctor(System.String)">
+            <summary>
+            This is the constructor for NoaaRadarRasterLayer.
+            </summary>
+            <param name="userAgent">Applications accessing resources on NOAA need to provide a User-Agent header in any HTTP request.
+             Requests without a user agent are automatically blocked. ThinkGeo provides a default UserAgent but it is strongly
+            recommended to provide your own (by using the overload constructor NoaaWeatherStationFeatureLayer(string userAgent)), with
+             the suggested format like this: ApplicationName/vX.Y (http://your.app.url/; contact.email@example.com). </param>
+        </member>
+    </members>
+</doc>

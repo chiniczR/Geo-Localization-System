@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:bombFallLocalizationSystem"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <System:String x:Key="titleString1">מערכת</System:String>
+    <System:String x:Key="titleString2">איתור</System:String>
+    <System:String x:Key="titleString3">נפילות</System:String>
+    <System:String x:Key="mainString">ראשי</System:String>
+    <System:String x:Key="loginString">התחברות</System:String>
+    <System:String x:Key="logoutString">יציאה</System:String>
+    <System:String x:Key="reportString">דיווח על נפילה חדשה</System:String>
+    <System:String x:Key="analsysString">ניתוח</System:String>
+    <System:String x:Key="searchString">חיפוש</System:String>
+    <System:String x:Key="aboutString">מידע נוספת</System:String>
+    <System:String x:Key="shareString">לשתף</System:String>
+    <System:String x:Key="questionsString">שאלות</System:String>
+    <System:String x:Key="listString">רשימת נפילות</System:String>
+    <System:String x:Key="displayString">תצוגת נפילות</System:String>
+    <System:String x:Key="welcomeString">ברוך\ה הבא\ה, אורח\ת!</System:String>
+    <System:String x:Key="updateString">עדכון פרטי נפילה</System:String>
+    <System:String x:Key="loginLabelString">תרשמ\י את השם-משתמש ואת הסיסמה שלך כדי להתחבר</System:String>
+    <System:String x:Key="usernameString">שם משתמש</System:String>
+    <System:String x:Key="passwordString">סיסמה</System:String>
+    <System:String x:Key="invalidTryString">שם-משתמש או סיסמה לא תקין\תקנינים</System:String>
+    <System:String x:Key="reportTitleString1">דיווח על</System:String>
+    <System:String x:Key="reportTitleString2">נפילה</System:String>
+    <System:String x:Key="newReportString">דיווח על נפילת טיל חדש</System:String>
+    <System:String x:Key="addressString">כתובת מקור הדיווח</System:String>
+    <System:String x:Key="actuallyReportString">לדווח</System:String>
+    <System:String x:Key="referringToPrevLabel">זה בנוגע לנפילה קודמת</System:String>
+    <System:String x:Key="whichPrevFallLabel1">דיווח זה הינו בנוגע לנפילה מלפני</System:String>
+    <System:String x:Key="whichPrevFallLabel2">דקות</System:String>
+    <System:String x:Key="sameFallLabel" xml:space="preserve">מניחים שדיווחים - בברירת מחדל - מתיחסים לנפילה הארונה 
+ אם נעשו בפחות מ-10 דקות מהדיווח האחרון. אלא אם צוין אחרת,
+מניחים שדיווחים הנעשים אחרי 10 דקות מהדיווח האחרון מתיחסים
+לנפילה חדשה. רק אפשר לדווח על נפילות מאותו יום.</System:String>
+    <System:String x:Key="listExplainList" xml:space="preserve">לחצ\י על אחד מהנפילות
+הרשומות בחלון בצד הימיני
+וצבעו של הפאשפין המתאים
+במפה יהיה אדום</System:String>
+    <System:String x:Key="fullTitle">מערכת איתור נפילות</System:String>
+    <System:String x:Key="langTip">בחירת שפת המערכת</System:String>
+    <System:String x:Key="updateLabelString">תבחר\י תמונה עם ג'אוטג כדי לעדכן מיקום נפילה</System:String>
+    <System:String x:Key="selectPicString">בחירת תמונה</System:String>
+    <System:String x:Key="actualUpdateString">עדכון</System:String>
+    <System:String x:Key="fallDetsDemoString">* פרטי הנפילה הנוכחים *</System:String>
+    <System:String x:Key="chooseFallString">תבחר\י הנפילה שברצונך לדכן את פרטיה</System:String>
+    <System:String x:Key="orangeLegendString">מיקום (המשוער) הנוכחי של הנפילה הנבחרת</System:String>
+    <System:String x:Key="gainsboroLegendString">מיקום מהתמונה עם הג'אוטג</System:String>
+    <System:String x:Key="changeProfilePicString">שינוי תמונה</System:String>
+    <System:String x:Key="avgActDistString" xml:space="preserve">מרחק בין איתור
+משוער וממשי בממוצע</System:String>
+    <System:String x:Key="fallByDistString">הפרש בין המיקום המשוער והאמיתי (ק"מ) ב</System:String>
+    <System:String x:Key="analysisDisclaimerString" xml:space="preserve">המידע הרשומה בחלון הזה
+הינו מתיחס רק לנתונים הקיימים
+.במערכת בזמן האחרון של עדכונו</System:String>
+    <System:String x:Key="accuarcyString">דיוק</System:String>
+    <System:String x:Key="accuracyTooltipString">אחוז הנפילות שהמרחק בין מיקומן האמיתי ומיקומן המשוער
+    (slider/text-box)-קטן/שווה ל מספר הנתון ב</System:String>
+    <System:String x:Key="accuracyTitleString" xml:space="preserve">הערכת
+טיב
+שימוש</System:String>
+    <System:String x:Key="singleSearchRadioString">חיפוש לנפילה אחת</System:String>
+    <System:String x:Key="multSearchRadioString">חיפוש למספר נפילות</System:String>
+    <System:String x:Key="byAddressString">חיפוש לפי כתובת</System:String>
+    <System:String x:Key="onlyAddressString">כתובת</System:String>
+    <System:String x:Key="byCoordsString">חיפוס לפיקורדנטות</System:String>
+    <System:String x:Key="errorMarginString">סטיית קבילה, בק"מ</System:String>
+    <System:String x:Key="datePickerString">תאריך</System:String>
+    <System:String x:Key="hourPickerString">זמן</System:String>
+    <System:String x:Key="onlyGeotaggedString">רק עם ג'אוטג</System:String>
+    <System:String x:Key="aboutWhatTitleString" xml:space="preserve">?מה זה</System:String>
+    <System:String x:Key="aboutWhatString" xml:space="preserve">    זה מערכת לאיתור המקום האמיתי של נפילת תי (בפועל
+ .call-center כל סוג של אירוע) שדווחו עליה לעובד 
+ היא גם אמורה לתת למנתחים כלי ניתוח יעילות המערכת 
+ .ואלגוריתמה</System:String>
+
+    <System:String x:Key="aboutInfoTitleString" xml:space="preserve">?איך זה עובד</System:String>
+    <System:String x:Key="aboutInfoString" xml:space="preserve">    :קודם כל, למערכת שלושה סוגי משתמשים
+        
+        1. מנתחים
+        2. Call-center עובדי
+        3. אורחים
+   
+רק מנתחים רשאים לגשת לחלון ניתוח .רק עובדי המוקד טלפוני רשאים להוסיף דיווחים חדשים (i)
+  כולם (מנתחים, עובדי מוקד טלפוני וגם אורחים) רשאים .(iii) ולעדכן פרטי נפילה קיימת (ii)
+    לחפש מסד המערכת לנפילות קיימות, ולגשת לחלון הזה, לחלון השאלות או לחלון של לשתף (iv)
+      הפעולות המיוחדות לעובדים דורשות התחברות למערכת. בפרטים נוספים, הפעולות הממוספרות 
+                                                                                :מתוארות כך
+        
+        (i) ניתוח 
+                .מכיל מידע האמורה לעזור למנתח להעריך הדיוק והיעילות של המערכת ואלגוריתמה
+        
+        (ii) דיווח על נפילה חדשה
+                    כשעובד המוקד מקבל שיחה טלפונית המדווחת נפילה הוא/היא ממלא/ת הטופס בתא 
+              דיווח על נפילה חדשה" של החלון הראשי. כמתואר שם, מניחים נפילות שדווחו עליהן"    
+             בפחות מ-10 דקות מהדיווח האחרון מתיחסות לאותה נפילה. לאחר שנקלט דיווח חדש, אם
+                זה בנוגע לנפילה חדשה לגמרי, אזי הנפילה החדשה הזאת נוספה למסד נתונים; אחרת 
+           היא מקובצת עם שאר הדיווחים התיחסים לנפילה הזאת, וקורדינטותן מועברות לאלגוריתם 
+                                                           .המחשב המיקום המשוער של הנפילה/ות
+        
+        (iii) עידכון פרטי נפילה
+             כשעובד המוקד מקבל תמונה עם ג'אוטג של מיקום הנפילה, הוא/היא מעלה אותה לתא הזה  
+            של החלון הראשי. קורדינטות הג'אוטג של התמונה משמשות כדי לעדכן האיתור המשוער של 
+           הפילה וכך לאתר אותה בדיוק. הפרש המיקום המשוער והאמיתי נשמר ומשמש כדי למדד דיוק
+                                                                               .ויעילות המערכת
+        
+        (iv) חיפוש 
+              חיפוש לפי מיקום (הנתון ע"י כתובת או קורדינטות), תאריך (אופציונלי) וגם האם יש 
+      לנפילה איתור מדויק - כלומר, האם כבר העלו תמונה עם ג'אוטג לה -, וגם ניתן להגדיר סטיית 
+                                                       .המקבלת לתוצאות (בררת מחדל 1000) במרחק</System:String>
+    <System:String x:Key="aboutThanksTitleString" xml:space="preserve">יש להגיש קרדיט</System:String>
+    <System:String x:Key="aboutThanksString" xml:space="preserve">        הנה רשימת כלים ומשאבים שהשתמשתי בפרויקט
+                                                                                        :זה, וברצוני להכיר בהם
+        
+        - The font: Bebas Neue, by Ryoichi Tsunekawa from Dharma Type
+        Free for personal use, available at: github.com/dharmatype/Bebas-Neue
+        
+        - The algorithm: "K-Means Data Clustering Using C#", by James McCaffrey
+        Adapted for this project's specifications. Can be found at:
+        visualstudiomagazine.com/articles/2013/12/01/k-means-data-clustering-using-c.aspx
+    
+        - The geocoding: HERE Geocoder API.
+        Used with REST. Documentation: developer.here.com/documentation#geocoder
+        
+        - The graphs: Live Charts, by Alberto Rodríguez
+        Open-source data-visualization tool for the .NET framwork. Homepage: https://lvcharts.net/
+        
+        - The round buttons: "How to create/make rounded corner buttons in WPF?",
+        as answered by Kishore Kumar and edited by Hakan Fıstık, on StackExchange (adapted). Url:
+        stackoverflow.com/questions/6745663/how-to-create-make-rounded-corner-buttons-in-wpf</System:String>
+    <System:String x:Key="backString">חזרה</System:String>
+    <System:String x:Key="forwardString">קדימה</System:String>
+    <System:String x:Key="weGotAnswersString">!יש לנו תשובות</System:String>
+    <System:String x:Key="questionsWindowString" xml:space="preserve">?שאלות? המלצות? תלונות
+!הערות? שלחו מייל</System:String>
+    <System:String x:Key="copyTooltipString">להעתיק כתובת דוא"ל</System:String>
+    <System:String x:Key="openGmailTooltipString">לפתוח ג'מייל בדפדפן</System:String>
+    <System:String x:Key="mainWindowString">חלון ראשי</System:String>
+
+</ResourceDictionary>
