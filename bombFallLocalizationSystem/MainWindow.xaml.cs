@@ -103,7 +103,7 @@ namespace bombFallLocalizationSystem
                 if (lastReport.Day != DateTime.Now.Day || lastReport.Month != DateTime.Now.Month || lastReport.Year != DateTime.Now.Year)
                 {
                     // This is where we'd first save the previous days reports on a more permanent
-                    // storage on the cloud, say on Azure, if I had one
+                    // storage on the cloud, if we wanted to do that
                     File.WriteAllText(@"recentFalls.xml", string.Empty);
                 }
             }
